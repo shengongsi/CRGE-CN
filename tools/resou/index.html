@@ -1,0 +1,409 @@
+﻿
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>热搜体验器 Cr铬 | crge.cn</title>
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <script src="/js/baiduindex.js"></script>
+</head>
+
+<body>
+
+<style type="text/css">
+.shurukuang {
+	border:2px solid #ddd;
+	border-radius:0;
+	color:#999;
+	display:block;
+	font:400 1em/1 "Open Sans",sans-serif;
+	margin:0 0 .5em;
+	padding:1em 1.25em;
+	width:100%;
+	-webkit-transition:border-color 300ms,color 300ms;
+	transition:border-color 300ms,color 300ms;
+	-webkit-appearance:none
+}
+.shurukuang:focus {
+	border-color:#333;
+	color:#333;
+	outline:0
+}
+
+.chk_1 {
+    display: none;
+}
+
+.chk_1 + label {
+	background-color: #FFF;
+	border: 1px solid #C1CACA;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+	padding: 9px;
+	border-radius: 5px;
+	display: inline-block;
+	position: relative;
+	margin-right: 30px;
+}
+.chk_1 + label:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.chk_1:checked + label {
+	background-color: #A4D3EE;
+	border: 1px solid #92A1AC;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+	color: #243441;
+}
+
+.button {
+	display: inline-block;
+	position: relative;
+	margin: 10px;
+	padding: 10 60px;
+	text-align: center;
+	text-decoration: none;
+	font: bold 12px/25px Arial, sans-serif;
+}
+
+.green {
+	color: #3e5706;
+	background: #a5cd4e;
+}
+
+.blue {
+	color: #19667d;
+	background: #70c9e3;
+}
+
+.gray {
+	color: #515151;
+	background: #d3d3d3;
+}
+
+
+.dibu{
+position:fixed;
+bottom:0;
+}
+
+</style>
+
+
+
+<br>
+<center>
+<a href="/tools"><img src="icon.png"  width="180px" height="37px"></a><br>
+<b><font size="5">
+热搜体验器<br>
+</font></b></center>
+<br>
+<br>
+
+
+
+<center><form action="" method="get"> 
+热搜涉及人数：
+<input type="checkbox" id="checkbox_renshu1" class="chk_1"/>
+<label for="checkbox_renshu1">一个人</label>
+
+<input type="checkbox" id="checkbox_renshu2" class="chk_1" checked/>
+<label for="checkbox_renshu2">两个人</label>
+</form> </center>
+
+
+<label class="fade">
+	<input id="renwu1" placeholder="请输入第一个人的名字" class="shurukuang"/>
+</label>
+
+<label class="fade" id="label2">
+	<input id="renwu2" placeholder="请输入第二个人的名字" class="shurukuang"/>
+</label>
+
+
+
+<center id="leixing2"><form action="" method="get"> 
+
+主题类型：
+<input type="checkbox" id="shuangrenleixing1" class="chk_1" checked />
+<label for="shuangrenleixing1">恋情</label>
+
+<input type="checkbox" id="shuangrenleixing2" class="chk_1"/>
+<label for="shuangrenleixing2">打架</label>
+
+<input type="checkbox" id="shuangrenleixing3" class="chk_1"/>
+<label for="shuangrenleixing3">其他</label>
+
+</form> </center>
+
+
+<center id="leixing1" hidden="true"><form action="" method="get"> 
+
+主题类型：
+<input type="checkbox" id="danrenleixing" class="chk_1" checked/>
+<label for="danrenleixing">随机</label>
+
+</form> </center>
+
+
+
+<center id="fengge2"><form action="" method="get"> 
+
+语言风格：
+<input type="checkbox" id="shuangrenfengge1" class="chk_1" checked />
+<label for="shuangrenfengge1">新闻</label>
+
+<input type="checkbox" id="shuangrenfengge2" class="chk_1"/>
+<label for="shuangrenfengge2">说唱</label>
+
+<input type="checkbox" id="shuangrenfengge3" class="chk_1"/>
+<label for="shuangrenfengge3">平淡</label>
+
+</form> </center>
+
+
+<center id="fengge1" hidden="true"><form action="" method="get"> 
+
+语言风格：
+<input type="checkbox" id="danrenfengge" class="chk_1" checked/>
+<label for="danrenfengge">随机</label>
+
+</form> </center>
+
+
+
+<center>
+
+<br>
+热搜排名：
+<select id="paiming" onchange= "changePaiming()" style="width:50%;height:30px">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+  <option value="13">13</option>
+  <option value="14">14</option>
+  <option value="15">15</option>
+</select>
+
+<br><br>
+
+热搜标志：
+<select id="biaozhi" onchange= "changeBiaozhi()" style="width:50%;height:30px">
+  <option value="null">无</option>
+  <option value="bao">爆</option>
+  <option value="re">热</option>
+  <option value="fei">沸</option>
+  <option value="xin">新</option>
+</select>
+
+</center>
+
+<br>
+
+
+
+<center>
+<font size = "1.5">注意:生成的热搜界面，除了你自己所选排名的那一个，其他都是系统随机生成的，仅供娱乐。</font><br>
+<a onclick="tiaozhuan()" class="button green">开始体验</a><br><br><br>
+</center>
+
+
+<div class = "dibu">
+<font size = "2" color = "#9ACD32"><a href="/">CRGE.CN</a></font>
+</div>
+
+<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+localStorage.clear();
+
+$(function(){
+        $(':checkbox[type="checkbox"]').each(function(){
+            $(this).click(function(){
+				if(this.checked == false)
+				{
+					this.checked = true;
+				}
+				if(this.checked){
+					if(this.id == "checkbox_renshu1")
+					{
+						document.getElementById("checkbox_renshu2").checked = false;
+						gaibianrenshu(1);
+					}
+					if(this.id == "checkbox_renshu2")
+					{
+						document.getElementById("checkbox_renshu1").checked = false;
+						gaibianrenshu(2);
+					}
+
+					if(this.id == "shuangrenleixing1")
+					{
+						document.getElementById("shuangrenleixing2").checked = false;
+						document.getElementById("shuangrenleixing3").checked = false;
+						leixingNum = 1;
+
+						oldShuangrenLeixingNum = 1;
+
+						fengge2.removeAttribute("hidden");
+		                fengge1.setAttribute("hidden",true);
+					}
+					if(this.id == "shuangrenleixing2")
+					{
+						document.getElementById("shuangrenleixing1").checked = false;
+						document.getElementById("shuangrenleixing3").checked = false;
+						leixingNum = 2;
+
+						oldShuangrenLeixingNum = 2;
+
+						fengge2.removeAttribute("hidden");
+		                fengge1.setAttribute("hidden",true);
+					}
+					if(this.id == "shuangrenleixing3")
+					{
+						document.getElementById("shuangrenleixing1").checked = false;
+						document.getElementById("shuangrenleixing2").checked = false;
+						leixingNum = 3;
+
+						oldShuangrenLeixingNum = 3;
+
+						fengge1.removeAttribute("hidden");
+		                fengge2.setAttribute("hidden",true);
+					}
+
+					if(this.id == "shuangrenfengge1")
+					{
+						document.getElementById("shuangrenfengge2").checked = false;
+						document.getElementById("shuangrenfengge3").checked = false;
+						fenggeNum = 1;
+					}
+					if(this.id == "shuangrenfengge2")
+					{
+						document.getElementById("shuangrenfengge1").checked = false;
+						document.getElementById("shuangrenfengge3").checked = false;
+						fenggeNum = 2;
+					}
+					if(this.id == "shuangrenfengge3")
+					{
+						document.getElementById("shuangrenfengge1").checked = false;
+						document.getElementById("shuangrenfengge2").checked = false;
+						fenggeNum = 3;
+					}
+                }
+            });
+        });
+});
+
+var paiming = document.getElementById("paiming");
+
+var renwu1 = document.getElementById("renwu1");
+var renwu2 = document.getElementById("renwu2");
+var label2 = document.getElementById("label2");
+var leixing1 = document.getElementById("leixing1");
+var fengge1 = document.getElementById("fengge1");
+var leixing2 = document.getElementById("leixing2");
+var fengge2 = document.getElementById("fengge2");
+
+function gaibianrenshu(num){
+	renshuNum = num;
+
+	if(num == 1)
+	{
+		renwu1.placeholder = "请输入热搜主角的名字";
+		label2.setAttribute("hidden",true);
+		leixing1.removeAttribute("hidden");
+		leixing2.setAttribute("hidden",true);
+		fengge1.removeAttribute("hidden");
+		fengge2.setAttribute("hidden",true);
+		leixingNum = 0;
+		fenggeNum = 0;
+	}
+	else if(num == 2)
+	{
+		renwu1.placeholder = "请输入第一个人的名字";
+		label2.removeAttribute("hidden");
+		leixing1.setAttribute("hidden",true);
+		leixing2.removeAttribute("hidden");
+		fengge1.setAttribute("hidden",true);
+		fengge2.removeAttribute("hidden");
+
+		if(oldShuangrenLeixingNum == 3)
+	    {
+		fengge1.removeAttribute("hidden");
+		fengge2.setAttribute("hidden",true);
+	    }
+	}
+}
+
+
+var renshuNum = 2;
+var name1 = "";
+var name2 = "";
+var leixingNum = 1;
+var fenggeNum = 1;
+var paimingNum = 1;
+var biaozhiStr = "null";
+
+var oldShuangrenLeixingNum = 1;
+
+
+function changePaiming()
+{
+	var paimingIndex=paiming.selectedIndex ;
+	paimingNum = paiming.options[paimingIndex].text;
+}
+
+function changeBiaozhi()
+{
+	var biaozhiIndex=biaozhi.selectedIndex ;
+	biaozhiStr = biaozhi.options[biaozhiIndex].value;
+	console.log(biaozhiStr);
+}
+
+function tiaozhuan()
+{
+	name1 = renwu1.value;
+	name2 = renwu2.value;
+
+	if(name1 == "" || name1 == "请输入热搜主角的名字" || name1 == "请输入第一个人的名字")
+	{
+		alert("请输入一个正确的名字！");
+		return;
+	}
+	if((name2 == "" || name2 == "请输入第二个人的名字") && renshuNum == 2)
+	{
+		alert("请重新输入第二个人的名字");
+		return;
+	}
+
+	localStorage.setItem("renshuNum", renshuNum);
+	localStorage.setItem("name1", name1);
+	localStorage.setItem("name2", name2);
+	localStorage.setItem("leixingNum", leixingNum);
+	localStorage.setItem("fenggeNum", fenggeNum);
+	localStorage.setItem("paimingNum", paimingNum);
+	localStorage.setItem("biaozhiStr", biaozhiStr);
+
+	window.location.href = "resou1.html";
+
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+

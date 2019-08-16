@@ -1,0 +1,509 @@
+'1 为黑 ，2 为白 ，0为空
+Dim shuzu(9, 9) As Single
+Dim c As Single, bw As Single
+Private Sub Command1_Click()
+Dim i As Single, j As Single
+bw = bw + 1
+c = 0
+Timer1.Enabled = True
+Command1.Caption = "再来一局"
+Label6.Caption = ""
+Timer1.Interval = 1000
+For i = 1 To 8
+For j = 1 To 8
+shuzu(i, j) = 0
+Next j
+Next i
+shuzu(4, 4) = 1: shuzu(4, 5) = 2: shuzu(5, 4) = 2: shuzu(5, 5) = 1
+Picture9.Visible = True
+Label1.Visible = True
+If bw Mod 2 + 1 = 2 Then
+Label7.Caption = "执黑"
+ElseIf bw Mod 2 + 1 = 1 Then
+Label7.Caption = "执白"
+End If
+Call refresh1
+End Sub
+Private Sub Command2_Click()
+Dim rank As Single, rank1 As Single
+Randomize
+countz = c Mod 2 + 1
+rank = 0
+If rank = 0 Then
+For rank1 = 1 To 8
+r1 = Int(Rnd * 4)
+If r1 = 0 Then
+Call Picture2_Click(0)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+ElseIf r1 = 1 Then
+Call Picture2_Click(7)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+ElseIf r1 = 2 Then
+Call Picture2_Click(56)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+ElseIf r1 = 3 Then
+Call Picture2_Click(63)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+End If
+Next rank1
+End If
+If rank = 8 Then
+For rank1 = 1 To 48
+r2 = Int(Rnd * 4)
+r3 = Int(Rnd * 4)
+If r2 = 0 Then
+Call Picture2_Click(r3 + 2)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+ElseIf r2 = 1 Then
+Call Picture2_Click(58 + r3)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+ElseIf r2 = 2 Then
+Call Picture2_Click((r3 + 2) * 8)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+ElseIf r2 = 3 Then
+Call Picture2_Click((r3 + 3) * 8 - 1)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+End If
+Next rank1
+End If
+If rank = 56 Then
+For rank1 = 1 To 32
+r4 = Int(Rnd * 4 + 3)
+r5 = Int(Rnd * 4 + 3)
+Call Picture2_Click(i * 8 - 9 + j)
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+rank = rank + 1
+Next rank1
+End If
+If rank = 88 Then
+For aaaaa = 1 To 100
+Call Picture2_Click(Int(Rnd * 64))
+If countz <> c Mod 2 + 1 Then
+Exit For
+End If
+Next aaaaa
+End If
+End Sub
+Private Sub Picture2_Click(Index As Integer)
+Dim i As Single, j As Single
+Dim d As Single
+d = c Mod 2 + 1
+'Print d
+'Select Case Index
+'Case 0, 2, 4, 6, 9, 11, 13, 15, 16, 18, 20, 22, 25, 27, 29, 31, 32, 34, 36, 38, 41, 43, 45, 47, 48, 50, 52, 57, 59, 61, 63
+'Picture2(Index).Picture = Picture3.Picture
+'End Select
+i = Index \ 8 + 1
+j = Index + 1 - (Index \ 8) * 8
+If shuzu(i, j) = 0 And i <> 0 And j <> 0 And i <> 9 And j <> 9 Then
+Dim ab As Single, ac As Single, aa As Single
+ab = 0: ac = 0
+For aa = i + 1 To 8
+If shuzu(aa, j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa, j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa, j) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = i + 1 To i + ab
+shuzu(aa, j) = d
+Next aa
+End If
+ab = 0: ac = 0
+For aa = i - 1 To 1 Step -1
+If shuzu(aa, j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa, j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa, j) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = i - 1 To i - ab Step -1
+shuzu(aa, j) = d
+Next aa
+End If
+ab = 0: ac = 0
+For aa = j + 1 To 8
+If shuzu(i, aa) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(i, aa) Then
+ab = ab + 1
+ElseIf d = shuzu(i, aa) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = j + 1 To j + ab
+shuzu(i, aa) = d
+Next aa
+End If
+ab = 0: ac = 0
+For aa = j - 1 To 1 Step -1
+If shuzu(i, aa) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(i, aa) Then
+ab = ab + 1
+ElseIf d = shuzu(i, aa) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = j - 1 To j - ab Step -1
+shuzu(i, aa) = d
+Next aa
+End If
+Dim da As Single, xiao As Single
+If i >= j Then
+da = i
+xiao = j
+ElseIf i < j Then
+da = j
+xiao = i
+End If
+ab = 0: ac = 0
+For aa = 1 To 9 - da
+If shuzu(aa + i, aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa + i, aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa + i, aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = 1 To ab
+shuzu(aa + i, aa + j) = d
+Next aa
+End If
+ab = 0: ac = 0
+For aa = 1 To xiao
+If shuzu(-aa + i, -aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(-aa + i, -aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(-aa + i, -aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = 1 To ab
+shuzu(-aa + i, -aa + j) = d
+Next aa
+End If
+Dim da2 As Single, xiao2 As Single
+If i >= 9 - j Then
+da2 = i
+xiao2 = 9 - j
+ElseIf i < 9 - j Then
+da2 = 9 - j
+xiao2 = i
+End If
+ab = 0: ac = 0
+For aa = 1 To xiao2
+If shuzu(-aa + i, aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(-aa + i, aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(-aa + i, aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = 1 To ab
+shuzu(-aa + i, aa + j) = d
+Next aa
+End If
+ab = 0: ac = 0
+For aa = 1 To 9 - da2
+If shuzu(aa + i, -aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa + i, -aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa + i, -aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+If ab * ac <> 0 Then
+shuzu(i, j) = d
+For aa = 1 To ab
+shuzu(aa + i, -aa + j) = d
+Next aa
+End If
+If shuzu(i, j) <> 0 Then
+Call new1
+End If
+'Print "可以落子"
+'shuzu(i, j) = ((c + 1) Mod 2) + 1
+' Else
+' Print "不可落子"
+End If
+Call refresh1
+End Sub
+Private Sub new1()
+Dim ab As Single, ac As Single, aa As Single, d As Single, ad As Single
+d = (c + 1) Mod 2 + 1: ad = 0
+For i = 1 To 8
+For j = 1 To 8
+If shuzu(i, j) = 0 Then
+ab = 0: ac = 0
+For aa = i + 1 To 8
+If shuzu(aa, j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa, j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa, j) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+ab = 0: ac = 0
+For aa = i - 1 To 1 Step -1
+If shuzu(aa, j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa, j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa, j) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+ab = 0: ac = 0
+For aa = j + 1 To 8
+If shuzu(i, aa) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(i, aa) Then
+ab = ab + 1
+ElseIf d = shuzu(i, aa) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+ab = 0: ac = 0
+For aa = j - 1 To 1 Step -1
+If shuzu(i, aa) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(i, aa) Then
+ab = ab + 1
+ElseIf d = shuzu(i, aa) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+Dim da As Single, xiao As Single
+If i >= j Then
+da = i
+xiao = j
+ElseIf i < j Then
+da = j
+xiao = i
+End If
+ab = 0: ac = 0
+For aa = 1 To 9 - da
+If shuzu(aa + i, aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa + i, aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa + i, aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+ab = 0: ac = 0
+For aa = 1 To xiao
+If shuzu(-aa + i, -aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(-aa + i, -aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(-aa + i, -aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+Dim da2 As Single, xiao2 As Single
+If i >= 9 - j Then
+da2 = i
+xiao2 = 9 - j
+ElseIf i < 9 - j Then
+da2 = 9 - j
+xiao2 = i
+End If
+ab = 0: ac = 0
+For aa = 1 To xiao2
+If shuzu(-aa + i, aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(-aa + i, aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(-aa + i, aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+ab = 0: ac = 0
+For aa = 1 To 9 - da2
+If shuzu(aa + i, -aa + j) = 0 Then
+ac = 0
+Exit For
+ElseIf d <> shuzu(aa + i, -aa + j) Then
+ab = ab + 1
+ElseIf d = shuzu(aa + i, -aa + j) Then
+ac = 1
+Exit For
+End If
+Next aa
+ad = ad + ab * ac
+End If
+Next j
+Next i
+If ad > 0 Then
+c = c + 1
+End If
+End Sub
+Private Sub refresh1()
+Dim i As Single, j As Single
+For i = 1 To 8 Step 2
+For j = 1 To 8 Step 2
+If shuzu(i, j) = 2 Then
+Picture2(i * 8 - 9 + j).Picture = Picture3.Picture
+ElseIf shuzu(i, j) = 1 Then
+Picture2(i * 8 - 9 + j).Picture = Picture4.Picture
+ElseIf shuzu(i, j) = 0 Then
+Picture2(i * 8 - 9 + j).Picture = Picture7.Picture
+End If
+Next j
+Next i
+For i = 2 To 8 Step 2
+For j = 2 To 8 Step 2
+If shuzu(i, j) = 2 Then
+Picture2(i * 8 - 9 + j).Picture = Picture3.Picture
+ElseIf shuzu(i, j) = 1 Then
+Picture2(i * 8 - 9 + j).Picture = Picture4.Picture
+ElseIf shuzu(i, j) = 0 Then
+Picture2(i * 8 - 9 + j).Picture = Picture7.Picture
+End If
+Next j
+Next i
+For i = 2 To 8 Step 2
+For j = 1 To 8 Step 2
+If shuzu(i, j) = 2 Then
+Picture2(i * 8 - 9 + j).Picture = Picture5.Picture
+ElseIf shuzu(i, j) = 1 Then
+Picture2(i * 8 - 9 + j).Picture = Picture6.Picture
+ElseIf shuzu(i, j) = 0 Then
+Picture2(i * 8 - 9 + j).Picture = Picture8.Picture
+End If
+Next j
+Next i
+For i = 1 To 8 Step 2
+For j = 2 To 8 Step 2
+If shuzu(i, j) = 2 Then
+Picture2(i * 8 - 9 + j).Picture = Picture5.Picture
+ElseIf shuzu(i, j) = 1 Then
+Picture2(i * 8 - 9 + j).Picture = Picture6.Picture
+ElseIf shuzu(i, j) = 0 Then
+Picture2(i * 8 - 9 + j).Picture = Picture8.Picture
+End If
+Next j
+Next i
+If c Mod 2 + 1 = 1 Then
+Picture9.Picture = Picture6.Picture
+ElseIf c Mod 2 + 1 = 2 Then
+Picture9.Picture = Picture5.Picture
+End If
+For i = 1 To 8
+For j = 1 To 8
+If shuzu(i, j) = 1 Then
+count1 = count1 + 1
+ElseIf shuzu(i, j) = 2 Then
+count2 = count2 + 1
+End If
+Next j
+Next i
+If count1 + count2 = 64 Or count2 = 0 Or count1 = 0 Then
+If count1 > count2 Or count2 = 0 Then
+Label6.Caption = "黑胜"
+ElseIf count1 < count2 Or count1 = 0 Then
+Label6.Caption = "白胜"
+ElseIf count1 = count2 Then
+Label6.Caption = "平局"
+End If
+Timer1.Enabled = False
+End If
+Label4.Caption = count1
+Label5.Caption = count2
+End Sub
+Private Sub Timer1_Timer()
+If c Mod 2 + 1 = bw Mod 2 + 1 Then
+Call Command2_Click
+End If
+If Val(Label4.Caption) + Val(Label5.Caption) = 64 Then
+Timer1.Enabled = False
+End If
+End Sub

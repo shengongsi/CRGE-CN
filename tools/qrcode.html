@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="/js/baiduindex.js"></script>
+  <link rel="stylesheet" href="/css/news.min.css" />
+  <link rel="stylesheet" href="/css/amazeui.css" />
+  <link rel="stylesheet" href="/css/common.min.css" />
+  <link rel="stylesheet" href="/css/zhiding.css">
+
+
+</head>
+<body>
+<div id="head"></div>
+  <title>二维码生成器 Cr铬 | crge.cn</title>
+      <div class="breadcrumb-box">
+        <div class="am-container">
+          <ol class="am-breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/tools">工具站</a></li>
+            <li class="am-active">全文</li>
+          </ol>
+        </div>
+      </div>
+
+    <div class="section news-section">
+      <div class="container">
+        <!--news-section left start-->
+        <div class="am-u-md-9">
+          <div class="article">
+            <header class="article--header">
+              <h2 class="article--title"><a href="#" rel="">二维码生成器 | crge.cn</a></h2>
+              <ul class="article--meta">
+                <li class="article--meta_item"><i class="am-icon-calendar"></i>2019-02-24</li>
+                <li class="article--meta_item"><i class="am-icon-user"></i>by 神宫司</li>
+                <li class="article--meta_item"><i class="am-icon-commenting-o"></i>0评论</li>
+              </ul>
+            </header>
+  <script src="/js/jquery-2.1.0.js" charset="utf-8"></script>
+  <script src="/js/amazeui.js" charset="utf-8"></script>
+
+
+<!--文章开始-->
+<div class="doc-example"><div class="am-input-group"><input class="am-form-field" id="doc-qr-text" type="text" placeholder="请输入需转化为二维码的内容"> <span class="am-input-group-btn"><button class="am-btn am-btn-default" id="doc-gen-qr" type="button">生成</button></span></div><div><br></div><div class="am-text-center" id="doc-qrcode">
+
+<canvas width="256" height="256"></canvas></div><script>$(function(){function o(o){$qr.empty().qrcode(o)}var c=$("#doc-qr-text");$qr=$("#doc-qrcode"),c.val(""),o(location.href),$("#doc-gen-qr").on("click",function(){o(c.val())}),c.on("focusout",function(){o(c.val())})})</script></div>
+<p align="center">注：当前页面无法进行关注、打赏。</p>
+<!--文章结束-->
+            </div>
+
+
+<!--评论区-->
+          <div class="comments">
+			<div id="respond"></div>	
+          </div>
+        </div>
+                <div id="right"></div>
+        <!--news-section right end-->
+    </div>
+  </div>
+
+<!--news-section left end-->
+<div id="foot"></div>
+  <script>$(function(){$('#head').load('/css/head.html');$('#foot').load('/css/foot.html');$('#right').load('/css/right.html');$('#respond').load('/css/respond.html');})</script>
+</body>
+</html>

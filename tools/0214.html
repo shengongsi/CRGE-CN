@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="/js/baiduindex.js"></script>
+  <link rel="stylesheet" href="/css/news.min.css" />
+  <link rel="stylesheet" href="/css/amazeui.css" />
+  <link rel="stylesheet" href="/css/common.min.css" />
+  <link rel="stylesheet" href="/css/zhiding.css">
+
+</head>
+<body>
+<div id="head"></div>
+  <title>Cr铬 | crge.cn缘分测试</title>
+      <div class="breadcrumb-box">
+        <div class="am-container">
+          <ol class="am-breadcrumb">
+            <li><a href="/">首页</a></li>
+	<li><a href="/tools">工具站</a></li>
+            <li class="am-active">缘分测试</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="section news-section">
+      <div class="container">
+        <!--news-section left start-->
+        <div class="am-u-md-9">
+          <div class="article">
+            <header class="article--header">
+              <h2 class="article--title"><a href="#" rel="">缘分测试</a></h2>
+              <ul class="article--meta">
+                <li class="article--meta_item"><i class="am-icon-calendar"></i>2019-02-14</li>
+                <li class="article--meta_item"><i class="am-icon-user"></i>by 神宫司</li>
+                <li class="article--meta_item"><i class="am-icon-commenting-o"></i>23评论</li>
+              </ul>
+            </header>
+<div class="article--content">
+
+<!--先引入js-->
+  <script src="/js/jquery-2.1.0.js" charset="utf-8"></script>
+<!--文章开始-->
+<p>情人节了 缘分是天定的 幸福是自己的 想知道你和Ta的缘分指数吗?</p>
+<p>输入框中填写你的姓名+心仪对象姓名</p>
+<p>例如: 郭靖 黄蓉</p>
+<p>等待3秒，即可知道你们缘分！</p>
+<style>
+    /**初始化样式**/
+    *{margin:0;padding:0;}
+    /**清除浮动样式**/
+    .clc{clear:both;}
+    /**文字居中**/
+    .txtcenter{text-align:center;}
+    
+    .url_content{width:70%;margin:20px auto;}
+    .c_input,.c_btn,.c_show{overflow:hidden;}
+    
+    .ci_left,.ci_right{float:left;min-height:200px;border:1px solid #AEAEAE;}
+    .ci_left{width:70%;}
+    .ci_right{margin-left:1%;width:28%;background:#E7E7E7;}
+    
+    .cil_unit{width:70%;margin:20px auto;overflow:hidden;}
+    .inp_txt,.cil_input{float:left;}
+    .inp_txt{color:#30C0FF;height:30px;margin-top:5px;width:100px;}
+  
+    .cil_input{height:40px;width:220px;border-radius:5px;border:1px solid #CFCFCF;}
+    .btn_1,.btn_2,.btn_3{float:left;width:18%;margin:0px 5%;height:45px;line-height:45px;border-radius:5px;background:#30C0FF;color:white;}
+    
+    
+</style>
+<br>
+                    <input class='cil_input search' type='text' placeholder='你的姓名' />
+               <input class='cil_input search2' type='text' placeholder='心仪对象姓名' />
+        
+            <div class='btn_1 txtcenter'>测试缘分</div>
+        
+    <br>
+    <script>
+    window.onload=function(){
+    var str =encodeURIComponent(document.location.search);
+    var num = str.replace(/[^0-9]/ig,"");
+    var num2 =parseInt(num.substring(num.length-9, num.length-3)/num.substring(3,9)*100);
+if (num2<50)
+  {
+  num2=100-num2
+  }
+document.getElementById("print1").innerHTML=decodeURIComponent(document.location.search.substring(1, document.location.search.length))+"缘分指数："+num2;
+if (num2 < 49){
+document.getElementById("print2").innerHTML="";}
+else if (num2 < 60){
+document.getElementById("print2").innerHTML="一面之缘";}
+else if (num2 < 70){
+document.getElementById("print2").innerHTML="青梅竹马";}
+else if (num2 < 90){
+document.getElementById("print2").innerHTML="一见钟情";}
+else if (num2 < 100){
+document.getElementById("print2").innerHTML="情投意合";}
+else if (num2 < 120){
+document.getElementById("print2").innerHTML="心有灵犀";}
+else if (num2 < 150){
+document.getElementById("print2").innerHTML="珠联璧合";}
+else if (num2 < 1500){
+document.getElementById("print2").innerHTML="命中注定";}
+}
+
+</script>
+<script>
+$(".btn_1").click(function(){
+window.location.href="/tools/0214.html?"+$.trim($(".search").val())+" "+$.trim($(".search2").val());
+        });
+    </script>
+<br><br><br><br>
+<div id="print1" style="font-size:20px;color:blue;">缘分指数：</div><br>
+<div id="print2" style="font-size:30px;color:red;"></div>
+<br><br>
+
+<!--文章结束-->
+            </div>
+          </div>
+
+<!--评论区-->
+          <div class="comments">
+			<div id="respond"></div>	
+          </div>
+        </div>
+                <div id="right"></div>
+        <!--news-section right end-->
+    </div>
+  </div>
+
+<!--news-section left end-->
+<div id="foot"></div>
+
+  <script>$(function(){$('#head').load('/css/head.html');$('#foot').load('/css/foot.html');$('#right').load('/css/right.html');$('#respond').load('/css/respond.html');})</script>
+</body>
+</html>

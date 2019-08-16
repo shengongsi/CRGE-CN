@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="/js/baiduindex.js"></script>
+  <link rel="stylesheet" href="/css/news.min.css" />
+  <link rel="stylesheet" href="/css/amazeui.css" />
+  <link rel="stylesheet" href="/css/common.min.css" />
+  <link rel="stylesheet" href="/css/zhiding.css">
+</head>
+<body>
+<div id="head"></div>
+  <title>CAD X、Y和高程标注插件</title>
+      <div class="breadcrumb-box">
+        <div class="am-container">
+          <ol class="am-breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/tools">工具站</a></li>
+            <li class="am-active">全文</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="section news-section">
+      <div class="container">
+        <!--news-section left start-->
+        <div class="am-u-md-9">
+          <div class="article">
+            <header class="article--header">
+              <h2 class="article--title"><a href="#" rel="">CAD X、Y和高程标注插件</a></h2>
+              <ul class="article--meta">
+                <li class="article--meta_item"><i class="am-icon-calendar"></i>2018-10-28</li>
+                <li class="article--meta_item"><i class="am-icon-user"></i>by 神宫司</li>
+                <li class="article--meta_item"><i class="am-icon-commenting-o"></i>0评论</li>
+              </ul>
+            </header>
+<div class="article--content">
+
+<!--文章开始-->
+<h3>4.CAD X、Y和高程标注插件，将其代码复制到记事本，保存后修改后缀名为lsp，拖入CAD中输入命令xyz即可标注X、Y和高程坐标。<a href="xyz.txt" download="xyz.lsp">xyz.lsp下载（可能需手动改名为xyz.lsp）</a></h3>
+<p>(defun C:XYZ (/ OSNAP PNT1 P1X P1Y P1Z P STDX STDY STDZ XCOORD</p> <p>YCOORD ZCOORD PTXT )</p>
+ <p>(setvar "ORTHOMODE" 0)</p>
+   <p>; (setq OSNAP (getvar "OSMODE"))</p>
+   <p>; (command "setvar" "osmode" "1")</p>
+    <p>(command "setvar" "luprec" "0")</p>
+    <p>(prompt "NOTE!!! Coords. & leader drawn per current dimstyle; precision per UNITS... ")</p>
+    	 <p>(setq dst (getvar "dimstyle"))</p>
+  <p>(command "_.-DIMSTYLE" "_Restore" dst)</p>
+    <p>(setq PNT1 (getpoint "\nPick coordinate point: "))</p>
+    <p>(setq P1X (car pnt1))</p>
+   <p>(setq P1Y (cadr pnt1))</p>
+    <p>(setq P1Z (caddr pnt1))</p>
+    <p>(setq P (getvar "LUPREC"))</p>
+    <p>(setq STDX (rtos P1X 2 P))</p>
+    <p>(setq STDY (rtos P1Y 2 P))</p>
+    <p>(setq STDZ (rtos P1Z 2 P))</p>
+    <p>(setq XCOORD (strcat "X " STDX ))</p>
+    <p>(setq YCOORD (strcat "Y " STDY ))</p>
+    <p>(setq ZCOORD (strcat "Z " STDZ ))</p>
+    <p>(setq PTXT (getpoint "\nPick text location: "))</p>
+   <p>(command "LEADER" PNT1 PTXT "" XCOORD YCOORD ZCOORD "")</p>
+   <p>; (command "SETVAR" "osmode" OSNAP)</p>
+    <p>(command "setvar" "luprec" "4")</p>
+<p>(princ)</p>
+<p>)</p>
+<!--文章结束-->
+            </div>
+          </div>
+
+<!--评论区-->
+          <div class="comments">
+			<div id="respond"></div>	
+          </div>
+        </div>
+                <div id="right"></div>
+        <!--news-section right end-->
+    </div>
+  </div>
+
+<!--news-section left end-->
+<div id="foot"></div>
+  <script src="/js/jquery-2.1.0.js" charset="utf-8"></script>
+  <script>$(function(){$('#head').load('/css/head.html');$('#foot').load('/css/foot.html');$('#right').load('/css/right.html');$('#respond').load('/css/respond.html');})</script>
+</body>
+</html>

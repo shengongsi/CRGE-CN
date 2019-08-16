@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+<script src="baiduindex.js"></script>
+<title>mail.crge.cn邮箱服务</title>
+<meta charset="GBK">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+
+<div align="center">
+<h1>mail.crge.cn邮箱服务</h1>       
+<p>正在进入<a href="http://crge.cn/tools/mail.html" >mail.crge.cn</a></p>
+<br>
+</div>
+
+<script>
+var time=1;
+var timer=setInterval('tiaozhuan()',1000);
+function tiaozhuan(){
+var t= document.getElementById("id8");
+if(time>0){
+t.innerHTML=time;
+time--;
+}else {
+clearInterval(timer);
+location.href="http://crge.cn/tools/mail.html";
+}
+}
+</script>
+<div align="center"><font id="id8" size="5">1</font>秒钟后跳转至<a href="http://crge.cn/tools/mail.html" >http://crge.cn/tools/mail.html</a></div>
+<br>
+
+<br>
+<div align="center">
+<a href="http://crge.cn/">
+<img src="logo.png" width="180px" height="37px"></a>
+</div><br>
+           
+          
+     </div>
+</body>
+</html>
