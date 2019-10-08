@@ -1,43 +1,90 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
 <head>
 <script src="baiduindex.js"></script>
-<title>Äú·ÃÎÊµÄÒ³Ãæ²»´æÔÚ</title>
-<meta charset="GBK">
+<title>Cré“¬ | Crge.cn è·³è½¬é¡µ</title>
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
 
 <div align="center">
-<h1>404 - ÕÒ²»µ½ÎÄ¼ş»òÄ¿Â¼¡£</h1>       
-<p>ÄúÒª²éÕÒµÄ×ÊÔ´¿ÉÄÜÒÑ±»É¾³ı£¬ÒÑ¸ü¸ÄÃû³Æ»òÕßÔİÊ±²»¿ÉÓÃ¡£</p>
+<a href="http://crge.cn/"><img src="logo.png" width="180px" height="37px"></a>
+<h1>æ­£åœ¨è·³è½¬</h1>
 <br>
 </div>
 
 <script>
-var time=1;
+var s ="//"+window.location.host;
+	var h = s.split(".")[0];
+	var a = h.split("//")[1];
+
+
+if (a == "mc") {
+	window.location.href = 'http://crge.cn/games/mc/index.html';
+} else if (a == "i") {
+	window.location.href = 'http://crge.cn/videos/index.html';
+} else if (a == "2048") {
+	window.location.href = 'http://crge.cn/games/game/2048/index.html';
+} else if (a == "mail") {
+	window.location.href = 'http://crge.cn/tools/mail.html';
+} else if (a == "articles") {
+	window.location.href = 'http://crge.cn/articles/index.html';
+} else if (a == "tools") {
+	window.location.href = 'http://crge.cn/tools/index.html';
+} else if (a == "tool") {
+	window.location.href = 'http://crge.cn/tools/index.html';
+} else if (a == "games") {
+	window.location.href = 'http://crge.cn/games/index.html';
+} else if (a == "game") {
+	window.location.href = 'http://crge.cn/games/index.html';
+} else if (a == "eggs") {
+	window.location.href = 'http://crge.cn/games/eggs.html';
+} else if (a == "egg") {
+	window.location.href = 'http://crge.cn/games/eggs.html';
+} else if (a == "pvz") {
+	window.location.href = 'http://crge.cn/games/game/pvz/index.html';
+} else if (a == "search") {
+	window.location.href = 'http://crge.cn/tools/search.html';
+} else if (a == "qr") {
+	window.location.href = 'http://crge.cn/tools/qrcode.html';
+} else if (a == "hbq") {
+	window.location.href = 'http://crge.cn/games/game/hbq/index.html';
+} else if (a == "discuz") {
+	window.location.href = 'https://www.crge.cn/';
+} else if (a == "bbs") {
+	window.location.href = 'https://www.crge.cn/';
+} else if (a == "forum") {
+	window.location.href = 'https://www.crge.cn/';
+}
+
+
+
+else {
+
+var time=3;
 var timer=setInterval('tiaozhuan()',1000);
 function tiaozhuan(){
 var t= document.getElementById("id8");
 if(time>0){
 t.innerHTML=time;
-time--;
-}else {
+time--;}else {
 clearInterval(timer);
-location.href="http://crge.cn/";
-}
+location.href="http://crge.cn/";}}
+
 }
 </script>
-<div align="center"><font id="id8" size="5">1</font>ÃëÖÓºóÌø×ªÖÁ<a href="http://crge.cn/" >http://crge.cn/</a></div>
+<br>
+<div align="center">è·³è½¬å¤±è´¥ï¼Œæˆ–é¡µé¢ä¸å­˜åœ¨</div>
+<div align="center"><font id="id8" size="5">3</font>ç§’é’Ÿåè·³è½¬è‡³<a href="http://crge.cn/" >http://crge.cn/</a></div>
 <br>
 
 <br>
 <div align="center">
-<a href="http://crge.cn/">
-<img src="logo.png" width="180px" height="37px"></a>
-</div><br>
-           
-          
-     </div>
+
+<h1>Cré“¬ | Crge.cn</h1>
+</div>
+<br>
 </body>
 </html>
