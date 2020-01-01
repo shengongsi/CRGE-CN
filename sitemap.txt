@@ -9,6 +9,7 @@ http://crge.cn/articles/communication.html
 http://crge.cn/articles/20181225bdwp.html
 http://crge.cn/articles/20190310spacenavigation.html
 http://crge.cn/articles/20190328GYTJ.html
+http://crge.cn/articles/20200101aria2.html
 http://crge.cn/tools/index.html
 http://crge.cn/tools/search.html
 http://crge.cn/tools/mail.html
