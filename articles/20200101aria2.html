@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="/js/baiduindex.js"></script>
+  <link rel="stylesheet" href="/css/news.min.css" />
+  <link rel="stylesheet" href="/css/amazeui.css" />
+  <link rel="stylesheet" href="/css/common.min.css" />
+  <link rel="stylesheet" href="/css/zhiding.css">
+<link rel="icon" type="image/png"  href="/images/ico.png">
+<link rel="icon" href="/images/ico.png" sizes="192x192" />
+<link rel="alternate icon" type="image/png" href="/images/ico.png">
+<link rel="apple-touch-icon-precomposed" href="/images/ico.png">
+<meta name="msapplication-TileImage" content="/images/ico.png" />
+</head>
+<body>
+<div id="head"></div>
+  <title>Aria2下载-Cr铬 | crge.cn</title>
+      <div class="breadcrumb-box">
+        <div class="am-container">
+          <ol class="am-breadcrumb">
+            <li><a href="/">首页</a></li>
+	<li><a href="/articles">知识人</a></li>
+            <li class="am-active">全文</li>
+          </ol>
+        </div>
+      </div>
+    <div class="section news-section">
+      <div class="container">
+        <!--news-section left start-->
+        <div class="am-u-md-9">
+          <div class="article">
+            <header class="article--header">
+              <h2 class="article--title"><a href="#" rel="">Aria2下载</a></h2>
+              <ul class="article--meta">
+                <li class="article--meta_item"><i class="am-icon-calendar"></i>2020-01-01</li>
+                <li class="article--meta_item"><i class="am-icon-check-square-o"></i>2019-01-01</li>
+                <li class="article--meta_item"><i class="am-icon-user"></i>by 神宫司</li>
+              </ul>
+            </header>
+<div class="article--content">
+
+<!--文章开始-->
+
+             <p>
+0.准备一个装有Linux系统的树莓派、电视盒子、路由器、云服务器</p><p>
+1.安装 aria</p><p>
+sudo apt-get install aria2</p><p>
+</p><p>
+2.在/etc/aria2/文件夹创建文件</p><p>
+创建文件夹 sudo mkdir /etc/aria2</p><p>
+授权 sudo chmod 775 /etc/aria2</p><p>
+进入文件夹cd /etc/aria2/</p><p>
+创建session文件：touch aria2.session</p><p>
+创建并写入设置文件sudo vi aria2.conf</p><p>
+写入以下内容，需要自己更改的内容就是dir以及rpc-secret了</p><p>
+</p><p>
+## 文件保存相关 ##</p><p>
+# 文件保存目录</p><p>
+dir=/home/share</p><p>
+# 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M</p><p>
+disk-cache=32M</p><p>
+# 断点续传</p><p>
+continue=true</p><p>
+# 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc</p><p>
+# 预分配所需时间: none < falloc ? trunc < prealloc</p><p>
+# falloc和trunc则需要文件系统和内核支持</p><p>
+# NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项</p><p>
+#file-allocation=falloc</p><p>
+## 下载连接相关 ##</p><p>
+# 最大同时下载任务数, 运行时可修改, 默认:5</p><p>
+max-concurrent-downloads=10</p><p>
+# 同一服务器连接数, 添加时可指定, 默认:1</p><p>
+max-connection-per-server=15</p><p>
+# 整体下载速度限制, 运行时可修改, 默认:0（不限制）</p><p>
+#max-overall-download-limit=0</p><p>
+# 单个任务下载速度限制, 默认:0（不限制）</p><p>
+#max-download-limit=0</p><p>
+# 整体上传速度限制, 运行时可修改, 默认:0（不限制）</p><p>
+#max-overall-upload-limit=0</p><p>
+# 单个任务上传速度限制, 默认:0（不限制）</p><p>
+#max-upload-limit=0</p><p>
+# 禁用IPv6, 默认:false</p><p>
+disable-ipv6=true</p><p>
+# 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M</p><p>
+# 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载</p><p>
+min-split-size=10M</p><p>
+# 单个任务最大线程数, 添加时可指定, 默认:5</p><p>
+split=10</p><p>
+## 进度保存相关 ##</p><p>
+# 从会话文件中读取下载任务</p><p>
+input-file=/etc/aria2/aria2.session</p><p>
+# 在Aria2退出时保存错误的、未完成的下载任务到会话文件</p><p>
+save-session=/etc/aria2/aria2.session</p><p>
+# 定时保存会话, 0为退出时才保存, 需1.16.1以上版本, 默认:0</p><p>
+save-session-interval=60</p><p>
+## RPC相关设置 ##</p><p>
+# 启用RPC, 默认:false</p><p>
+enable-rpc=true</p><p>
+# 允许所有来源, 默认:false</p><p>
+rpc-allow-origin-all=true</p><p>
+# 允许外部访问, 默认:false</p><p>
+rpc-listen-all=true</p><p>
+# RPC端口, 仅当默认端口被占用时修改</p><p>
+rpc-listen-port=6800</p><p>
+# 设置的RPC授权令牌, v1.18.4新增功能, 取代 --rpc-user 和 --rpc-passwd 选项</p><p>
+rpc-secret=123456789</p><p>
+## BT/PT下载相关 ##</p><p>
+# 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true</p><p>
+#follow-torrent=true</p><p>
+# 客户端伪装, PT需要</p><p>
+peer-id-prefix=-TR2770-</p><p>
+user-agent=Transmission/2.77</p><p>
+# 强制保存会话, 即使任务已经完成, 默认:false
+# 较新的版本开启后会在任务完成后依然保留.aria2文件</p><p>
+#force-save=false</p><p>
+# 继续之前的BT任务时, 无需再次校验, 默认:false</p><p>
+bt-seed-unverified=true</p><p>
+# 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</p><p>
+bt-save-metadata=true</p><p>
+## 文件保存相关 ##</p><p>
+</p><p>
+3.设置aria开机启动</p><p>
+在/etc/rc.local文件里面，exit 0 前一行，新增一行命令：</p><p>
+sudo nohup aria2c --conf-path=/etc/aria2/aria2.conf -D >/dev/null &</p><p>
+然后保存并退出，此时就设置好了开机启动了，sudo reboot，重启后就可以自动启动了。</p><p>
+</p><p>
+4.验证是否启动成功</p><p>
+重启后，输入命令：</p><p>
+	curl 127.0.0.1:6800/jsonrpc</p><p>
+应当有如下响应：</p><p>
+	{"id":null,"jsonrpc":"2.0","error":{"code":-32600,"message":"Invalid Request."}}</p><p>
+然后执行：</p><p>
+	aria2c --conf-path=/etc/aria2/aria2.conf -D</p><p>
+没有任何提示则表示成功。</p><p>
+</p><p>
+5.上传网页控制代码：</p><p>
+https://github.com/ziahamza/webui-aria2.git</p><p>
+
+             </p>
+
+<!--<video width="340" height="200" controls>
+  <source src="https://www.crge.cn/00.mp4" type="video/mp4">
+</video>-->
+<!--文章结束-->
+            </div>
+          </div>
+
+<!--评论区-->
+          <div class="comments">
+			<div id="respond"></div>	
+          </div>
+        </div>
+                <div id="right"></div>
+        <!--news-section right end-->
+    </div>
+  </div>
+
+<!--news-section left end-->
+<div id="foot"></div>
+  <script src="/js/jquery-2.1.0.js" charset="utf-8"></script>
+  <script>$(function(){$('#head').load('/css/head.html');$('#foot').load('/css/foot.html');$('#right').load('/css/right.html');$('#respond').load('/css/respond.html');})</script>
+</body>
+</html>
