@@ -107,7 +107,7 @@ if (num2<50)
   {
   num2=100-num2
   }
-document.getElementById("print1").innerHTML=decodeURIComponent(str2)+" 和 "+decodeURIComponent(str3)+"缘分指数："+num2;
+document.getElementById("print1").innerHTML=decodeURIComponent(document.location.search.substring(1, document.location.search.length))+"缘分指数："+num2;
 if (num2 < 49){
 document.getElementById("print2").innerHTML="";}
 else if (num2 < 60){
