@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="/css/amazeui.css" />
   <link rel="stylesheet" href="/css/common.min.css" />
   <link rel="stylesheet" href="/css/zhiding.css">
-
+<link rel="icon" type="image/png"  href="/images/ico.png">
+<link rel="icon" href="/images/ico.png" sizes="192x192" />
+<link rel="alternate icon" type="image/png" href="/images/ico.png">
+<link rel="apple-touch-icon-precomposed" href="/images/ico.png">
+<meta name="msapplication-TileImage" content="/images/ico.png" />
 </head>
 <body>
 <div id="head"></div>
@@ -33,8 +37,8 @@
               <h2 class="article--title"><a href="#" rel="">缘分测试</a></h2>
               <ul class="article--meta">
                 <li class="article--meta_item"><i class="am-icon-calendar"></i>2019-02-14</li>
+                <li class="article--meta_item"><i class="am-icon-check-square-o"></i>2020-01-16</li>
                 <li class="article--meta_item"><i class="am-icon-user"></i>by 神宫司</li>
-                <li class="article--meta_item"><i class="am-icon-commenting-o"></i>23评论</li>
               </ul>
             </header>
 <div class="article--content">
@@ -81,15 +85,29 @@
         
     <br>
     <script>
+function fract(num) {
+  return num - Math.trunc(num);
+}
     window.onload=function(){
-    var str =encodeURIComponent(document.location.search);
-    var num = str.replace(/[^0-9]/ig,"");
-    var num2 =parseInt(num.substring(num.length-9, num.length-3)/num.substring(3,9)*100);
+    var str = encodeURIComponent(decodeURIComponent(document.location.search));
+    var str2 = str.substring(3, str.indexOf("%20"));
+    var str3 = str.substring(str.indexOf("%20")+3, str.length);
+//console.log(str3);
+//console.log(str2);
+    var num0 = str2.replace(/[^0-9]/ig,"");
+    var num1 = str3.replace(/[^0-9]/ig,"");
+
+    var num2 =parseInt(fract(
+(
+num0/num1+num1/num0+num0.substring(3,6)/num1.substring(3,6)+num1.substring(3,6)/num0.substring(3,6)+num0.substring(num0.length-3, num0.length)/num1.substring(num1.length-3, num1.length)+num1.substring(num1.length-3, num1.length)/num0.substring(num0.length-3, num0.length)
+)*1000
+)*178);
+console.log(num1.substring(3,6));
 if (num2<50)
   {
   num2=100-num2
   }
-document.getElementById("print1").innerHTML=decodeURIComponent(document.location.search.substring(1, document.location.search.length))+"缘分指数："+num2;
+document.getElementById("print1").innerHTML=decodeURIComponent(str2)+" 和 "+decodeURIComponent(str3)+"缘分指数："+num2;
 if (num2 < 49){
 document.getElementById("print2").innerHTML="";}
 else if (num2 < 60){
@@ -106,6 +124,8 @@ else if (num2 < 150){
 document.getElementById("print2").innerHTML="珠联璧合";}
 else if (num2 < 1500){
 document.getElementById("print2").innerHTML="命中注定";}
+else if (num2 = Infinity && str.length > 3){
+document.getElementById("print2").innerHTML="emmm 好像测不了欸~";}
 }
 
 </script>
