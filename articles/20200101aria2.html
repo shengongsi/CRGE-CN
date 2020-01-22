@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cmn-Hans">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -36,7 +36,7 @@
               <h2 class="article--title"><a href="#" rel="">Aria2下载</a></h2>
               <ul class="article--meta">
                 <li class="article--meta_item"><i class="am-icon-calendar"></i>2020-01-01</li>
-                <li class="article--meta_item"><i class="am-icon-check-square-o"></i>2019-01-01</li>
+                <li class="article--meta_item"><i class="am-icon-check-square-o"></i>2019-01-23</li>
                 <li class="article--meta_item"><i class="am-icon-user"></i>by 神宫司</li>
               </ul>
             </header>
@@ -45,10 +45,11 @@
 <!--文章开始-->
 
              <p>
-0.准备一个装有Linux系统的树莓派、电视盒子、路由器、云服务器</p><p>
+0.准备一个装有Linux系统的树莓派、电视盒子、路由器、云服务器
+</p><br><p>
 1.安装 aria</p><p>
 sudo apt-get install aria2</p><p>
-</p><p>
+</p><br><p>
 2.在/etc/aria2/文件夹创建文件</p><p>
 创建文件夹 sudo mkdir /etc/aria2</p><p>
 授权 sudo chmod 775 /etc/aria2</p><p>
@@ -56,7 +57,7 @@ sudo apt-get install aria2</p><p>
 创建session文件：touch aria2.session</p><p>
 创建并写入设置文件sudo vi aria2.conf</p><p>
 写入以下内容，需要自己更改的内容就是dir以及rpc-secret了</p><p>
-</p><p>
+</p><br><p>
 ## 文件保存相关 ##</p><p>
 # 文件保存目录</p><p>
 dir=/home/share</p><p>
@@ -121,12 +122,12 @@ bt-seed-unverified=true</p><p>
 # 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</p><p>
 bt-save-metadata=true</p><p>
 ## 文件保存相关 ##</p><p>
-</p><p>
+</p><br><p>
 3.设置aria开机启动</p><p>
 在/etc/rc.local文件里面，exit 0 前一行，新增一行命令：</p><p>
 sudo nohup aria2c --conf-path=/etc/aria2/aria2.conf -D >/dev/null &</p><p>
 然后保存并退出，此时就设置好了开机启动了，sudo reboot，重启后就可以自动启动了。</p><p>
-</p><p>
+</p><br><p>
 4.验证是否启动成功</p><p>
 重启后，输入命令：</p><p>
 	curl 127.0.0.1:6800/jsonrpc</p><p>
@@ -135,7 +136,7 @@ sudo nohup aria2c --conf-path=/etc/aria2/aria2.conf -D >/dev/null &</p><p>
 然后执行：</p><p>
 	aria2c --conf-path=/etc/aria2/aria2.conf -D</p><p>
 没有任何提示则表示成功。</p><p>
-</p><p>
+</p><br><p>
 5.上传网页控制代码：</p><p>
 https://github.com/ziahamza/webui-aria2.git</p><p>
 
