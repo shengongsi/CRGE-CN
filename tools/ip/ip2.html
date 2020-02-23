@@ -10,11 +10,23 @@ background-image:url('gradient.png');
 
 </style>
 
+<div></br> </div> 
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script type="text/javascript">  
-document.write(returnCitySN["cip"]+"</br>")  
-document.write(returnCitySN["cname"]+"</br>")  
+document.write("&nbsp;" + returnCitySN["cip"]+"</br>")  
+document.write("&nbsp;" + returnCitySN["cname"]+"</br>")  
 </script>
+
+
+<script language="JavaScript"> 
+function myrefresh() 
+{ 
+window.location.reload(); 
+} 
+setTimeout('myrefresh()',30000); //指定30秒刷新一次 
+</script> 
+
+
 
 
 
@@ -26,6 +38,6 @@ document.write(returnCitySN["cname"]+"</br>")
          </div> 
      </div> 
 
-
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="javascript:location.reload();" value="刷新">
 
 </body></html>
