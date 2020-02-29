@@ -3,57 +3,45 @@
 </head><body>
 
 <style>
-body
-{
-background-image:url('gradient.png');
-margin-top:8px;
-}
-
-
+body{background-image:url('gradient.png'); margin-top:8px;}
 #NavTop{
                     width:70px;
                     height:100px;
                     margin-top:0px;
-                    position:fixed;    left:145px;top:70px;        /*固定位置,右浮动，距上150px*/
-}
-
+                    position:fixed;    left:145px;top:70px;}
 </style>
-<div id="NavTop">
-                    
-<img src="/images/ico.png" width="65px" height="65px">
-
-                    
-</div> 
+<div id="NavTop" onclick="javascript:NavTop.style.display='none';jiaotizhanshi = 3;" >
+<img src="ico.png" width="65px" height="65px"> </div> 
 
 
-<div><br> </div> 
+<div></br> </div> 
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script type="text/javascript">  
-document.write("&nbsp;" + returnCitySN["cip"]+"<br>")  
-document.write("&nbsp;" + returnCitySN["cname"]+"<br>")  
+document.write("&nbsp;" + returnCitySN["cip"]+"</br>")  
+document.write("&nbsp;" + returnCitySN["cname"]+"</br>")  
 </script>
 
-
-<script language="JavaScript"> 
-function myrefresh() 
-{ 
-window.location.reload(); 
-} 
-setTimeout('myrefresh()',30000); //指定30秒刷新一次 
-</script> 
-
-
-
-
-
-
-    <div style="width:200;height:30px;overflow:hidden;border:0px"> 
+    <div  id="weizhi" style="width:200;height:30px;overflow:hidden;border:0px;"> 
          <div style="margin:-325px 0px 0px -88px;">
               <iFrame src="http://www.ip.cn" width=100%  height=920 scrolling=no >
              </iFrame>
          </div> 
      </div> 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="javascript:location.reload();" value="刷新">
+<iframe src="http://bot.whatismyipaddress.com" width="100%" height="32" scrolling="no" frameborder="0" id="IPGW" style="display: none;margin:-2px 0px 0px -3px;">未成功获取IP</iframe>
+
+<script language="JavaScript">
+var jiaotizhanshi = 1 ;
+function myrefresh() 
+{ 
+if(jiaotizhanshi == 0){jiaotizhanshi = 1; IPGW.style.display='none'; weizhi.style.display='block';}
+else if(jiaotizhanshi == 1){jiaotizhanshi = 0; weizhi.style.display='none'; IPGW.style.display='block';}
+} 
+setInterval('myrefresh()',5000); //5秒自动切换
+</script> 
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" onclick="javascript:window.location.reload();" value="刷新">
 
 </body></html>

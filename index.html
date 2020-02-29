@@ -173,7 +173,11 @@
 <div class="am-u-md-12">
 <div class="am-slider am-slider-default" data-am-flexslider="{controlNav: 'thumbnails', directionNav: false, slideshow: true}" style="width:100%;">
   
- <ol class="am-control-nav am-control-thumbs"><li><img src="games/game/kx/kxxxl.jpg?imageView2/0/w/360" class="" draggable="false"><i></i></li><li><img src="games/game/fish/ico2.jpg?imageView2/0/w/360" draggable="false" class="am-active"><i></i></li><li><img src="games/game/fruit/fruit1.jpg?imageView2/0/w/360" draggable="false"><i></i></li><li><img src="/images/mc.jpg?imageView2/0/w/360" draggable="false"><i></i></li></ol></div>
+ <ol class="am-control-nav am-control-thumbs">
+<li><img src="images/article/CSJ.jpg?imageView2/0/w/360" class="" draggable="false"><i></i></li>
+<li><img src="images/article/DQ.jpg?imageView2/0/w/360" draggable="false" class="am-active"><i></i></li>
+<li><img src="images/article/ThreeBody.jpg?imageView2/0/w/360" draggable="false"><i></i></li>
+<li><img src="tools/images/cad.jpg?imageView2/0/w/360" draggable="false"><i><a data-am-modal="{target: '#xyz-CAD', closeViaDimmer: 0, width: 340, height: 1340}">1</a></i></li></ol></div>
 
 	</div>
 <div class="am-u-md-12">
@@ -265,6 +269,49 @@
   </div>
  </div>
 </div>
+
+
+
+<!--==========xyz-CAD================-->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="xyz-CAD">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">
+      <div align='right'><a href="javascript: void(0)" class="am-icon-times am-icon-sm" data-am-modal-close>关闭</a></div>
+    </div>
+    <div class="am-modal-bd">
+<h3>4.CAD X、Y和高程标注插件，将其代码复制到记事本，保存后修改后缀名为lsp，拖入CAD中输入命令xyz即可标注X、Y和高程坐标。</h3>
+<p>(defun C:XYZ (/ OSNAP PNT1 P1X P1Y P1Z P STDX STDY STDZ XCOORD</p> <p>YCOORD ZCOORD PTXT )</p>
+ <p>(setvar "ORTHOMODE" 0)</p>
+   <p>; (setq OSNAP (getvar "OSMODE"))</p>
+   <p>; (command "setvar" "osmode" "1")</p>
+    <p>(command "setvar" "luprec" "0")</p>
+    <p>(prompt "NOTE!!! Coords. & leader drawn per current dimstyle; precision per UNITS... ")</p>
+    	 <p>(setq dst (getvar "dimstyle"))</p>
+  <p>(command "_.-DIMSTYLE" "_Restore" dst)</p>
+    <p>(setq PNT1 (getpoint "\nPick coordinate point: "))</p>
+    <p>(setq P1X (car pnt1))</p>
+   <p>(setq P1Y (cadr pnt1))</p>
+    <p>(setq P1Z (caddr pnt1))</p>
+    <p>(setq P (getvar "LUPREC"))</p>
+    <p>(setq STDX (rtos P1X 2 P))</p>
+    <p>(setq STDY (rtos P1Y 2 P))</p>
+    <p>(setq STDZ (rtos P1Z 2 P))</p>
+    <p>(setq XCOORD (strcat "X " STDX ))</p>
+    <p>(setq YCOORD (strcat "Y " STDY ))</p>
+    <p>(setq ZCOORD (strcat "Z " STDZ ))</p>
+    <p>(setq PTXT (getpoint "\nPick text location: "))</p>
+   <p>(command "LEADER" PNT1 PTXT "" XCOORD YCOORD ZCOORD "")</p>
+   <p>; (command "SETVAR" "osmode" OSNAP)</p>
+    <p>(command "setvar" "luprec" "4")</p>
+<p>(princ)</p>
+<p>)</p>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 <!--==========微信二维码================-->
 <div class="am-modal am-modal-no-btn" tabindex="-1" id="wei-xin">
