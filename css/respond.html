@@ -12,10 +12,26 @@
 </p>
 </form>
 			</div><!-- #respond -->
-<iframe border=2 frameborder=0 width=100% height=1000 marginheight=0 marginwidth=0 scrolling=yes src="http://www.crge.cn:3722/respond.php"></iframe>
-<!--<style>
+<iframe id="respondroll" border=2 frameborder=0 width=100% marginheight=0 marginwidth=0 scrolling=no style="height:1000px" src="http://www.crge.cn:3722/respond.php"></iframe>
+
+<style>
     .txtcenter{text-align:center;}
 .morerespond{float:center;width:100%;height:40px;line-height:40px;border-radius:0px;background:blue;color:white;}</style>
-<div class='morerespond txtcenter'>查看全部评论</div>
-<script>$(".morerespond").click(function(){
-window.location.href="http://www.crge.cn:3722/respond.php";});</script> -->
+
+
+<div id="respondmore" class="morerespond txtcenter" onclick="respondmore(); ">查看更多评论</div>
+
+<script>function respondmore() {
+
+if (document.getElementById('respondroll').scrolling == "no"){
+
+document.getElementById('respondroll').scrolling="yes";
+$("#respondroll").css("height","1500px");
+document.getElementById("respondmore").innerHTML="隐藏更多评论";
+}else{
+document.getElementById('respondroll').scrolling="no";
+$("#respondroll").css("height","1000px");
+document.getElementById("respondmore").innerHTML="查看更多评论";
+}
+
+}</script>
