@@ -19,6 +19,7 @@ http://crge.cn/tools/xyz-CAD.html
 http://crge.cn/tools/resou/index.html
 http://crge.cn/tools/ygdl.html
 http://crge.cn/tools/20200122feiyan.html
+http://crge.cn/tools/20210114bus.html
 http://crge.cn/games/index.html
 http://crge.cn/games/eggs.html
 http://crge.cn/games/game/fruit/index.html
@@ -41,3 +42,5 @@ http://crge.cn/videos/lumion-bysj.html
 http://crge.cn/videos/FTP.html
 http://crge.cn/videos/index.html
 http://crge.cn/videos/cw/index.html
+http://crge.cn/videos/sea.html
+http://crge.cn/tr/V_index.html

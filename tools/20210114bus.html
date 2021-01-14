@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <script src="/js/baiduindex.js"></script>
+  <link rel="stylesheet" href="/css/news.min.css" />
+  <link rel="stylesheet" href="/css/amazeui.css" />
+  <link rel="stylesheet" href="/css/common.min.css" />
+  <link rel="stylesheet" href="/css/zhiding.css">
+<link rel="icon" type="image/png"  href="/images/ico.png">
+<link rel="icon" href="/images/ico.png" sizes="192x192" />
+<link rel="alternate icon" type="image/png" href="/images/ico.png">
+<link rel="apple-touch-icon-precomposed" href="/images/ico.png">
+<meta name="msapplication-TileImage" content="/images/ico.png" />
+    <meta charset="UTF-8">
+  <title>实时公交-Cr铬 | crge.cn</title>
+    <style type="text/css">
+        /* 将根元素占满浏览器 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        iframe {
+            margin: 0 auto;
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+
+</head>
+<body>
+<div id="head"></div>
+<iframe src="http://119.3.13.12:8080/ceshi/business/handBus.html" allowfullscreen="true" allow="microphone; camera"></iframe>
+<div id="foot"></div>
+  <script src="/js/jquery-2.1.0.js" charset="utf-8"></script>
+  <script>$(function(){$('#head').load('/css/head.html');$('#foot').load('/css/foot.html');$('#right').load('/css/right.html');$('#respond').load('/css/respond.html');})</script>
+</body>
+</html>
