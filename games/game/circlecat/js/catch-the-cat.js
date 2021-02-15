@@ -458,7 +458,7 @@ default
 		s = function(t) {
 			function e(e) {
 				var n = this;
-				e.credit || (e.credit = "github.com/ganlvtech"), e.backgroundColor || (e.backgroundColor = 15658734);
+				e.credit || (e.credit = "Cr铬 | crge.cn"), e.backgroundColor || (e.backgroundColor = 15658734);
 				var o = e.w,
 					r = e.h,
 					s = e.r * window.devicePixelRatio,

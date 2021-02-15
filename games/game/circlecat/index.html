@@ -1,20 +1,21 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+﻿<!DOCTYPE html>
 <html>
 <head> 
-<title>圈小猫</title> 
+<title>圈小猫 HTML5 Cr铬 | crge.cn</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-
+<script src="/js/baiduindex.js"></script>
+<meta name="viewport" content="width=520px, initial-scale=1, maximum-scale=1">
 <style type="text/css">
 BODY {
 	MARGIN: 0px;
-	BACKGROUND-COLOR: #000000
+	BACKGROUND-COLOR: #000000;
 }
 BODY {
 	COLOR: #ffffff;
 	FONT-FAMILY: Comic Sans MS;
 	background-image: url(images/bg.jpg);
-	background-repeat: repeat;
-	background-color: #D9D9D9;
+	background-repeat: repeat-x;
+	background-color: #78cef3;
 }
 TD {
 	COLOR: #ffffff;
@@ -41,6 +42,10 @@ TH {
 .style10 {
 	COLOR: #ff0000
 }
+.style11 {
+	COLOR: #ffffff;
+	FONT-SIZE: 36px;
+}
 body,
 td,
 th {
@@ -54,17 +59,18 @@ a {
 
 a:link {
 	text-decoration: none;
-	color: #06F;
+	color: #222266;
 }
 
 a:visited {
 	text-decoration: none;
-	color: #09F;
+	color: #111155;
 }
 
 a:hover {
 	text-decoration: none;
-	color: #09F;
+color: #999999; 
+background: inherit; 
 }
 
 a:active {
@@ -77,14 +83,12 @@ a:active {
 
 <div align="center"> 
 	<p align="left"></p> 
-	<p>&nbsp;</p> 
-	<p>&nbsp;</p> 
-	<p>&nbsp;</p> 
-	<p>&nbsp;</p> 
+	<p class="style11" >圈小猫</p> 
+	
 	<div id="catch-the-cat"></div> 
 </div> 
 <div class="style6" align="center" style="width: 100%;height: 64%;"> 
-	<p id="time" class="style7">0</p> 
+	<p class="style7"><a href="../../">返回游戏站</a></p> <p id="time" class="style7">0</p> 
 	<div id="loadad"></div> 
 </div>  
 
@@ -104,7 +108,7 @@ window.game = new CatchTheCatGame({
 	backgroundColor: 16777215,
 	parent: "catch-the-cat",
 	statusBarAlign: "center",
-	credit: "圈小猫"
+	credit: "Cr铬 | crge.cn"
 })
 </script> 
 
