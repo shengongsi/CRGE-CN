@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HTML5教学时钟 Cr铬 | crge.cn</title>
-
+  <script src="/js/baiduindex.js"></script>
 <link rel="stylesheet" href="css/demo.css"/>
 
 </head>
@@ -52,16 +52,16 @@
 	// data.setTime(new Date());
 
     var str = encodeURIComponent(decodeURIComponent(document.location.search));
-    var str2 = str.substring(3, 5);
-    var str3 = str.substring(5, 7);
-    var str4 = str.substring(7,9);
-
-if ( str.length != 9) {alert("请输入正确的时间格式！如08时12分00秒、12时01分01秒、01时00分05秒……")} 
+    var str2 = str.substring(3, str.indexOf("a"));
+    var str3 = str.substring(str.indexOf("a")+1, str.length);
+    var str4 = str3.substring(0, str3.indexOf("a"));
+    var str5 = str3.substring(str3.indexOf("a")+1, str3.length);
+ 
 
 	var d = new Date();
 	d.setHours(str2);
-	d.setMinutes(str3);
-	d.setSeconds(str4);
+	d.setMinutes(str4);
+	d.setSeconds(str5);
 
 	var clock1 = $("#clock1").clock({
 		width: 300,
@@ -89,7 +89,7 @@ $(".btn_1").click(function(){
 
 
 
-window.location.href="./index.html?"+$.trim($(".hh").val())+$.trim($(".mm").val())+$.trim($(".ss").val());
+window.location.href="./index.html?"+$.trim($(".hh").val())+"a"+$.trim($(".mm").val())+"a"+$.trim($(".ss").val());
 
 
         });
