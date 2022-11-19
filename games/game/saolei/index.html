@@ -1,0 +1,1225 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="keywords" content="扫雷, saolei, CRGE.CN">
+    <meta name="description" content="本站提供了经典扫雷游戏，并略作改进，在电脑或手机上打开网页就可以玩，无需下载安装。增加了满屏级别，自适应屏幕大小。成绩榜实时显示大家的在线扫雷成绩。">
+    <title>扫雷游戏网页版HTML5 CRGE.CN</title>
+    <script>
+        var gif = [];
+        gif[0] = "data:img/gif;base64,R0lGODlhFQAVAJEAAAAAAP//AL29vQAAACH5BAAHAP8ALAAAAAAVABUAAAJAlI+py50AoUMwWCsduBy33XXAAoaiUlZY+nBq8MKUSY9HSbtzft4X/vu1MCLhcBXRoXgyBlD5AWYmgsiUis0yCgA7";
+        gif[1] = "data:img/gif;base64,R0lGODlhFQAVAJEAAAAAAP//AMDAwICAACH5BAAHAP8ALAAAAAAVABUAAAJHlI+py50AoUMwWCsduBy33XXAAoaiAkZqFYwUprZx+27xTR/swMoD/DKZXIaSkEMsXoytJQo58zyPOdIxSWJmJoIV9wueFAAAOw==";
+        gif[2] = "data:img/gif;base64,R0lGODlhFQAVAJEAAAAAAP//AMDAwAAAACH5BAAHAP8ALAAAAAAVABUAAAJDlI+py50AoUMwWCsduBy33XXAAm5gYHrPdWLs6p6parShSN36eNg6LbBFKhxejyV6wXwo4PGH+vyMDCKLqhlOttxuAQA7";
+        var gfs = [];
+        for (var i = 0; i < 4; i++) {
+            gfs[i] = new Image();
+        }
+        gfs[0].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAP///8DAwICAgAAAACH5BAQUAP8ALAAAAAAZABkAAAJKhI+pFrH/GpwnCFGb3nxfzHQi92XjWYbnmAIrepkvGauzV7s3Deq71vrhekJgrtgIIpVFptD5g+6kN+osZflot9xPsgvufsPkSwEAOw==";
+        gfs[1].src = "data:img/gif;base64,R0lGODlhGQAZAKIAAP///8DAwICAgP8AAAAAAAAAAAAAAAAAACH5BAAHAP8ALAAAAAAZABkAAANsCLrcriG8OSO9KwiRo//gt3FQaIJjZw7DmZYh25ovEMtzWH+47G6qno8GhAWEOVTRBur9SMxbUrQ8BQiEpyqE1RpBXSLUGtZVI9i0Wu3ZodfwbMR9ja/bZ6s3qjeTNCOBgoMjc4SHhIaIixsJADs=";
+        gfs[2].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAP///4CAgP8AAAAAACH5BAQUAP8ALAAAAAAZABkAAAJgjI+py70Co5wUmhrHwPFyzVlBCIYeBGqqik6nkK4s7I6TjFOvCvR42bGhND3AbyPZEX2/GuwILV2iUZGEOgtesUhthuu8VcNbqE74fOZoSTQFiHm9u3G3OCSQ4yv6/aQAADs=";
+        gfs[3].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAP///76+voKCggAAACH5BAAHAP8ALAAAAAAZABkAAAJglI+py70Bo5wUmhrHwPFyzVlCCIYeBGqqik5nkK4s7I6TjFOvCvR42bGhND3AbyPZEX2/GuwILV2iUZGEOgtesUhthuu8VcNbqE74fOZoSTQFiHm9u3G3OBSQ4yv6/aQAADs=";
+        var gfd = [];
+        for (var i = 0; i < 10; i++) {
+            gfd[i] = new Image();
+        }
+        gfd[0].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI5lI8Jy3wgmoMRymoc0vqt/G1hB1JkZVKKaQSC60YI/NZPW8dpApZrqvKhfkIPkIi5jFANWUkS5CUKADs=";
+        gfd[1].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI3lI8psc33mDQAmilAdUnv1mkXeHhWuGGlOCpsxGXIpII0dYbjs358v0PlgDGiDfQKPj6cmkJRAAA7";
+        gfd[2].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI8lI8Jy3whmgMvNmsgRC4nSwmaslRkOHKl962QVIYgfFAwta3JBu6i0UHwgp6cztQT/jCSZWTmGN5kn08BADs=";
+        gfd[3].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI5lI8Jy3whmgMvNmsgRC4nSwmaslRkOHKl962QVIYgXMGUvJFebnRi6/qpcECU8OB7XYK2CNIm+3wKADs=";
+        gfd[4].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI8lI8psc0HDJsmCmDptdhCXIFIF3rlOYpkyplftXWgJ9cHU8+3skkNu0usNB/PA+gQin4a0YPyMEF/PF4BADs=";
+        gfd[5].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI5lI8Jy3wgmgtmxSZotYhql2gX1GUbWZ6heSWGCEkWLHNmHR0iwnmKvVOZgiAWr2cU3jBIHKpmc7kKADs=";
+        gfd[6].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI5lI8Jy3wgmgtmxSZotYhql2gX1GUbWZ6heSWGCEkWLHPRiJE2woFPvxupeEDU0HeM5XQ4B6oWdCEKADs=";
+        gfd[7].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI5lI8Jy3whmgMvNmsgRC4nSwmaslRkOHKl963buIUejLziHZnkfOpHl/qtcCoU0dDBpVy8WO0W/EgLADs=";
+        gfd[8].src = "data:img/gif;base64,R0lGODlhDQAXAIAAAP8AAAAAACH5BAQUAP8ALAAAAAANABcAAAI0jI8Jy3wQmoMRymoc0vqt/G1hB1JkZVKKiTaRJ4VvbIGJja6pWvbirvPBbJdRawKL3ZaGAgA7";
+        gfd[9].src = "data:img/gif;base64,R0lGODlhDQAXAJEAAP8AAIAAAAAAAAAAACH5BAQUAP8ALAAAAAANABcAAAI6lI8Jy3wgmoMRymoc0vqt/G1hB1JkZVKKiTaRJ4VC0E4HnWDzLqp4b6D9SrecRrjy1XS0mAUWy0kNBQA7";
+        var gfb = [];
+        for (var i = 0; i < 9; i++) {
+            gfb[i] = new Image();
+        }
+        gfb[0].src = "data:img/gif;base64,R0lGODlhGQAZAKIAAM7OzsbGxr6+vra2trKysqampoKCggAAACH5BAAHAP8ALAAAAAAZABkAAANHaLrc3mWQSau9xAwQuv9gGBhEIJxoqq4CabLw6sY0Otf0jcP6Lpc+HjD4exFTvWNrqDwlj09iNDj1VXdXXLa2zTGb3VgYlgAAOw==";
+        gfb[1].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAMDAwICAgAAA/wAAACH5BAQUAP8ALAAAAAAZABkAAAJMjI+py70Ao5wUmorxzTxuLIRC9lFiSAbZOWqqybZVCcWoC8fpeu5gj/uJfBUWMXebvYpAJdJGoQFsTc8yQh1OpJ3otesEH8XbLzlSAAA7";
+        gfb[2].src = "data:img/gif;base64,R0lGODlhGQAZALMAAMDAwKu5q6i4qKW3pZy0nJaylpCwkIquioCAgACAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAHAP8ALAAAAAAZABkAAAReEMlJq704X8C7/yAnhSQ5lmh3cknrvi64wvT7zXV9I50N+ipeihXzrFACoEhYMtB2pSSsIGN6CrRBIHQEEGjb0pEmGOJch+Gyl3samW13kB0vztViKx665+r7a4AfEQA7";
+        gfb[3].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAMDAwICAgP8AAAAAACH5BAQUAP8ALAAAAAAZABkAAAJOjI+py70Ao5wUmorxzTxuIITiOFIfiZbSmabT16le0EWyRdeg+OZTGzL5JECBsFI86m4AGIfpzEB9RVLPVuWtqFnjVZeJgmdjzbBMRk8KADs=";
+        gfb[4].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAMDAwICAgAAAmQAAgCH5BAAHAP8ALAAAAAAZABkAAAJdjI+py70Ao5wUmorxzTzuOgjAQJLUN5FiaU5oVK7sGVAxxA50Gor47KrBVJLc7hfilY6jnHMp+TynwYjgisXmfB4hx1jtgKPezLjbaULJ6bOlnK684mG6HG5H5ykFADs=";
+        gfb[5].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAMDAwICAgIAAAAAAACH5BAQUAP8ALAAAAAAZABkAAAJOjI+py70Ao5wUmorxzTxuIITiSE4fiY5mEKXu2oodDKmzx9bybeWgW6L9gDZcjLgz3oo9HhPw6TxPyGRTVxUIs1ohjxL9SsLia3nsO0MKADs=";
+        gfb[6].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAMDAwICAgACAgAAAACH5BAQUAP8ALAAAAAAZABkAAAJTjI+py70Ao5wUmorxzTxuKITiKFIfiZbTmaJmEI3dCoPqbNWAjOdxS3r9gDyPjhiUsEKVos/GpDgBS0Hz9twhsdTjNmqUfIU9ja5MQ1c+6nBbUgAAOw==";
+        gfb[7].src = "data:img/gif;base64,R0lGODlhGQAZAJEAAL6+voKCggAAAAAAACH5BAAHAP8ALAAAAAAZABkAAAJMjI+py70Ao5wUmorxzTxuIITiSE4fiY5mEKXu2rUiHIOz9HElznY771NRcpQfrWI8TpJK2S1DtD2hPWeoRhTGojVgV1P9NsWWMBlSAAA7";
+        gfb[8].src = "data:img/gif;base64,R0lGODlhGQAZAIAAAMDAwICAgCH5BAQUAP8ALAAAAAAZABkAAAJKjI+py70Ao5wUmorxzTxu63xeMIYi8JnHlK4UwpLgOctjaUuwnqtvb/rxQsJaZXcz/k4tGsqVfPp4OCK1yih2OM7t1avJgWNjTAEAOw==";
+
+
+        VER = "6.03";
+
+        function $(a) {
+            return document.getElementById(a)
+        }
+
+        function gets(bb, Z, ba) {
+            var bc = new XMLHttpRequest();
+            bc.open(Z != null ? "POST" : "GET", bb, true);
+            bc.onreadystatechange = function() {
+                if (bc.readyState == 4 && (bc.status == 200 || bc.status == 304)) {
+                    ba(bc.responseText)
+                }
+            };
+            bc.send(Z)
+        }
+        var d31 = [];
+        var X, Y, M;
+        var CX = [-1, -1, -1, 0, 0, 1, 1, 1, 0];
+        var CY = [-1, 0, 1, -1, 1, -1, 0, 1, 0];
+        var _gs;
+
+        function S98(h, j) {
+            ctx.drawImage(gfb[0], h * 25, j * 25);
+            setTimeout(function() {
+                if (d31[j][h][0] == 0) {
+                    ctx.drawImage(gfs[0], h * 25, j * 25)
+                }
+            }, 120)
+        }
+
+        function c67(h, j) {
+            var I = 0,
+                J = 0;
+            var q, s;
+            var E;
+            var u, A;
+            for (E = 0; E < 8; E++) {
+                s = j + CY[E];
+                q = h + CX[E];
+                if (s >= 0 && s < Y && q >= 0 && q < X) {
+                    u = d31[s][q];
+                    A = u[0];
+                    if (A == 2) {
+                        I++
+                    } else {
+                        if (A == 0) {
+                            if (u[1] == 1) {
+                                J = 1
+                            }
+                        }
+                    }
+                }
+            };
+            var t = d31[j][h];
+            var K = I >= t[2];
+            for (E = 0; E < 8; E++) {
+                s = j + CY[E];
+                q = h + CX[E];
+                if (s >= 0 && s < Y && q >= 0 && q < X) {
+                    var u = d31[s][q];
+                    if (u[0] == 0) {
+                        if (K) {
+                            if (J) {
+                                if (u[1] == 1) {
+                                    ctx.drawImage(gfs[2], q * 25, s * 25);
+                                    u[0] = 1
+                                }
+                            } else {
+                                o0o(q, s)
+                            }
+                        } else {
+                            S98(q, s)
+                        }
+                    }
+                }
+            };
+            if (K && J) {
+                f17()
+            }
+        }
+
+        function f17() {
+            _edn();
+            $("face").src = gif[2];
+            _gs = 3;
+            var h, j;
+            var t;
+            for (j = 0; j < Y; j++) {
+                for (h = 0; h < X; h++) {
+                    t = d31[j][h];
+                    if (t[0] == 0) {
+                        if (t[1] == 1) {
+                            ctx.drawImage(gfs[3], h * 25, j * 25)
+                        }
+                    } else {
+                        if (t[0] == 2) {
+                            if (t[1] == 0) {
+                                h_f[f_n++] = setInterval(function(h, j) {
+                                    var W = 0;
+                                    return function() {
+                                        ctx.drawImage(W == 0 ? gfb[d31[j][h][2]] : gfs[1], h * 25, j * 25);
+                                        W = !W
+                                    }
+                                }(h, j), 800)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        var _ln;
+
+        function see() {
+            _ln = [];
+            var h, j, t;
+            var bk = 0,
+                bl = 0;
+            for (j = 0; j < Y; j++) {
+                for (h = 0; h < X; h++) {
+                    t = d31[j][h];
+                    if (t[0] == 2 && t[1] != 1) {
+                        return 1
+                    };
+                    if (t[0] == 0 && t[3] == 0) {
+                        if (t[1] == 1) {
+                            bk++
+                        } else {
+                            bl++
+                        };
+                        _ln.push([h, j])
+                    }
+                }
+            };
+            if (bk != bl) {
+                return 2
+            };
+            return 0
+        }
+
+        function gtm(h, j) {
+            var w = 0;
+            var q, s;
+            for (var E = 0; E < 8; E++) {
+                s = j + CY[E];
+                q = h + CX[E];
+                if (s >= 0 && s < Y && q >= 0 && q < X) {
+                    if (d31[s][q][1] == 1) {
+                        w++
+                    }
+                }
+            };
+            return w
+        }
+
+        function rv() {
+            var c, d, u;
+            for (d = 0; d < _ln.length; d++) {
+                c = _ln[d];
+                u = d31[c[1]][c[0]];
+                u[1] = (u[1] == 0 ? 1 : 0)
+            }
+        }
+
+        function ck() {
+            if (see() != 0) {
+                return 1
+            };
+            rv();
+            var h, j, t;
+            var w;
+            for (j = 0; j < Y; j++) {
+                for (h = 0; h < X; h++) {
+                    t = d31[j][h];
+                    w = t[2];
+                    if (t[0] == 1 && w != 0) {
+                        if (gtm(h, j) != w) {
+                            rv();
+                            return 2
+                        }
+                    }
+                }
+            };
+            for (j = 0; j < Y; j++) {
+                for (h = 0; h < X; h++) {
+                    t = d31[j][h];
+                    if (t[0] != 1) {
+                        t[2] = gtm(h, j)
+                    }
+                }
+            };
+            return 0
+        }
+
+        function ab(C, D) {
+            var t, u;
+            var s, q;
+            var A;
+            var B, w;
+            var h, j;
+            var E, c;
+            for (c = 0; c < 9; c++) {
+                j = D + CY[c];
+                h = C + CX[c];
+                if (j >= 0 && j < Y && h >= 0 && h < X) {
+                    t = d31[j][h];
+                    w = t[2];
+                    if (t[0] == 1 && w > 0) {
+                        B = 0;
+                        for (E = 0; E < 8; E++) {
+                            s = j + CY[E];
+                            q = h + CX[E];
+                            if (s >= 0 && s < Y && q >= 0 && q < X) {
+                                u = d31[s][q];
+                                A = u[0];
+                                if (A == 0) {
+                                    B++
+                                } else {
+                                    if (A == 2) {
+                                        if (u[1] == 1) {
+                                            w--
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                        if (B > 0 && w == B) {
+                            for (E = 0; E < 8; E++) {
+                                s = j + CY[E];
+                                q = h + CX[E];
+                                if (s >= 0 && s < Y && q >= 0 && q < X) {
+                                    u = d31[s][q];
+                                    A = u[0];
+                                    if (A != 1) {
+                                        u[3] = 1
+                                    };
+                                    if (A == 0) {
+                                        if (_af == 1) {
+                                            M5k(q, s)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function o0o(h, j) {
+            var t = d31[j][h];
+            if (t[1] == 1) {
+                if (_gs == 1) {
+                    ck()
+                };
+                if (t[1] == 1) {
+                    ctx.drawImage(gfs[2], h * 25, j * 25);
+                    t[0] = 1;
+                    f17();
+                    return 1
+                }
+            };
+            t[0] = 1;
+            ctx.drawImage(gfb[t[2]], h * 25, j * 25);
+            RB--;
+            if (RB == 0) {
+                scs()
+            } else {
+                if (t[2] == 0) {
+                    var E, s, q;
+                    for (E = 0; E < 8; E++) {
+                        s = j + CY[E];
+                        q = h + CX[E];
+                        if (s >= 0 && s < Y && q >= 0 && q < X) {
+                            if (d31[s][q][0] == 0) {
+                                o0o(q, s)
+                            }
+                        }
+                    }
+                }
+            };
+            ab(h, j);
+            return 0
+        }
+
+        function scs() {
+            _gs = 2;
+            _edn();
+            var h, j, t;
+            for (j = 0; j < Y; j++) {
+                for (h = 0; h < X; h++) {
+                    t = d31[j][h];
+                    if (t[0] == 0) {
+                        if (t[1] != 1) {
+                            bug(1, h, j)
+                        } else {
+                            M5k(h, j)
+                        }
+                    }
+                }
+            };
+            if (RM != 0) {
+                bug(2, h, j)
+            };
+            crm(M);
+            $("face").src = gif[1];
+            up()
+        }
+        var _v;
+
+        function up() {
+            if (_v > 3 && _t0 < 10) {
+                return
+            };
+            var bg = lid();
+            if (bg == null) {
+                guid();
+                return
+            };
+            var G = _v + '\x1E' + bg + '\x1F' + _t0 + '.' + _af;
+            if (_v > 3) {
+                G += '\x1F' + X + '\x1F' + Y + '\x1F' + M
+            };
+            gets("up4.php", G, function(H) {})
+        }
+
+        function bug(F, h, j) {
+            var G = VER + ':' + F;
+            gets("bug.php", G, function(H) {})
+        }
+
+        function DS(L) {
+            var N = $(L);
+            var P = N.getContext("2d");
+            var O = 3;
+            return function(R) {
+                if (R < 10) {
+                    R = "00" + R
+                } else {
+                    if (R < 100) {
+                        R = "0" + R
+                    } else {
+                        R = R.toString()
+                    }
+                };
+                var Q = R.length;
+                if (Q != O) {
+                    N.width = Q * 13;
+                    O = Q
+                };
+                for (var d = 0; d < Q; d++) {
+                    P.drawImage(gfd[parseInt(R.charAt(d))], d * 13, 0)
+                }
+            }
+        }
+
+        function kai(be, bf) {
+            var E;
+            var j, h;
+            var bd = RB;
+            for (E = 8; E >= 0 && bd > 0; E--) {
+                j = bf + CY[E];
+                h = be + CX[E];
+                if (j >= 0 && j < Y && h >= 0 && h < X) {
+                    var V = p32[j * X + h];
+                    if (d31[j][h][1] == 1) {
+                        var U = Math.floor(Math.random() * bd);
+                        mplus(V, -1);
+                        mplus(U, 1);
+                        bd--;
+                        ex(U, bd)
+                    } else {
+                        bd--;
+                        ex(V, bd)
+                    }
+                }
+            };
+            _es()
+        }
+        var d32 = [];
+        var p32 = [];
+
+        function _gnt() {
+            var h, j;
+            var o;
+            var p;
+            for (j = 0; j < Y; j++) {
+                d31[j] = [];
+                for (h = 0; h < X; h++) {
+                    d31[j][h] = [0, 0, 0, 0]
+                }
+            };
+            for (p = 0; p < XY; p++) {
+                d32[p] = p;
+                p32[p] = p
+            };
+            RB = XY;
+            for (o = 0; o < M; o++) {
+                p = Math.floor(Math.random() * RB);
+                RB--;
+                ex(p, RB)
+            };
+            for (p = RB; p < XY; p++) {
+                mplus(p, 1)
+            };
+            RM = M;
+            RB = XY - M
+        }
+
+        function ex(U, V) {
+            var S = d32[U];
+            var T = d32[V];
+            d32[U] = T;
+            d32[V] = S;
+            p32[S] = V;
+            p32[T] = U
+        }
+
+        function mplus(p, bh) {
+            var bj, bi;
+            var rv = d32[p];
+            bj = Math.floor(rv / X);
+            bi = rv % X;
+            d31[bj][bi][1] += bh;
+            for (z = 0; z < 8; z++) {
+                cy = bj + CY[z];
+                cx = bi + CX[z];
+                if (cy >= 0 && cy < Y && cx >= 0 && cx < X) {
+                    d31[cy][cx][2] += bh
+                }
+            }
+        }
+        var h_f = [];
+        var f_n = 0;
+
+        function _45() {
+            if (he > 0) {
+                clearInterval(he);
+                he = 0
+            };
+            for (var d = 0; d < f_n; d++) {
+                clearInterval(h_f[d])
+            };
+            f_n = 0;
+            _gnt();
+            _d46();
+            _x0 = -1;
+            _y0 = -1;
+            _gs = 0
+        }
+        var _mp1, _mp2;
+        var _x0;
+        var _y0;
+
+        function _65(e) {
+            if (_tch || _gs > 1) {
+                return
+            };
+            var f = paf.getBoundingClientRect();
+            var h = Math.floor((e.clientX - f.left) / 25);
+            var j = Math.floor((e.clientY - f.top) / 25);
+            if (h < 0 || h == X || j < 0 || j == Y) {
+                return
+            };
+            _x0 = h;
+            _y0 = j;
+            var g = d31[j][h][0];
+            if (e.button == 2) {
+                if (_mp2 != 1) {
+                    if (g == 1) {
+                        c67(h, j)
+                    } else {
+                        M5k(h, j)
+                    }
+                }
+            } else {
+                if (_mp1 != 1) {
+                    if (g == 0) {
+                        if (_gs == 0) {
+                            kai(h, j)
+                        };
+                        o0o(h, j)
+                    } else {
+                        if (g == 1) {
+                            c67(h, j)
+                        } else {
+                            M5k(h, j)
+                        }
+                    }
+                }
+            }
+        }
+
+        function _67(e) {
+            if (_tch || _gs > 1) {
+                return
+            };
+            var f = paf.getBoundingClientRect();
+            var h = Math.floor((e.clientX - f.left) / 25);
+            var j = Math.floor((e.clientY - f.top) / 25);
+            if (h < 0 || h == X || j < 0 || j == Y) {
+                return
+            };
+            var g = d31[j][h][0];
+            if (e.button == 2) {
+                if (_mp2 != null) {
+                    if (_mp2 == 2 && h == _x0 && j == _y0) {
+                        return
+                    };
+                    if (g == 1) {
+                        c67(h, j)
+                    } else {
+                        M5k(h, j)
+                    }
+                }
+            } else {
+                if (_mp1 != null) {
+                    if (_mp1 == 2 && h == _x0 && j == _y0) {
+                        return
+                    };
+                    if (g == 0) {
+                        if (_gs == 0) {
+                            kai(h, j)
+                        };
+                        o0o(h, j)
+                    } else {
+                        if (g == 1) {
+                            c67(h, j)
+                        } else {
+                            M5k(h, j)
+                        }
+                    }
+                }
+            }
+        }
+
+        function _77(e) {
+            if (_gs > 1) {
+                return
+            };
+            _tch = 1;
+            var f = paf.getBoundingClientRect();
+            var h = Math.floor((e.touches[0].clientX - f.left) / 25);
+            var j = Math.floor((e.touches[0].clientY - f.top) / 25);
+            if (h < 0 || h == X || j < 0 || j == Y) {
+                return
+            };
+            if (d31[j][h][0] == 1) {
+                c67(h, j)
+            } else {
+                _hl = setTimeout(function() {
+                    return lgt(h, j)
+                }, 320)
+            }
+        }
+        var _hl;
+
+        function lgt(h, j) {
+            if (_opn == 1 && _tpn == null) {
+                return
+            };
+            if (_gs == 0) {
+                kai(h, j);
+                o0o(h, j);
+                return
+            };
+            _tch = 3;
+            if (_tpn == null) {
+                if (d31[j][h][0] == 2) {
+                    M5k(h, j)
+                };
+                if (d31[j][h][0] == 0) {
+                    o0o(h, j)
+                }
+            } else {
+                M5k(h, j)
+            }
+        }
+        var tc0 = 0;
+
+        function _75(e) {
+            if (_tch == 1) {
+                var f = paf.getBoundingClientRect();
+                var h = Math.floor((e.changedTouches[0].clientX - f.left) / 25);
+                var j = Math.floor((e.changedTouches[0].clientY - f.top) / 25);
+                if (h < 0 || h == X || j < 0 || j == Y) {
+                    return
+                };
+                var g = d31[j][h][0];
+                if (_gs == 0) {
+                    kai(h, j);
+                    o0o(h, j);
+                    return
+                };
+                if (_tpn == null) {
+                    if (g != 1) {
+                        var k = Date.now();
+                        var l;
+                        if (h == _x0 && j == _y0) {
+                            l = k - tc0
+                        } else {
+                            _x0 = h;
+                            _y0 = j;
+                            tc0 = Date.now();
+                            l = 1000
+                        };
+                        if (_opn == 1 && l < 400 && g == 0) {
+                            o0o(h, j)
+                        } else {
+                            M5k(h, j)
+                        }
+                    }
+                } else {
+                    if (g == 0) {
+                        o0o(h, j)
+                    } else {
+                        if (g == 2) {
+                            M5k(h, j)
+                        }
+                    }
+                };
+                _tch = 4;
+                clearTimeout(_hl);
+                tc0 = k
+            };
+            if (e.preventDefault) {
+                e.preventDefault()
+            } else {
+                window.event.returnValue = false
+            }
+        }
+
+        function saf() {
+            _af = $("af").checked ? 1 : 0;
+            localStorage.setItem("af", _af);
+            _45()
+        }
+        var _af;
+
+        function _d46() {
+            _edn();
+            he = 0;
+            _tch = 0;
+            _mp1 = localStorage.getItem("mp1");
+            _mp2 = localStorage.getItem("mp2");
+            _tpn = localStorage.getItem("tpn");
+            _opn = localStorage.getItem("opn");
+            _af = localStorage.getItem("af");
+            if (_af == null) {
+                _af = 0
+            };
+            var n = X * 25;
+            $("p42").style.width = n + 4 + "px";
+            paf.width = n;
+            paf.height = Y * 25;
+            $("face").src = gif[0];
+            for (var d = 0; d < X; d++) {
+                for (var m = 0; m < Y; m++) {
+                    ctx.drawImage(gfs[0], d * 25, m * 25)
+                }
+            };
+            paf.onmousedown = function(e) {
+                _65(e)
+            };
+            paf.onmouseup = function(e) {
+                _67(e)
+            };;;
+            paf.ontouchstart = function(e) {
+                _77(e)
+            };
+            paf.ontouchmove = function() {
+                _tch = 2;
+                clearTimeout(_hl)
+            };
+            paf.ontouchend = function(e) {
+                _75(e)
+            };
+            crm(RM);
+            ces(0);
+            $("af").checked = parseInt(_af)
+        }
+
+        function sopen() {
+            var bo = 0;
+            var bp = -1,
+                bq = -1;
+            for (var d = 0; d < X; d++) {
+                var br = 0;
+                for (var m = 0; m < Y; m++) {
+                    if (d31[m][d][2] == 0 && d31[m][d][1] == 0) {
+                        br++
+                    } else {
+                        if (br > bo) {
+                            bo = br;
+                            bp = d;
+                            bq = m - 1
+                        };
+                        br = 0
+                    }
+                };
+                if (br > bo) {
+                    bo = br;
+                    bp = d;
+                    bq = m - 1
+                }
+            };
+            if (bp >= 0 && bq >= 0) {
+                o0o(bp, bq)
+            }
+        }
+
+        function _edn() {
+            if (he > 0) {
+                clearInterval(he);
+                he = 0;
+                _t0 = Date.now() - _t0;
+                ces(parseInt(_t0 / 1000));
+                _t0 = Math.ceil(_t0 / 100)
+            } else {
+                _t0 = 0
+            }
+        }
+        var he = 0;
+        var _t0;
+        var e33;
+
+        function _es() {
+            _t0 = Date.now();
+            e33 = 0;
+            _gs = 1;
+            he = setInterval(function() {
+                ces(++e33)
+            }, 1000)
+        }
+        var _tpn;
+        var _opn;
+        var _tch;
+        var RM;
+        var RB;
+
+        function M5k(h, j) {
+            var t = d31[j][h];
+            if (t[0] == 0) {
+                if (RM > 0) {
+                    if (t[1] == 0) {
+                        ck()
+                    };
+                    ctx.drawImage(gfs[1], h * 25, j * 25);
+                    t[0] = 2;
+                    crm(--RM)
+                }
+            } else {
+                if (t[0] == 2) {
+                    ctx.drawImage(gfs[0], h * 25, j * 25);
+                    t[0] = 0;
+                    crm(++RM)
+                }
+            }
+        }
+        var paf;
+        var ctx;
+        var crm;
+        var ces;
+
+        function start() {
+            var bt = localStorage.getItem("df5");
+            if (bt == null) {
+                $("hm").value = 15;
+                $("vm").value = 15;
+                $("mm").value = 20
+            } else {
+                var bs = bt.split(";");
+                $("hm").value = bs[0];
+                $("vm").value = bs[1];
+                $("mm").value = bs[2]
+            };
+            document.oncontextmenu = function() {
+                return false
+            };
+            document.onselectstart = function() {
+                return false
+            };
+            paf = $("paf");
+            ctx = paf.getContext("2d");
+            crm = DS("rm");
+            ces = DS("es");
+            _123(localStorage.getItem("ch7"));
+            $("uid").innerHTML = lid();
+            $("ver").innerHTML = VER;
+            setTimeout(ad, 1200)
+        }
+
+        function lid() {
+            var bg = localStorage.getItem("uid");
+            if (bg != null) {
+                if (isNaN(bg)) {
+                    bg = null
+                }
+            };
+            return bg
+        }
+
+        function guid() {
+            gets("uid2.php", null, function(H) {
+                localStorage.setItem("uid", H);
+                if (H.length > 1) {
+                    up();
+                    $("uid").innerHTML = H
+                } else {
+                    alert("id fail")
+                }
+            })
+        }
+        var XY;
+        var SW, SH;
+
+        function _123(c) {
+            _gs = 0;
+            SW = document.body.clientWidth;
+            SH = document.body.clientHeight;
+            if (c == null) {
+                c = SW < 560 ? 1 : 2
+            };
+            _v = c;
+            $("custom").style.display = c == 5 ? "" : "none";
+            if (c == 1) {
+                X = 9;
+                Y = 9;
+                M = 10;
+                XY = 81
+            } else {
+                if (c == 2) {
+                    X = 16;
+                    Y = 16;
+                    M = 40;
+                    XY = 256
+                } else {
+                    if (c == 3) {
+                        M = 99;
+                        if (SW > SH) {
+                            X = 30;
+                            Y = 16
+                        } else {
+                            X = 16;
+                            Y = 30
+                        };
+                        XY = 480
+                    } else {
+                        if (c == 4) {
+                            X = parseInt((SW - 18) / 25);
+                            Y = parseInt((SH - 54) / 25);
+                            XY = X * Y;
+                            if (XY >= 480) {
+                                M = XY * 0.20625
+                            } else {
+                                M = XY * XY / 5760 + XY / 8
+                            };
+                            M = parseInt(M)
+                        } else {
+                            if (c == 5) {
+                                X = parseInt($("hm").value);
+                                Y = parseInt($("vm").value);
+                                XY = X * Y;
+                                M = parseInt($("mm").value);
+                                if (M > XY) {
+                                    M = XY
+                                }
+                            } else {
+                                return
+                            }
+                        }
+                    }
+                }
+            };
+            _45();
+            localStorage.setItem("ch7", c);
+            $("ss").href = "scores.htm#" + _v
+        }
+
+        function udf() {
+            _123(5);
+            localStorage.setItem("df5", $("hm").value + ";" + $("vm").value + ";" + $("mm").value)
+        }
+
+        function sload(bm) {
+            var rv = localStorage.getItem(bm);
+            if (rv == null) {
+                rv = 0
+            };
+            var bn = document.getElementsByName(bm);
+            for (i = 0; i < bn.length; i++) {
+                if (bn[i].value == rv) {
+                    bn[i].checked = true
+                }
+            };
+            return rv
+        }
+
+        function ssave(bm, rv) {
+            if (rv == 0) {
+                localStorage.removeItem(bm);
+                rv = null
+            } else {
+                localStorage.setItem(bm, rv)
+            };
+            eval("_" + bm + "=" + rv)
+        }
+
+        function smore(c) {
+            if (c == 0) {
+                $("topen").style.display = "block";
+                $("thint").style.display = "none"
+            } else {
+                $("thint").style.display = "block";
+                $("topen").style.display = "none"
+            }
+        }
+        var mouse2 = function() {
+            var b = 0;
+            return function() {
+                sload("mp1");
+                sload("mp2");
+                if (b == 0) {
+                    $("_mouse").style.display = "block";
+                    $("setm").innerText = "\u6536\u8d77";
+                    b = 1
+                } else {
+                    $("_mouse").style.display = "none";
+                    $("setm").innerText = "\u8bbe\u7f6e";
+                    b = 0
+                }
+            }
+        }();
+        var touch2 = function() {
+            var b = 0;
+            return function() {
+                var rv = sload("tpn");
+                sload("opn");
+                smore(rv);
+                if (b == 0) {
+                    $("_touch").style.display = "block";
+                    $("sett").innerText = "\u6536\u8d77";
+                    b = 1
+                } else {
+                    $("_touch").style.display = "none";
+                    $("sett").innerText = "\u8bbe\u7f6e";
+                    b = 0
+                }
+            }
+        }()
+    </script>
+
+    <style>
+        input {
+            height: 1.5rem;
+            width: 3.8rem;
+        }
+
+        #face {
+            border: 2px solid #808080;
+            border-left-color: #fff;
+            border-top-color: #fff;
+        }
+
+        #face:active {
+            border: 2px solid #808080;
+            border-bottom: 1px solid #808080;
+            border-right: 1px solid #808080;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .pad {
+            border: 2px solid #808080;
+            border-right-color: #fff;
+            border-bottom-color: #fff;
+        }
+    </style>
+    <base target=_top>
+
+</head>
+
+<body bgcolor="#f7f7f0" style="margin:0;" onload=start()>
+
+    <center>
+
+        <div style="margin-top:0.8rem;">
+            <b>网页扫雷游戏</b>
+        </div>
+
+
+        <div style="margin-top:0.8rem;">
+            <a href="javascript:_123(1)">基础</a> &nbsp;
+            <a href="javascript:_123(2)">中级</a> &nbsp;
+            <a href="javascript:_123(3)">专家</a> &nbsp;
+            <a href="javascript:_123(4)">满屏</a> &nbsp;
+            <a href="javascript:_123(5)">自定义</a>
+        </div>
+        <div id=custom style="display:none;margin-top:5">
+            横<input id=hm type=number value=40> 竖
+            <input id=vm type=number value=24> 雷
+            <input id=mm type=number value=199>
+            <input type=button onclick="udf()" value="确定">
+        </div>
+        <table style="margin-top:0.8rem;border-radius:6px;background:#cccccc">
+            <tr>
+                <td style="padding:9px;">
+
+                    <table id=p42 class=pad style="height:34px">
+                        <tr>
+                            <td width=50%><canvas id="rm" height=23 width=39></canvas></td>
+                            <td align=center onmouseup="_45()" style="padding:0 8 0 8"><img id="face">
+                                <td width=50% align=right><canvas id="es" height=23 width=39></canvas></td>
+                    </table>
+
+
+                    <canvas id="paf" class="pad" style="margin-top:6px;" width=0 height=0></canvas>
+
+
+                    <tr>
+                        <td align=right>
+        </table>
+
+
+        <div style="margin-top:2rem;">
+            <a id=ss href=scores.htm>成绩榜</a>
+        </div>
+
+
+
+        <div style="width:90%;text-align:left;margin-top:3rem;">
+            <span style="vertical-align:middle">自动标雷</span><input type=checkbox checked id=af onclick="saf()" style="vertical-align:middle;height:1.19rem;width:1.5rem;">
+            <br><br> 第一次点击不会是雷。格子里的数字表示它周围有几个雷。游戏目标是找出所有雷。“触雷”则输。点击表情重新开始。
+
+            <b>二选一留到最后，可任选</b>，需先清完其他方块。
+
+            <br><br>
+            <b>电脑：</b>鼠标右键点击原始方块，以小旗标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字（左右键均可）翻开周围的安全区域。鼠标左键点击无标记方块则直接打开。
+
+
+            <a id=setm href="javascript:mouse2()">设置</a>
+
+            <div id="_mouse" style="border:solid 1px;display:none;background-color:silver;padding:0.5rem;">
+
+                鼠标起效时间点
+
+
+                <br>
+                <br>
+
+                <i>左键</i>
+                <br>
+                <br>
+
+
+                <input type=radio name="mp1" value="0" onclick="ssave('mp1',0);">按下时
+                <input type=radio name="mp1" value="1" onclick="ssave('mp1',1);">弹起时
+                <!--input type=radio name="mp1" value="2" onclick="ssave('mp1',2);">两次
+<br-->
+                <br>
+
+                <br>
+                <br>
+
+                <i>右键</i>
+                <br>
+                <br>
+
+
+                <input type=radio name="mp2" value="0" onclick="ssave('mp2',0);">按下时
+                <input type=radio name="mp2" value="1" onclick="ssave('mp2',1);">弹起时
+                <!--input type=radio name="mp2" value="2" onclick="ssave('mp2',2);">两次
+<br>
+<br>
+<br>
+<br>
+<br>
+<small>“两次”：点下和松开在不同的格子上。</small-->
+                <br>
+                <br>
+            </div>
+
+
+            <br><br>
+            <b>手机或平板：</b>在触屏上点击方块即标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字翻开周围的安全区域。长按方块直接打开。（可设置为点击直接打开；或点击三次打开）
+
+
+            <a id=sett href="javascript:touch2()">设置</a>
+
+
+            <div id="_touch" style="border:solid 1px;display:none;background-color:silver;padding:0.5rem;">
+
+
+                <i>触击效果</i>
+
+                <br>
+                <br>
+                <input type=radio name="tpn" value="0" checked onclick="ssave('tpn',0);smore(0);">标记
+                <input type=radio name="tpn" value="1" onclick="ssave('tpn',1);smore(1);">直开
+
+                <br><br>
+                <br>
+
+                <div id=thint style="display:none;">
+                    <i>直开模式下的标记方法</i>
+                    <br>
+                    <br> 长按
+                </div>
+
+                <div id=topen style="display:none;">
+
+                    <i>标记模式下的打开方法</i>
+                    <br>
+                    <br>
+                    <input type=radio name="opn" value="0" checked onclick="ssave('opn',0)">长按
+                    <input type=radio name="opn" value="1" onclick="ssave('opn',1)">快点三次
+                </div>
+                <br>
+                <br>
+
+            </div>
+
+            <br><br> 扫雷游戏起源于1973年的"方块"游戏。1992年微软发布的Windows 3.1中加入该游戏，从此风靡全世界。玩扫雷游戏，可以锻炼观察和推理能力，培养细心和耐心。
+            <a href=doc/jichudingshi.htm>基础定式</a>
+
+
+        </div>
+    </center>
+
+    <center>
+
+
+        <div id=ad style="margin-top:3rem;width:90%">
+
+
+
+            <script id="gg" async crossorigin="anonymous"></script>
+            <!-- saolei -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2872916894005511" data-ad-slot="1319601002" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+
+
+        </div>
+
+
+
+
+        <div style="margin-top:5rem;">
+            ID: <span id=uid></span>
+
+        </div>
+
+
+
+        <div style="margin-top:2rem;">
+
+
+
+        </div>
+
+
+        <div id=zz style="margin-top:4rem;">
+        </div>
+
+        <br><br><br><br><br>
+    </center>
+
+
+</body>
+
+</html>
