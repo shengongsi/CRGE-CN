@@ -16,6 +16,8 @@ if (a == "mc") {		window.location.href = 'http://crge.cn/games/mc/index.html';
 } else if (a == "daxigua") {	window.location.href = 'http://crge.cn/games/game/daxigua/index.html';
 } else if (a == "xigua") {	window.location.href = 'http://crge.cn/games/game/daxigua/index.html';
 } else if (a == "xg") {	window.location.href = 'http://crge.cn/games/game/daxigua/index.html';
+} else if (a == "sl") {	window.location.href = 'http://crge.cn/games/game/saolei/index.html';
+} else if (a == "saolei") {	window.location.href = 'http://crge.cn/games/game/saolei/index.html';
 } else if (a == "i") {		window.location.href = 'http://crge.cn/videos/index.html';
 } else if (a == "sea") {	window.location.href = 'http://crge.cn/videos/sea.html';
 } else if (a == "articles") {	window.location.href = 'http://crge.cn/articles/index.html';
