@@ -4,6 +4,7 @@ var s ="//"+window.location.host;
 
 
 if (a == "mc") {		window.location.href = 'http://crge.cn/games/mc/index.html';
+} else if (a == "www") {	window.location.href = 'http://crge.cn/';
 } else if (a == "games") {	window.location.href = 'http://crge.cn/games/index.html';
 } else if (a == "mail") {	window.location.href = 'http://crge.cn/tools/mail.html';
 } else if (a == "game") {	window.location.href = 'http://crge.cn/games/index.html';
