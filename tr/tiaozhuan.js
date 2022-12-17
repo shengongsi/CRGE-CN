@@ -41,7 +41,7 @@ if (a == "mc" || b == "mc") {		window.location.href = 'http://crge.cn/games/mc/i
 } else if (a == "shizhong" || b == "shizhong") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
 } else if (a == "time" || b == "time") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
 } else if (a == "w" || b == "w") {	window.location.href = 'http://crge.cn/games/cqsj/index.html';
-} else if (a == "w1" || b == "w1") {	window.location.href = 'https://wwu.lanzoub.com/iddk108ohgde';
+} else if (a == "w1" || b == "w1") {	window.location.href = 'https://wwpy.lanzoub.com/iCVF60ifyksb';
 } else if (a == "w2" || b == "w2") {	window.location.href = 'http://crge.cn/games/cqsj/CQSJ-CRGE.CN.exe';
 } else if (a == "w3" || b == "w3") {	window.location.href = 'http://ipv6.crge.cn:3722/CQSJ-CRGE.CN-IPV6.exe';
 
