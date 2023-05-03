@@ -20,6 +20,7 @@ if (a == "mc" || b == "mc") {		window.location.href = 'http://crge.cn/games/mc/i
 } else if (a == "xg" || b == "xg") {	window.location.href = 'http://crge.cn/games/game/daxigua/index.html';
 } else if (a == "sl" || b == "sl") {	window.location.href = 'http://crge.cn/games/game/saolei/index.html';
 } else if (a == "saolei" || b == "saolei") {	window.location.href = 'http://crge.cn/games/game/saolei/index.html';
+} else if (a == "qxm" || b == "qxm") {	window.location.href = 'http://crge.cn/games/game/circlecat/index.html';
 } else if (a == "i" || b == "i") {		window.location.href = 'http://crge.cn/videos/index.html';
 } else if (a == "sea" || b == "sea") {	window.location.href = 'http://crge.cn/videos/sea.html';
 } else if (a == "articles" || b == "articles") {	window.location.href = 'http://crge.cn/articles/index.html';
@@ -40,10 +41,10 @@ if (a == "mc" || b == "mc") {		window.location.href = 'http://crge.cn/games/mc/i
 } else if (a == "bus" || b == "bus") {	window.location.href = 'http://crge.cn/tools/20210114bus.html';
 } else if (a == "shizhong" || b == "shizhong") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
 } else if (a == "time" || b == "time") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
-} else if (a == "w" || b == "w") {	window.location.href = 'http://crge.cn/games/cqsj/index.html';
+} else if (a == "w" || b == "w") {	window.location.href = 'http://zc.crge.cn/';
 } else if (a == "w1" || b == "w1") {	window.location.href = 'https://wwpy.lanzoub.com/iCVF60ifyksb';
-} else if (a == "w2" || b == "w2") {	window.location.href = 'http://crge.cn/games/cqsj/CQSJ-CRGE.CN.exe';
-} else if (a == "w3" || b == "w3") {	window.location.href = 'http://ipv6.crge.cn:3722/CQSJ-CRGE.CN-IPV6.exe';
+} else if (a == "w2" || b == "w2") {	window.location.href = 'https://wwpy.lanzoub.com/iNX7M0ul868j';
+} else if (a == "w3" || b == "w3") {	window.location.href = 'http://crge.cn/games/cqsj/CQSJ-CRGE.CN.exe';
 
 
 
