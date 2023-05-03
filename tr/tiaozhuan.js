@@ -21,6 +21,7 @@ if (a == "mc" || b == "mc") {		window.location.href = 'http://crge.cn/games/mc/i
 } else if (a == "sl" || b == "sl") {	window.location.href = 'http://crge.cn/games/game/saolei/index.html';
 } else if (a == "saolei" || b == "saolei") {	window.location.href = 'http://crge.cn/games/game/saolei/index.html';
 } else if (a == "qxm" || b == "qxm") {	window.location.href = 'http://crge.cn/games/game/circlecat/index.html';
+} else if (a == "cat" || b == "cat") {	window.location.href = 'http://crge.cn/games/game/circlecat/index.html';
 } else if (a == "i" || b == "i") {		window.location.href = 'http://crge.cn/videos/index.html';
 } else if (a == "sea" || b == "sea") {	window.location.href = 'http://crge.cn/videos/sea.html';
 } else if (a == "articles" || b == "articles") {	window.location.href = 'http://crge.cn/articles/index.html';
