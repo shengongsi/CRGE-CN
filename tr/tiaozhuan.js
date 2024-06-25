@@ -43,8 +43,8 @@ if (a == "mc" || b == "mc") {		window.location.href = 'http://crge.cn/games/mc/i
 } else if (a == "shizhong" || b == "shizhong") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
 } else if (a == "time" || b == "time") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
 } else if (a == "w" || b == "w") {	window.location.href = 'http://zc.crge.cn/';
-} else if (a == "w1" || b == "w1") {	window.location.href = 'https://wwu.lanpv.com/ilNyN1njmlxa';
-} else if (a == "w2" || b == "w2") {	window.location.href = 'https://wwu.lanpv.com/iKseY1njmote';
+} else if (a == "w1" || b == "w1") {	window.location.href = 'https://wwo.lanzoue.com/iLyxh22qhfra';
+} else if (a == "w2" || b == "w2") {	window.location.href = 'https://wwo.lanzoue.com/iBpeY22qh8pg';
 } else if (a == "w3" || b == "w3") {	window.location.href = 'http://crge.cn/games/cqsj/CQSJ-CRGE.CN.exe';
 
 
