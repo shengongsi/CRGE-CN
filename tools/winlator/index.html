@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Winlator - 你的移动设备游戏利器</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px rgba(139, 92, 246, 0.7); }
+      50% { text-shadow: 0 0 10px rgba(139, 92, 246, 0.9), 0 0 15px rgba(236, 72, 153, 0.7); }
+      100% { text-shadow: 0 0 5px rgba(139, 92, 246, 0.7); }
+    }
+    .animate-slide-in {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+    .animate-fade-in {
+      animation: fadeIn 1.2s ease-in forwards;
+    }
+    .animate-glow {
+      animation: glow 2s ease-in-out infinite;
+    }
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+    .modal-content {
+      background-color: #e5e7eb; /* Tailwind bg-gray-200 */
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      max-width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    /* Sidebar styles for mobile */
+    .sidebar {
+      transform: translateX(-100%);
+      transition: transform 0.4s ease-in-out;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    /* Dropdown menu */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #1e3a8a; /* Tailwind bg-blue-900 */
+      border-radius: 0.375rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 0.5rem;
+      min-width: 192px; /* Adjusted for three items */
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-blue-600 to-[#78cef3] text-white min-h-screen flex flex-col font-sans">
+  <!-- Navigation Bar -->
+  <nav class="w-full bg-blue-900 shadow-lg fixed top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between py-4">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="./">
+          <canvas id="logoCanvas" width="200" height="50" class="hover:scale-110 transition-transform duration-300"></canvas>
+        </a>
+      </div>
+      <!-- Mobile Menu Button -->
+      <button id="menu-toggle" class="lg:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex space-x-4 items-center">
+        <a href="http://crge.cn/" class="hover:text-yellow-400 transition-colors duration-300">首页</a>
+        <a href="http://crge.cn/articles" class="hover:text-yellow-400 transition-colors duration-300">知识人</a>
+        <div class="relative dropdown" id="desktop-games-dropdown">
+          <span class="hover:text-yellow-400 cursor-pointer transition-colors duration-300">游戏站</span>
+          <div class="dropdown-menu hidden w-48">
+            <a href="http://crge.cn/games" class="block px-4 py-2 hover:bg-blue-800 transition-colors duration-300">游戏站</a>
+            <a href="http://zc.crge.cn/" class="block px-4 py-2 hover:bg-red-900 transition-colors duration-300">传奇世界</a>
+            <a href="http://mc.crge.cn/" class="block px-4 py-2 hover:bg-red-900 transition-colors duration-300">Minecraft</a>
+          </div>
+        </div>
+        <a href="http://crge.cn/tools" class="hover:text-yellow-400 transition-colors duration-300">工具站</a>
+        <a href="https://space.bilibili.com/2414939" class="hover:text-yellow-400 transition-colors duration-300">视频</a>
+        <a href="http://crge.cn/tools/search.html" class="hover:text-yellow-400 transition-colors duration-300">搜索</a>
+        <a href="http://crge.cn/articles/communication.html" class="hover:text-yellow-400 transition-colors duration-300">留言板</a>
+      </div>
+    </div>
+    <!-- Mobile Sidebar -->
+    <div id="sidebar" class="sidebar fixed top-0 left-0 h-full w-64 bg-blue-900 text-white p-4 lg:hidden">
+      <button id="close-sidebar" class="mb-4 text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <a href="http://crge.cn/" class="block py-2 hover:text-yellow-400 transition-colors duration-300">首页</a>
+      <a href="http://crge.cn/articles" class="block py-2 hover:text-yellow-400 transition-colors duration-300">知识人</a>
+      <div class="relative dropdown">
+        <span class="block py-2 hover:text-yellow-400 cursor-pointer transition-colors duration-300" onclick="document.getElementById('mobile-games-dropdown').classList.toggle('hidden')">游戏站</span>
+        <div id="mobile-games-dropdown" class="hidden pl-4">
+          <a href="http://crge.cn/games" class="block py-2 hover:text-yellow-400 transition-colors duration-300">游戏站</a>
+          <a href="http://zc.crge.cn/" class="block py-2 hover:text-yellow-400 transition-colors duration-300">传奇世界</a>
+          <a href="http://mc.crge.cn/" class="block py-2 hover:text-yellow-400 transition-colors duration-300">Minecraft</a>
+        </div>
+      </div>
+      <a href="http://crge.cn/tools" class="block py-2 hover:text-yellow-400 transition-colors duration-300">工具站</a>
+      <a href="https://space.bilibili.com/2414939" class="block py-2 hover:text-yellow-400 transition-colors duration-300">视频</a>
+      <a href="http://crge.cn/tools/search.html" class="block py-2 hover:text-yellow-400 transition-colors duration-300">搜索</a>
+      <a href="http://crge.cn/articles/communication.html" class="block py-2 hover:text-yellow-400 transition-colors duration-300">留言板</a>
+    </div>
+  </nav>
+
+  <header class="w-full max-w-4xl mx-auto text-center py-20 mt-16">
+    <h1 class="text-5xl font-bold mb-4 animate-slide-in">Winlator - 释放你的设备潜能</h1>
+    <p class="text-xl animate-fade-in">欢迎访问 <a href="http://win.crge.cn" class="underline hover:text-yellow-400">win.crge.cn</a>，Winlator 让你在安卓设备上畅玩 Windows 游戏！</p>
+  </header>
+
+  <main class="w-full max-w-4xl mx-auto px-4">
+    <section class="grid md:grid-cols-2 gap-8 mb-12">
+      <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in">
+        <h2 class="text-3xl font-semibold mb-4">WC 版</h2>
+        <p class="text-lg">专为 2024 年之前的老款手机或平板设计，完美兼容经典设备，带来流畅的游戏体验。无论你的设备有多“老”，WC 版都能让它焕发新生！</p>
+        <ul class="mt-4 list-disc list-inside">
+          <li>优化低配硬件</li>
+          <li>支持经典安卓系统</li>
+          <li>轻量、稳定、易上手</li>
+        </ul>
+        <a href="https://win.crge.cn/download/wc" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
+      </div>
+      <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in" style="animation-delay: 0.2s;">
+        <h2 class="text-3xl font-semibold mb-4">Gli 版</h2>
+        <p class="text-lg">为新款设备或最近更新系统的老设备量身打造，充分利用高性能硬件，带来极致画质和流畅体验。你的新设备，游戏新境界！</p>
+        <ul class="mt-4 list-disc list-inside">
+          <li>支持最新安卓系统</li>
+          <li>高性能优化</li>
+          <li>更丰富的图形效果</li>
+        </ul>
+        <a href="https://win.crge.cn/download/gli" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
+      </div>
+    </section>
+
+    <section class="mb-12 text-center">
+      <button id="other-versions-btn" class="bg-gray-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-gray-600 transition-colors duration-300 animate-fade-in">其他版本</button>
+      <div id="other-versions-modal" class="modal">
+        <div class="modal-content">
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in">
+              <h3 class="text-3xl font-semibold mb-4 text-white">Winlator 官方原版</h3>
+              <p class="text-lg text-white">Winlator 官方原版，适合对软件有特定需求的开发者或高级用户，提供最原始的功能和配置选项，适合定制化使用。</p>
+              <ul class="mt-4 list-disc list-inside text-white">
+                <li>原始功能完整保留</li>
+                <li>适合开发者调试</li>
+                <li>高度自定义支持</li>
+              </ul>
+              <a href="https://win.crge.cn/download/official" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
+            </div>
+            <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in" style="animation-delay: 0.2s;">
+              <h3 class="text-3xl font-semibold mb-4 text-white">天玑麒麟兼容版 <span class="text-red-400">(不推荐)</span></h3>
+              <p class="text-lg text-white">为搭载天玑或麒麟芯片的设备设计，但由于兼容性问题，建议谨慎使用，仅推荐给特定设备用户或测试者。</p>
+              <ul class="mt-4 list-disc list-inside text-white">
+                <li>针对天玑/麒麟芯片</li>
+                <li>有限兼容性</li>
+                <li>适合测试用途</li>
+              </ul>
+              <a href="https://win.crge.cn/download/mediatek" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
+            </div>
+          </div>
+          <button id="close-modal" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-full hover:bg-red-600 transition-colors duration-300">关闭</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center mb-12 animate-fade-in">
+      <h2 class="text-3xl font-semibold mb-4">为什么选择 Winlator？</h2>
+      <p class="text-lg max-w-2xl mx-auto">Winlator 让你在安卓设备上运行 Windows 游戏，操作简单，兼容性强。无论是怀旧经典还是最新大作，Winlator 都能满足你的需求！</p>
+      <p class="mt-4">了解更多关于我们的服务，请访问 <a href="http://crge.cn" class="underline hover:text-yellow-400">crge.cn</a>。</p>
+    </section>
+  </main>
+
+  <footer class="w-full text-center py-6 bg-blue-700">
+    <p>© 2025 Winlator. 保留所有权利。 | <a href="http://crge.cn" class="underline hover:text-yellow-400">访问 crge.cn</a></p>
+  </footer>
+
+  <script>
+    // Canvas Logo
+    const canvas = document.getElementById('logoCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = 'bold 28px Impact, sans-serif';
+    const gradient = ctx.createLinearGradient(0, 0, 200, 0);
+    gradient.addColorStop(0, '#8b5cf6'); // Purple
+    gradient.addColorStop(1, '#ec4899'); // Pink
+    ctx.fillStyle = gradient;
+    ctx.fillText('Cr铬 | crge.cn', 10, 35);
+    canvas.className = 'animate-glow';
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebar = document.getElementById('close-sidebar');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+    closeSidebar.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+    });
+
+    // Desktop Dropdown Delay
+    const desktopDropdown = document.getElementById('desktop-games-dropdown');
+    const dropdownMenu = desktopDropdown.querySelector('.dropdown-menu');
+    let timeout;
+    desktopDropdown.addEventListener('mouseenter', () => {
+      clearTimeout(timeout);
+      dropdownMenu.style.display = 'block';
+    });
+    desktopDropdown.addEventListener('mouseleave', () => {
+      timeout = setTimeout(() => {
+        dropdownMenu.style.display = 'none';
+      }, 500);
+    });
+
+    // Modal Toggle
+    const modal = document.getElementById('other-versions-modal');
+    const openModalBtn = document.getElementById('other-versions-btn');
+    const closeModalBtn = document.getElementById('close-modal');
+    openModalBtn.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+    closeModalBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
