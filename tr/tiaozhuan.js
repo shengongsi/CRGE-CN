@@ -42,6 +42,7 @@ if (a == "mc" || b == "mc") {		window.location.href = 'http://crge.cn/games/mc/i
 } else if (a == "bus" || b == "bus") {	window.location.href = 'http://crge.cn/tools/20210114bus.html';
 } else if (a == "shizhong" || b == "shizhong") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
 } else if (a == "time" || b == "time") {	window.location.href = 'http://crge.cn/tools/20220223shizhong/index.html';
+} else if (a == "win" || b == "win") {	window.location.href = 'http://crge.cn/tools/winlator/index.html';
 } else if (a == "w" || b == "w") {	window.location.href = 'http://zc.crge.cn/';
 } else if (a == "w1" || b == "w1") {	window.location.href = 'https://wwo.lanzoue.com/iLyxh22qhfra';
 } else if (a == "w2" || b == "w2") {	window.location.href = 'https://wwo.lanzoue.com/iBpeY22qh8pg';

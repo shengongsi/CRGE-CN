@@ -4,8 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Winlator - 你的移动设备游戏利器</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/js/baiduindex.js"></script>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, #2563eb, #78cef3);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
     @keyframes slideIn {
       from { transform: translateX(-100%); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
@@ -28,6 +41,144 @@
     .animate-glow {
       animation: glow 2s ease-in-out infinite;
     }
+    /* Navigation Bar */
+    nav {
+      width: 100%;
+      background-color: #1e3a8a;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo canvas:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .menu-toggle svg {
+      width: 24px;
+      height: 24px;
+    }
+    .desktop-menu {
+      display: none;
+      align-items: center;
+      gap: 16px;
+    }
+    .desktop-menu a, .desktop-menu span {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .desktop-menu a:hover, .desktop-menu span:hover {
+      color: #facc15;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #1e3a8a;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 8px;
+      min-width: 192px;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 16px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .dropdown-menu a:hover {
+      background-color: #1e40af;
+    }
+    .dropdown-menu a.legendary:hover, .dropdown-menu a.minecraft:hover {
+      background-color: #7f1d1d;
+    }
+    /* Sidebar for mobile */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 256px;
+      background-color: #1e3a8a;
+      padding: 16px;
+      transform: translateX(-100%);
+      transition: transform 0.4s ease-in-out;
+      z-index: 50;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar button {
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+    .sidebar button svg {
+      width: 24px;
+      height: 24px;
+    }
+    .sidebar a, .sidebar span {
+      display: block;
+      padding: 8px 0;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .sidebar a:hover, .sidebar span:hover {
+      color: #facc15;
+    }
+    .sidebar .dropdown-menu {
+      display: none;
+      padding-left: 16px;
+    }
+    .sidebar .dropdown-menu a {
+      padding: 8px 0;
+    }
+    /* Responsive */
+    @media (min-width: 1024px) {
+      .menu-toggle {
+        display: none;
+      }
+      .desktop-menu {
+        display: flex;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+    @media (max-width: 1023px) {
+      .menu-toggle {
+        display: block;
+      }
+    }
     /* Modal styles */
     .modal {
       display: none;
@@ -42,163 +193,396 @@
       z-index: 50;
     }
     .modal-content {
-      background-color: #e5e7eb; /* Tailwind bg-gray-200 */
-      border-radius: 0.5rem;
-      padding: 1.5rem;
-      max-width: 90%;
+      background-color: #e5e7eb;
+      border-radius: 8px;
+      padding: 24px;
+      max-width: 1024px;
+      width: 90%;
       max-height: 80%;
       overflow-y: auto;
     }
-    /* Sidebar styles for mobile */
-    .sidebar {
-      transform: translateX(-100%);
-      transition: transform 0.4s ease-in-out;
+    .info-modal .modal-content {
+      background-color: #4b3f4b;
+      max-width: 720px;
     }
-    .sidebar.open {
-      transform: translateX(0);
+    /* Header */
+    header {
+      max-width: 1024px;
+      margin: 64px auto 0;
+      text-align: center;
+      padding: 80px 16px;
     }
-    /* Dropdown menu */
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      background-color: #1e3a8a; /* Tailwind bg-blue-900 */
-      border-radius: 0.375rem;
+    header h1 {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    header p {
+      font-size: 20px;
+    }
+    header a {
+      color: #ffffff;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    header a:hover {
+      color: #facc15;
+    }
+    /* Main Sections */
+    main {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .card {
+      background-color: #1e40af;
+      border-radius: 8px;
+      padding: 24px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin-top: 0.5rem;
-      min-width: 192px; /* Adjusted for three items */
+      transition: transform 0.3s;
     }
-    .dropdown:hover .dropdown-menu {
-      display: block;
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card h2, .card h3 {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .card p {
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .card ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-bottom: 24px;
+    }
+    .card ul li {
+      margin-bottom: 8px;
+    }
+    .button-group {
+      display: flex;
+      gap: 16px;
+    }
+    .download-btn {
+      display: inline-block;
+      background-color: #facc15;
+      color: #1e3a8a;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .download-btn:hover {
+      background-color: #eab308;
+    }
+    .info-btn {
+      display: inline-block;
+      background-color: #06b6d4;
+      color: #1e3a8a;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .info-btn:hover {
+      background-color: #0891b2;
+    }
+    .other-versions {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .other-versions button {
+      background-color: #6b7280;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .other-versions button:hover {
+      background-color: #4b5563;
+    }
+    .modal .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 768px) {
+      .modal .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .modal .close-btn {
+      background-color: #ef4444;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: background-color 0.3s;
+    }
+    .modal .close-btn:hover {
+      background-color: #dc2626;
+    }
+    /* Why Winlator Section */
+    .why-winlator {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .why-winlator h2 {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .why-winlator p {
+      font-size: 18px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .why-winlator a {
+      color: #ffffff;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    .why-winlator a:hover {
+      color: #facc15;
+    }
+    /* Footer */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 24px 0;
+      background-color: #1e40af;
+    }
+    footer p {
+      font-size: 16px;
+    }
+    footer a {
+      color: #ffffff;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    footer a:hover {
+      color: #facc15;
     }
   </style>
 </head>
-<body class="bg-gradient-to-b from-blue-600 to-[#78cef3] text-white min-h-screen flex flex-col font-sans">
+<body>
   <!-- Navigation Bar -->
-  <nav class="w-full bg-blue-900 shadow-lg fixed top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between py-4">
+  <nav>
+    <div class="nav-container">
       <!-- Logo -->
-      <div class="flex items-center">
+      <div class="logo">
         <a href="./">
-          <canvas id="logoCanvas" width="200" height="50" class="hover:scale-110 transition-transform duration-300"></canvas>
+          <canvas id="logoCanvas" width="200" height="50"></canvas>
         </a>
       </div>
       <!-- Mobile Menu Button -->
-      <button id="menu-toggle" class="lg:hidden text-white focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <button id="menu-toggle" class="menu-toggle">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
         </svg>
       </button>
       <!-- Desktop Menu -->
-      <div class="hidden lg:flex space-x-4 items-center">
-        <a href="http://crge.cn/" class="hover:text-yellow-400 transition-colors duration-300">首页</a>
-        <a href="http://crge.cn/articles" class="hover:text-yellow-400 transition-colors duration-300">知识人</a>
-        <div class="relative dropdown" id="desktop-games-dropdown">
-          <span class="hover:text-yellow-400 cursor-pointer transition-colors duration-300">游戏站</span>
-          <div class="dropdown-menu hidden w-48">
-            <a href="http://crge.cn/games" class="block px-4 py-2 hover:bg-blue-800 transition-colors duration-300">游戏站</a>
-            <a href="http://zc.crge.cn/" class="block px-4 py-2 hover:bg-red-900 transition-colors duration-300">传奇世界</a>
-            <a href="http://mc.crge.cn/" class="block px-4 py-2 hover:bg-red-900 transition-colors duration-300">Minecraft</a>
+      <div class="desktop-menu">
+        <a href="http://crge.cn/">首页</a>
+        <a href="http://crge.cn/articles">知识人</a>
+        <div class="dropdown" id="desktop-games-dropdown">
+          <span>游戏站</span>
+          <div class="dropdown-menu">
+            <a href="http://crge.cn/games">游戏站</a>
+            <a href="http://zc.crge.cn/" class="legendary">传奇世界</a>
+            <a href="http://mc.crge.cn/" class="minecraft">Minecraft</a>
           </div>
         </div>
-        <a href="http://crge.cn/tools" class="hover:text-yellow-400 transition-colors duration-300">工具站</a>
-        <a href="https://space.bilibili.com/2414939" class="hover:text-yellow-400 transition-colors duration-300">视频</a>
-        <a href="http://crge.cn/tools/search.html" class="hover:text-yellow-400 transition-colors duration-300">搜索</a>
-        <a href="http://crge.cn/articles/communication.html" class="hover:text-yellow-400 transition-colors duration-300">留言板</a>
+        <a href="http://crge.cn/tools">工具站</a>
+        <a href="https://space.bilibili.com/2414939">视频</a>
+        <a href="http://crge.cn/tools/search.html">搜索</a>
+        <a href="http://crge.cn/articles/communication.html">留言板</a>
       </div>
     </div>
     <!-- Mobile Sidebar -->
-    <div id="sidebar" class="sidebar fixed top-0 left-0 h-full w-64 bg-blue-900 text-white p-4 lg:hidden">
-      <button id="close-sidebar" class="mb-4 text-white focus:outline-none">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div id="sidebar" class="sidebar">
+      <button id="close-sidebar">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      <a href="http://crge.cn/" class="block py-2 hover:text-yellow-400 transition-colors duration-300">首页</a>
-      <a href="http://crge.cn/articles" class="block py-2 hover:text-yellow-400 transition-colors duration-300">知识人</a>
-      <div class="relative dropdown">
-        <span class="block py-2 hover:text-yellow-400 cursor-pointer transition-colors duration-300" onclick="document.getElementById('mobile-games-dropdown').classList.toggle('hidden')">游戏站</span>
-        <div id="mobile-games-dropdown" class="hidden pl-4">
-          <a href="http://crge.cn/games" class="block py-2 hover:text-yellow-400 transition-colors duration-300">游戏站</a>
-          <a href="http://zc.crge.cn/" class="block py-2 hover:text-yellow-400 transition-colors duration-300">传奇世界</a>
-          <a href="http://mc.crge.cn/" class="block py-2 hover:text-yellow-400 transition-colors duration-300">Minecraft</a>
+      <a href="http://crge.cn/">首页</a>
+      <a href="http://crge.cn/articles">知识人</a>
+      <div class="dropdown" id="mobile-games-dropdown">
+        <span>游戏站</span>
+        <div class="dropdown-menu">
+          <a href="http://crge.cn/games">游戏站</a>
+          <a href="http://zc.crge.cn/">传奇世界</a>
+          <a href="http://mc.crge.cn/">Minecraft</a>
         </div>
       </div>
-      <a href="http://crge.cn/tools" class="block py-2 hover:text-yellow-400 transition-colors duration-300">工具站</a>
-      <a href="https://space.bilibili.com/2414939" class="block py-2 hover:text-yellow-400 transition-colors duration-300">视频</a>
-      <a href="http://crge.cn/tools/search.html" class="block py-2 hover:text-yellow-400 transition-colors duration-300">搜索</a>
-      <a href="http://crge.cn/articles/communication.html" class="block py-2 hover:text-yellow-400 transition-colors duration-300">留言板</a>
+      <a href="http://crge.cn/tools">工具站</a>
+      <a href="https://space.bilibili.com/2414939">视频</a>
+      <a href="http://crge.cn/tools/search.html">搜索</a>
+      <a href="http://crge.cn/articles/communication.html">留言板</a>
     </div>
   </nav>
 
-  <header class="w-full max-w-4xl mx-auto text-center py-20 mt-16">
-    <h1 class="text-5xl font-bold mb-4 animate-slide-in">Winlator - 释放你的设备潜能</h1>
-    <p class="text-xl animate-fade-in">欢迎访问 <a href="http://win.crge.cn" class="underline hover:text-yellow-400">win.crge.cn</a>，Winlator 让你在安卓设备上畅玩 Windows 游戏！</p>
+  <header>
+    <h1 class="animate-slide-in">Winlator - 释放你的设备潜能</h1>
+    <p class="animate-fade-in">欢迎访问 <a href="http://win.crge.cn">win.crge.cn</a>，Winlator 让你在安卓设备上畅玩 Windows 游戏！</p>
   </header>
 
-  <main class="w-full max-w-4xl mx-auto px-4">
-    <section class="grid md:grid-cols-2 gap-8 mb-12">
-      <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in">
-        <h2 class="text-3xl font-semibold mb-4">WC 版</h2>
-        <p class="text-lg">专为 2024 年之前的老款手机或平板设计，完美兼容经典设备，带来流畅的游戏体验。无论你的设备有多“老”，WC 版都能让它焕发新生！</p>
-        <ul class="mt-4 list-disc list-inside">
+  <main>
+    <section class="card-grid">
+      <div class="card animate-slide-in">
+        <h2>WC 版</h2>
+        <p>专为 2024 年之前的老款手机或平板设计，完美兼容经典设备，带来流畅的游戏体验。无论你的设备有多“老”，WC 版都能让它焕发新生！</p>
+        <ul>
           <li>优化低配硬件</li>
           <li>支持经典安卓系统</li>
           <li>轻量、稳定、易上手</li>
         </ul>
-        <a href="https://win.crge.cn/download/wc" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
+        <div class="button-group">
+          <a href="https://win.crge.cn/download/wc" class="download-btn">立即下载</a>
+          <button class="info-btn" onclick="document.getElementById('wc-modal').style.display='flex'">更多信息</button>
+        </div>
       </div>
-      <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in" style="animation-delay: 0.2s;">
-        <h2 class="text-3xl font-semibold mb-4">Gli 版</h2>
-        <p class="text-lg">为新款设备或最近更新系统的老设备量身打造，充分利用高性能硬件，带来极致画质和流畅体验。你的新设备，游戏新境界！</p>
-        <ul class="mt-4 list-disc list-inside">
+      <div class="modal info-modal" id="wc-modal">
+        <div class="modal-content">
+          <h3>WC 版 - 详细介绍</h3>
+          <p>WC 版是为老款安卓设备（2024 年之前）优化的 Winlator 版本，专为低配硬件设计，确保在资源有限的设备上也能流畅运行 Windows 游戏。它支持广泛的安卓版本（4.4 及以上），安装简单，占用空间小，适合怀旧玩家或使用老旧设备的用户。</p>
+          <ul>
+            <li>最低硬件要求：1GB RAM，单核 CPU</li>
+            <li>支持安卓 4.4 至 9.0 系统</li>
+            <li>优化的 DirectX 和 OpenGL 兼容性</li>
+            <li>轻量安装包（约 50MB）</li>
+            <li>支持经典 Windows 游戏（如《红色警戒 2》）</li>
+          </ul>
+          <button class="close-btn" onclick="document.getElementById('wc-modal').style.display='none'">关闭</button>
+        </div>
+      </div>
+      <div class="card animate-slide-in" style="animation-delay: 0.2s;">
+        <h2>Gli 版</h2>
+        <p>为新款设备或最近更新系统的老设备量身打造，充分利用高性能硬件，带来极致画质和流畅体验。你的新设备，游戏新境界！</p>
+        <ul>
           <li>支持最新安卓系统</li>
           <li>高性能优化</li>
           <li>更丰富的图形效果</li>
         </ul>
-        <a href="https://win.crge.cn/download/gli" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
+        <div class="button-group">
+          <a href="https://win.crge.cn/download/gli" class="download-btn">立即下载</a>
+          <button class="info-btn" onclick="document.getElementById('gli-modal').style.display='flex'">更多信息</button>
+        </div>
       </div>
-    </section>
-
-    <section class="mb-12 text-center">
-      <button id="other-versions-btn" class="bg-gray-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-gray-600 transition-colors duration-300 animate-fade-in">其他版本</button>
-      <div id="other-versions-modal" class="modal">
+      <div class="modal info-modal" id="gli-modal">
         <div class="modal-content">
-          <div class="grid md:grid-cols-2 gap-8">
-            <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in">
-              <h3 class="text-3xl font-semibold mb-4 text-white">Winlator 官方原版</h3>
-              <p class="text-lg text-white">Winlator 官方原版，适合对软件有特定需求的开发者或高级用户，提供最原始的功能和配置选项，适合定制化使用。</p>
-              <ul class="mt-4 list-disc list-inside text-white">
-                <li>原始功能完整保留</li>
-                <li>适合开发者调试</li>
-                <li>高度自定义支持</li>
-              </ul>
-              <a href="https://win.crge.cn/download/official" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
-            </div>
-            <div class="bg-blue-800 rounded-lg p-6 shadow-lg transform hover:scale-105 transition-transform duration-300 animate-slide-in" style="animation-delay: 0.2s;">
-              <h3 class="text-3xl font-semibold mb-4 text-white">天玑麒麟兼容版 <span class="text-red-400">(不推荐)</span></h3>
-              <p class="text-lg text-white">为搭载天玑或麒麟芯片的设备设计，但由于兼容性问题，建议谨慎使用，仅推荐给特定设备用户或测试者。</p>
-              <ul class="mt-4 list-disc list-inside text-white">
-                <li>针对天玑/麒麟芯片</li>
-                <li>有限兼容性</li>
-                <li>适合测试用途</li>
-              </ul>
-              <a href="https://win.crge.cn/download/mediatek" class="inline-block mt-6 bg-yellow-400 text-blue-900 font-bold py-2 px-4 rounded-full hover:bg-yellow-500 transition-colors duration-300">立即下载</a>
-            </div>
-          </div>
-          <button id="close-modal" class="mt-6 bg-red-500 text-white font-bold py-2 px-4 rounded-full hover:bg-red-600 transition-colors duration-300">关闭</button>
+          <h3>Gli 版 - 详细介绍</h3>
+          <p>Gli 版专为高性能安卓设备或近期更新的设备设计，支持最新安卓系统（10.0 及以上），充分利用多核 CPU 和高端 GPU，提供卓越的图形渲染和流畅性能。适合运行要求较高的 Windows 游戏，带来接近 PC 的游戏体验。</p>
+          <ul>
+            <li>推荐硬件：4GB RAM 及以上，多核 CPU，Adreno/Mali GPU</li>
+            <li>支持安卓 10.0 及以上系统</li>
+            <li>增强的 DirectX 12 和 Vulkan 支持</li>
+            <li>支持高分辨率纹理和动态光影</li>
+            <li>适合现代游戏（如《巫师 3》简化版）</li>
+          </ul>
+          <button class="close-btn" onclick="document.getElementById('gli-modal').style.display='none'">关闭</button>
         </div>
       </div>
     </section>
 
-    <section class="text-center mb-12 animate-fade-in">
-      <h2 class="text-3xl font-semibold mb-4">为什么选择 Winlator？</h2>
-      <p class="text-lg max-w-2xl mx-auto">Winlator 让你在安卓设备上运行 Windows 游戏，操作简单，兼容性强。无论是怀旧经典还是最新大作，Winlator 都能满足你的需求！</p>
-      <p class="mt-4">了解更多关于我们的服务，请访问 <a href="http://crge.cn" class="underline hover:text-yellow-400">crge.cn</a>。</p>
+    <section class="other-versions">
+      <button id="other-versions-btn" class="animate-fade-in">其他版本</button>
+      <div id="other-versions-modal" class="modal">
+        <div class="modal-content">
+          <div class="card-grid">
+            <div class="card animate-slide-in">
+              <h3>Winlator 官方原版</h3>
+              <p>Winlator 官方原版，适合对软件有特定需求的开发者或高级用户，提供最原始的功能和配置选项，适合定制化使用。</p>
+              <ul>
+                <li>原始功能完整保留</li>
+                <li>适合开发者调试</li>
+                <li>高度自定义支持</li>
+              </ul>
+              <div class="button-group">
+                <a href="https://win.crge.cn/download/official" class="download-btn">立即下载</a>
+                <button class="info-btn" onclick="document.getElementById('official-modal').style.display='flex'">更多信息</button>
+              </div>
+            </div>
+            <div class="modal info-modal" id="official-modal">
+              <div class="modal-content">
+                <h3>Winlator 官方原版 - 详细介绍</h3>
+                <p>Winlator 官方原版是为开发者和技术爱好者设计的完整版本，保留所有原始功能，提供最大化的自定义选项。用户可以调整模拟器设置、兼容性参数和调试工具，适合开发或测试复杂 Windows 应用程序和游戏。</p>
+                <ul>
+                  <li>支持完整 Windows API 模拟</li>
+                  <li>提供开发者调试工具（日志、性能分析）</li>
+                  <li>支持自定义 Wine 配置</li>
+                  <li>兼容广泛的 Windows 软件</li>
+                  <li>需要一定技术背景</li>
+                </ul>
+                <button class="close-btn" onclick="document.getElementById('official-modal').style.display='none'">关闭</button>
+              </div>
+            </div>
+            <div class="card animate-slide-in" style="animation-delay: 0.2s;">
+              <h3>天玑麒麟兼容版 <span style="color: #f87171;">(不推荐)</span></h3>
+              <p>为搭载天玑或麒麟芯片的设备设计，但由于兼容性问题，建议谨慎使用，仅推荐给特定设备用户或测试者。</p>
+              <ul>
+                <li>针对天玑/麒麟芯片</li>
+                <li>有限兼容性</li>
+                <li>适合测试用途</li>
+              </ul>
+              <div class="button-group">
+                <a href="https://win.crge.cn/download/mediatek" class="download-btn">立即下载</a>
+                <button class="info-btn" onclick="document.getElementById('mediatek-modal').style.display='flex'">更多信息</button>
+              </div>
+            </div>
+            <div class="modal info-modal" id="mediatek-modal">
+              <div class="modal-content">
+                <h3>天玑麒麟兼容版 - 详细介绍</h3>
+                <p>天玑麒麟兼容版针对搭载联发科天玑或华为麒麟芯片的设备进行了特定优化，但由于硬件和驱动的限制，兼容性不佳，仅推荐给测试用户或特定设备用户。建议优先选择 WC 版或 Gli 版以获得更好体验。</p>
+                <ul>
+                  <li>支持天玑 1000 系列及麒麟 990 以上芯片</li>
+                  <li>有限的图形和性能优化</li>
+                  <li>可能需要手动配置 Wine 参数</li>
+                  <li>适合实验性用途</li>
+                  <li>可能存在稳定性问题</li>
+                </ul>
+                <button class="close-btn" onclick="document.getElementById('mediatek-modal').style.display='none'">关闭</button>
+              </div>
+            </div>
+          </div>
+          <button id="close-modal" class="close-btn">关闭</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-winlator animate-fade-in">
+      <h2>为什么选择 Winlator？</h2>
+      <p>Winlator 让你在安卓设备上运行 Windows 游戏，操作简单，兼容性强。无论是怀旧经典还是最新大作，Winlator 都能满足你的需求！</p>
+      <p style="margin-top: 16px;">了解更多关于我们的服务，请访问 <a href="http://crge.cn">crge.cn</a>。</p>
     </section>
   </main>
 
-  <footer class="w-full text-center py-6 bg-blue-700">
-    <p>© 2025 Winlator. 保留所有权利。 | <a href="http://crge.cn" class="underline hover:text-yellow-400">访问 crge.cn</a></p>
+  <footer>
+    <p>© 2025 Winlator. 保留所有权利。 | <a href="http://crge.cn">访问 crge.cn</a></p>
   </footer>
 
   <script>
@@ -226,19 +610,40 @@
 
     // Desktop Dropdown Delay
     const desktopDropdown = document.getElementById('desktop-games-dropdown');
-    const dropdownMenu = desktopDropdown.querySelector('.dropdown-menu');
-    let timeout;
+    const desktopDropdownMenu = desktopDropdown.querySelector('.dropdown-menu');
+    let desktopTimeout;
     desktopDropdown.addEventListener('mouseenter', () => {
-      clearTimeout(timeout);
-      dropdownMenu.style.display = 'block';
+      clearTimeout(desktopTimeout);
+      desktopDropdownMenu.style.display = 'block';
     });
     desktopDropdown.addEventListener('mouseleave', () => {
-      timeout = setTimeout(() => {
-        dropdownMenu.style.display = 'none';
+      desktopTimeout = setTimeout(() => {
+        desktopDropdownMenu.style.display = 'none';
       }, 500);
     });
 
-    // Modal Toggle
+    // Mobile Dropdown Delay (with touch fallback)
+    const mobileDropdown = document.getElementById('mobile-games-dropdown');
+    const mobileDropdownMenu = mobileDropdown.querySelector('.dropdown-menu');
+    let mobileTimeout;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isTouchDevice) {
+      mobileDropdown.addEventListener('mouseenter', () => {
+        clearTimeout(mobileTimeout);
+        mobileDropdownMenu.style.display = 'block';
+      });
+      mobileDropdown.addEventListener('mouseleave', () => {
+        mobileTimeout = setTimeout(() => {
+          mobileDropdownMenu.style.display = 'none';
+        }, 500);
+      });
+    } else {
+      mobileDropdown.querySelector('span').addEventListener('click', () => {
+        mobileDropdownMenu.style.display = mobileDropdownMenu.style.display === 'block' ? 'none' : 'block';
+      });
+    }
+
+    // Modal Toggle for Other Versions
     const modal = document.getElementById('other-versions-modal');
     const openModalBtn = document.getElementById('other-versions-btn');
     const closeModalBtn = document.getElementById('close-modal');
@@ -252,6 +657,16 @@
       if (e.target === modal) {
         modal.style.display = 'none';
       }
+    });
+
+    // Modal Toggle for Info Modals
+    const infoModals = document.querySelectorAll('.info-modal');
+    infoModals.forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
     });
   </script>
 </body>
