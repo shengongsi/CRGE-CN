@@ -115,8 +115,14 @@
     .dropdown-menu a:hover {
       background-color: #1e40af;
     }
-    .dropdown-menu a.legendary:hover, .dropdown-menu a.minecraft:hover {
+    .dropdown-menu a.legendary:hover {
       background-color: #7f1d1d;
+    }
+    .dropdown-menu a.minecraft:hover {
+      background-color: #1d7f1d;
+    }
+    .dropdown-menu a.youxizhan:hover {
+      background-color: #5d5def;
     }
     /* Sidebar for mobile */
     .sidebar {
@@ -406,20 +412,20 @@
       </button>
       <!-- Desktop Menu -->
       <div class="desktop-menu">
-        <a href="http://crge.cn/">首页</a>
-        <a href="http://crge.cn/articles">知识人</a>
+        <a href="/">首页</a>
+        <a href="/articles">知识人</a>
         <div class="dropdown" id="desktop-games-dropdown">
           <span>游戏站</span>
           <div class="dropdown-menu">
-            <a href="http://crge.cn/games">游戏站</a>
-            <a href="http://zc.crge.cn/" class="legendary">传奇世界</a>
-            <a href="http://mc.crge.cn/" class="minecraft">Minecraft</a>
+            <a href="/games" class="youxizhan">游戏站</a>
+            <a href="/games/cqsj/" class="legendary">传奇世界</a>
+            <a href="/games/mc/" class="minecraft">Minecraft</a>
           </div>
         </div>
-        <a href="http://crge.cn/tools">工具站</a>
+        <a href="/tools">工具站</a>
         <a href="https://space.bilibili.com/2414939">视频</a>
-        <a href="http://crge.cn/tools/search.html">搜索</a>
-        <a href="http://crge.cn/articles/communication.html">留言板</a>
+        <a href="/tools/search.html">搜索</a>
+        <a href="/articles/communication.html">留言板</a>
       </div>
     </div>
     <!-- Mobile Sidebar -->
@@ -429,20 +435,20 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
         </svg>
       </button>
-      <a href="http://crge.cn/">首页</a>
-      <a href="http://crge.cn/articles">知识人</a>
+      <a href="/">首页</a>
+      <a href="/articles">知识人</a>
       <div class="dropdown" id="mobile-games-dropdown">
         <span>游戏站</span>
         <div class="dropdown-menu">
-          <a href="http://crge.cn/games">游戏站</a>
-          <a href="http://zc.crge.cn/">传奇世界</a>
-          <a href="http://mc.crge.cn/">Minecraft</a>
+          <a href="/games">游戏站</a>
+          <a href="/games/cqsj/">传奇世界</a>
+          <a href="/games/mc/">Minecraft</a>
         </div>
       </div>
-      <a href="http://crge.cn/tools">工具站</a>
+      <a href="/tools">工具站</a>
       <a href="https://space.bilibili.com/2414939">视频</a>
-      <a href="http://crge.cn/tools/search.html">搜索</a>
-      <a href="http://crge.cn/articles/communication.html">留言板</a>
+      <a href="/tools/search.html">搜索</a>
+      <a href="/articles/communication.html">留言板</a>
     </div>
   </nav>
 
@@ -454,22 +460,22 @@
   <main>
     <section class="card-grid">
       <div class="card animate-slide-in">
-        <h2>WC 版</h2>
-        <p>专为 2024 年之前的老款手机或平板设计，完美兼容经典设备，带来流畅的游戏体验。无论你的设备有多“老”，WC 版都能让它焕发新生！</p>
+        <h2>CW 版</h2>
+        <p>专为 2024 年之前的老款手机或平板设计，完美兼容经典设备，带来流畅的游戏体验。无论你的设备有多“老”，CW 版都能让它焕发新生！</p>
         <ul>
           <li>优化低配硬件</li>
           <li>支持经典安卓系统</li>
           <li>轻量、稳定、易上手</li>
         </ul>
         <div class="button-group">
-          <a href="https://win.crge.cn/download/wc" class="download-btn">立即下载</a>
-          <button class="info-btn" onclick="document.getElementById('wc-modal').style.display='flex'">更多信息</button>
+          <a href="https://www.123912.com/s/Swvkvd-O2al" class="download-btn">立即下载</a>
+          <button class="info-btn" onclick="document.getElementById('cw-modal').style.display='flex'">更多信息</button>
         </div>
       </div>
-      <div class="modal info-modal" id="wc-modal">
+      <div class="modal info-modal" id="cw-modal">
         <div class="modal-content">
-          <h3>WC 版 - 详细介绍</h3>
-          <p>WC 版是为老款安卓设备（2024 年之前）优化的 Winlator 版本，专为低配硬件设计，确保在资源有限的设备上也能流畅运行 Windows 游戏。它支持广泛的安卓版本（4.4 及以上），安装简单，占用空间小，适合怀旧玩家或使用老旧设备的用户。</p>
+          <h3>CW 版 - 详细介绍</h3>
+          <p>CW 版是为老款安卓设备（2024 年之前）优化的 Winlator 版本，专为低配硬件设计，确保在资源有限的设备上也能流畅运行 Windows 游戏。它支持广泛的安卓版本（4.4 及以上），安装简单，占用空间小，适合怀旧玩家或使用老旧设备的用户。</p>
           <ul>
             <li>最低硬件要求：1GB RAM，单核 CPU</li>
             <li>支持安卓 4.4 至 9.0 系统</li>
@@ -477,10 +483,11 @@
             <li>轻量安装包（约 50MB）</li>
             <li>支持经典 Windows 游戏（如《红色警戒 2》）</li>
           </ul>
-          <button class="close-btn" onclick="document.getElementById('wc-modal').style.display='none'">关闭</button>
+          <button class="close-btn" onclick="document.getElementById('cw-modal').style.display='none'">关闭</button>
         </div>
       </div>
-      <div class="card animate-slide-in" style="animation-delay: 0.2s;">
+            <!--==========<div class="card animate-slide-in" style="animation-delay: 0.2s;">取消延时===========-->
+      <div class="card animate-slide-in">
         <h2>Gli 版</h2>
         <p>为新款设备或最近更新系统的老设备量身打造，充分利用高性能硬件，带来极致画质和流畅体验。你的新设备，游戏新境界！</p>
         <ul>
@@ -489,7 +496,7 @@
           <li>更丰富的图形效果</li>
         </ul>
         <div class="button-group">
-          <a href="https://win.crge.cn/download/gli" class="download-btn">立即下载</a>
+          <a href="https://www.123912.com/s/Swvkvd-N2al" class="download-btn">立即下载</a>
           <button class="info-btn" onclick="document.getElementById('gli-modal').style.display='flex'">更多信息</button>
         </div>
       </div>
@@ -523,7 +530,8 @@
                 <li>高度自定义支持</li>
               </ul>
               <div class="button-group">
-                <a href="https://win.crge.cn/download/official" class="download-btn">立即下载</a>
+                <a href="https://winlator.org/" class="download-btn">前往官网</a>
+                <a href="https://wwpy.lanzoue.com/iVAf42xwrbij" class="download-btn">汉化包下载</a>
                 <button class="info-btn" onclick="document.getElementById('official-modal').style.display='flex'">更多信息</button>
               </div>
             </div>
@@ -541,7 +549,8 @@
                 <button class="close-btn" onclick="document.getElementById('official-modal').style.display='none'">关闭</button>
               </div>
             </div>
-            <div class="card animate-slide-in" style="animation-delay: 0.2s;">
+            <!--==========<div class="card animate-slide-in" style="animation-delay: 0.2s;">取消延时===========-->
+            <div class="card animate-slide-in">
               <h3>天玑麒麟兼容版 <span style="color: #f87171;">(不推荐)</span></h3>
               <p>为搭载天玑或麒麟芯片的设备设计，但由于兼容性问题，建议谨慎使用，仅推荐给特定设备用户或测试者。</p>
               <ul>
@@ -550,14 +559,14 @@
                 <li>适合测试用途</li>
               </ul>
               <div class="button-group">
-                <a href="https://win.crge.cn/download/mediatek" class="download-btn">立即下载</a>
+                <a href="https://www.123912.com/s/Swvkvd-R2al" class="download-btn">立即下载</a>
                 <button class="info-btn" onclick="document.getElementById('mediatek-modal').style.display='flex'">更多信息</button>
               </div>
             </div>
             <div class="modal info-modal" id="mediatek-modal">
               <div class="modal-content">
                 <h3>天玑麒麟兼容版 - 详细介绍</h3>
-                <p>天玑麒麟兼容版针对搭载联发科天玑或华为麒麟芯片的设备进行了特定优化，但由于硬件和驱动的限制，兼容性不佳，仅推荐给测试用户或特定设备用户。建议优先选择 WC 版或 Gli 版以获得更好体验。</p>
+                <p>天玑麒麟兼容版针对搭载联发科天玑或华为麒麟芯片的设备进行了特定优化，但由于硬件和驱动的限制，兼容性不佳，仅推荐给测试用户或特定设备用户。建议优先选择 CW 版或 Gli 版以获得更好体验。</p>
                 <ul>
                   <li>支持天玑 1000 系列及麒麟 990 以上芯片</li>
                   <li>有限的图形和性能优化</li>
