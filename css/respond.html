@@ -5,6 +5,12 @@
 // 获取当前页面的URL（去掉 http:// 或 https://）
 const currentUrl = window.location.href.replace(/^https?:\/\//, '');
 
+// 获取当前页面的协议（http: 或 https:）
+const currentProtocol = window.location.protocol;
+
+// 根据当前协议决定 iframe 的协议
+const iframeProtocol = currentProtocol === 'https:' ? 'https://' : 'http://';
+
 // 构建 iframe 的 HTML 字符串
 const iframeHTML = `
     <iframe 
@@ -16,7 +22,7 @@ const iframeHTML = `
         marginwidth="0" 
         scrolling="no" 
         style="height:1000px" 
-        src="http://zc.crge.cn/c.php?${encodeURIComponent(currentUrl)}"
+        src="${iframeProtocol}zc.crge.cn/c.php?${encodeURIComponent(currentUrl)}"
     ></iframe>
 `;
 
