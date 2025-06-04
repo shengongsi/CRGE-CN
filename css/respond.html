@@ -1,18 +1,29 @@
-﻿
-		<div class="comment-respond" id="respond">
-		<h2 class="comment-reply-title" id="reply-title">发表评论 <small><a id="cancel-comment-reply-link" style="display:none;" href="http://crge.cn/articles/communication.html" rel="nofollow">取消回复</a></small></h2>			<form class="comment-form" id="commentform" action="http://science.iask.in:24504/wp-comments-post.php" method="post" novalidate="">
-				<p class="comment-notes"><span id="email-notes"></span></p><p class="comment-form-comment"><textarea name="comment" id="comment" required="required" maxlength="65525" rows="3" cols="40" placeholder="请输入评论内容：（PS:记得填昵称……(PPS:这个留言系统是真的……)）" style="width: 100%;"></textarea></p>
-<p class="comment-form-author"><input name="author" id="author" type="text" size="20" maxlength="180" value="" placeholder="昵称" style="width: 220px;">
-<input name="email" id="email" aria-describedby="email-notes" type="email" size="20" maxlength="180" value="" placeholder="(选填) 邮箱: xxx@yy.zz" style="width: 220px;">
+﻿<!-- 占位元素（你想插入 iframe 的位置） -->
+<div id="iframe-container"></div>
 
-<style>
-.submit{float:right;margin:-7px 2px;width:110px;height:40px;line-height:40px;border-radius:0px;background:#30C0FF;color:white;}</style>
-<input name="submit" class="submit" id="submit" type="submit" value="发送"> <input name="comment_post_ID" id="comment_post_ID" type="hidden" value="1">
-<input name="comment_parent" id="comment_parent" type="hidden" value="0">
-</p>
-</form>
-			</div><!-- #respond -->
-<iframe id="respondroll" border=2 frameborder=0 width=100% marginheight=0 marginwidth=0 scrolling=no style="height:1000px" src="http://science.iask.in:24504/respond.php"></iframe>
+<script>
+// 获取当前页面的URL（去掉 http:// 或 https://）
+const currentUrl = window.location.href.replace(/^https?:\/\//, '');
+
+// 构建 iframe 的 HTML 字符串
+const iframeHTML = `
+    <iframe 
+        id="respondroll" 
+        border="2" 
+        frameborder="0" 
+        width="100%" 
+        marginheight="0" 
+        marginwidth="0" 
+        scrolling="no" 
+        style="height:1000px" 
+        src="http://zc.crge.cn/c.php?${encodeURIComponent(currentUrl)}"
+    ></iframe>
+`;
+
+// 插入到指定位置
+document.getElementById('iframe-container').insertAdjacentHTML('beforeend', iframeHTML);
+</script>
+
 
 <style>
     .txtcenter{text-align:center;}
@@ -35,3 +46,52 @@ document.getElementById("respondmore").innerHTML="查看更多评论";
 }
 
 }</script>
+
+
+
+
+
+
+
+
+
+
+<!-- 旧版#respond
+		<div class="comment-respond" id="respond">
+		<h2 class="comment-reply-title" id="reply-title">发表评论 <small><a id="cancel-comment-reply-link" style="display:none;" href="http://crge.cn/articles/communication.html" rel="nofollow">取消回复</a></small></h2>			<form class="comment-form" id="commentform" action="http://science.iask.in:24504/wp-comments-post.php" method="post" novalidate="">
+				<p class="comment-notes"><span id="email-notes"></span></p><p class="comment-form-comment"><textarea name="comment" id="comment" required="required" maxlength="65525" rows="3" cols="40" placeholder="请输入评论内容：（PS:记得填昵称……(PPS:这个留言系统是真的……)）" style="width: 100%;"></textarea></p>
+<p class="comment-form-author"><input name="author" id="author" type="text" size="20" maxlength="180" value="" placeholder="昵称" style="width: 220px;">
+<input name="email" id="email" aria-describedby="email-notes" type="email" size="20" maxlength="180" value="" placeholder="(选填) 邮箱: xxx@yy.zz" style="width: 220px;">
+
+<style>
+.submit{float:right;margin:-7px 2px;width:110px;height:40px;line-height:40px;border-radius:0px;background:#30C0FF;color:white;}</style>
+<input name="submit" class="submit" id="submit" type="submit" value="发送"> <input name="comment_post_ID" id="comment_post_ID" type="hidden" value="1">
+<input name="comment_parent" id="comment_parent" type="hidden" value="0">
+</p>
+</form>
+			</div>
+
+<iframe id="respondroll" border=2 frameborder=0 width=100% marginheight=0 marginwidth=0 scrolling=no style="height:1000px" src="http://science.iask.in:24504/respond.php"></iframe>
+<style>
+    .txtcenter{text-align:center;}
+.morerespond{float:center;width:100%;height:40px;line-height:40px;border-radius:0px;background:blue;color:white;}</style>
+
+
+<div id="respondmore" class="morerespond txtcenter" onclick="respondmore(); ">查看更多评论</div>
+
+<script>function respondmore() {
+
+if (document.getElementById('respondroll').scrolling == "no"){
+
+document.getElementById('respondroll').scrolling="yes";
+$("#respondroll").css("height","1500px");
+document.getElementById("respondmore").innerHTML="隐藏更多评论";
+}else{
+document.getElementById('respondroll').scrolling="no";
+$("#respondroll").css("height","1000px");
+document.getElementById("respondmore").innerHTML="查看更多评论";
+}
+
+}</script>
+
+旧版#respond -->
