@@ -453,16 +453,16 @@
   </nav>
 
   <header>
-    <h1 class="animate-slide-in">网页没写完，请优先选择下载CW版和Gli版，二者可共存。下载页面注册登录后就无需付费。</h1>
-    <h1 class="animate-slide-in">Winlator - 释放你的设备潜能</h1>
+    <h1 class="animate-slide-in">Winlator-Crge.CN专版</h1>
     <p class="animate-fade-in">欢迎访问 <a href="http://win.crge.cn">win.crge.cn</a>，Winlator 让你在安卓设备上畅玩 Windows 游戏！</p>
+
   </header>
 
   <main>
     <section class="card-grid">
       <div class="card animate-slide-in">
         <h2>CW 版</h2>
-        <p>2024年之前的老款手机或平板请优先使用本版本，CW 版和Gli 版可以同时安装，支持骁龙、天玑、麒麟芯片的设备，详细介绍及CW 版特有的问题处理请点击更多信息查看。</p>
+        <p>2024年之前(安卓13及以下)的老款手机或平板请优先使用本版本，CW 版和Gli 版可以同时安装，支持骁龙、天玑、麒麟芯片的设备，详细介绍及CW 版特有的问题处理请点击更多信息查看。</p>
         <ul>
           <li>优化低配硬件，2019年的千元机765也能流畅使用</li>
           <li>支持galgame、单机游戏、网络游戏</li>
@@ -476,13 +476,14 @@
       <div class="modal info-modal" id="cw-modal">
         <div class="modal-content">
           <h3>CW 版 - 详细介绍</h3>
-          <p>CW 版似乎是最稳定的，无需任何额外设置，即可正常使用</p>
+          <p>CW 版似乎是最稳定的，只需删除DXVK_HUD、调整音频驱动程序，即可正常使用</p>
           <ul>
-            <li>最低硬件要求：1GB RAM，单核 CPU</li>
-            <li>支持安卓 4.4 至 14.0 系统</li>
-            <li>优化的 DirectX 和 OpenGL 兼容性</li>
-            <li>轻量安装包（约 500MB）</li>
-            <li>支持经典 Windows 游戏（如《红色警戒 2》）</li>
+            <li>①新建容器时请删除环境变量-DXVK_HUD选项(所有选项都取消打勾也行)。</li>
+            <li>②新建容器时-音频驱动程序-改成-ALSA。</li>
+            <li>③支持安卓 4.4 至 13 系统，安卓14及以上不一定不能用，但是如果默认设置闪退就请更换Gil版。</li>
+            <li>④如果CW 版启动游戏时候正常，但到某个界面会突然卡住（不是死机，不是游戏卡顿，下拉通知栏、长按屏幕画面可能动两下），那么编辑-音频驱动程序-ALSA，右下角√保存，重新进入游戏即可。</li>
+            <li>⑤如果骁龙处理器默认设置玩游戏花屏请在留言板联系站长，天玑、麒麟处理器花屏可以自行尝试修改图形渲染驱动或D3D渲染库，或者选择其他版本-exa版。</li>
+            <li>⑥部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</li>
           </ul>
           <button class="close-btn" onclick="document.getElementById('cw-modal').style.display='none'">关闭</button>
         </div>
@@ -490,11 +491,11 @@
             <!--==========<div class="card animate-slide-in" style="animation-delay: 0.2s;">取消延时===========-->
       <div class="card animate-slide-in">
         <h2>Gli 版</h2>
-        <p>新手机平板、最近更新系统的老设备请使用本版本，支持骁龙、天玑、麒麟芯片的设备，功能更强大，效率更高，GTA4、GTA5之类的大型游戏都可以完美运行。需要进行一些设置才能使用，点击更多信息查看。</p>
+        <p>新手机平板、最近更新系统的老设备(安卓14及以上)请使用本版本，支持骁龙、天玑、麒麟芯片的设备，功能更强大，效率更高，GTA4、GTA5之类的大型游戏都可以完美运行。需要安装WINED3D-9.21驱动才能使用，点击更多信息查看。</p>
         <ul>
           <li>支持最近更新系统的设备，老设备可能出现卡死现象</li>
           <li>支持galgame、单机游戏、网络游戏</li>
-          <li>流畅运行GTA5、传奇世界、地下城与勇士</li>
+          <li>流畅运行GTA5、地下城与勇士、传奇世界</li>
         </ul>
         <div class="button-group">
           <a href="https://www.123912.com/s/Swvkvd-N2al" class="download-btn">立即下载</a>
@@ -504,13 +505,13 @@
       <div class="modal info-modal" id="gli-modal">
         <div class="modal-content">
           <h3>Gli 版 - 详细介绍</h3>
-          <p>Gli 版专为高性能安卓设备或近期更新的设备设计，支持最新安卓系统（10.0 及以上），充分利用多核 CPU 和高端 GPU，提供卓越的图形渲染和流畅性能。适合运行要求较高的 Windows 游戏，带来接近 PC 的游戏体验。</p>
+          <p>Gli 版默认页面是黑色的，请在左侧菜单-高级设置-主题-取消勾选-▢启用深色模式，不然部分文字显示不清晰。新建容器只需删除DXVK_HUD，其他的都默认设置。进容器后要装WINED3D-9.21驱动。</p>
           <ul>
-            <li>推荐硬件：4GB RAM 及以上，多核 CPU，Adreno/Mali GPU</li>
-            <li>支持安卓 10.0 及以上系统</li>
-            <li>增强的 DirectX 12 和 Vulkan 支持</li>
-            <li>支持高分辨率纹理和动态光影</li>
-            <li>适合现代游戏（如《巫师 3》简化版）</li>
+            <li>①右上角┇符号-添加，建立新容器，把环境变量-DXVK_HUD选项删除(所有选项都取消打勾也行)</li>
+            <li>②·重要·进入容器后右下角-起点-WINED3D-安装倒数第二个-Wined3d-9.21，这是用来解决是否支持D3D加速问题的·重要·。</li>
+            <li>③支持安卓 10.0 及以上系统，安卓13及以下系统进入游戏似乎会在某个界面会突然卡住，不是死机，不是游戏卡顿，反复下拉通知栏、长按屏幕画面会动两下。出现这种情况请安装CW 版，并查看CW 版介绍。</li>
+            <li>④如果骁龙处理器默认设置玩游戏花屏请在留言板联系站长，天玑、麒麟处理器花屏可以自行尝试修改图形渲染驱动或D3D渲染库，或者选择其他版本-exa版。</li>
+            <li>⑤部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</li>
           </ul>
           <button class="close-btn" onclick="document.getElementById('gli-modal').style.display='none'">关闭</button>
         </div>
@@ -562,7 +563,7 @@
           <div class="card-grid">
             <div class="card animate-slide-in">
               <h3>Winlator 官方原版</h3>
-              <p>Winlator 官方原版，不支持中文，安装汉化包后可显示部分中文，但对于GBK编码、隶书仍会显示为乱码。可以运行黑神话悟空、GTA5、传奇世界等一切游戏。不建议使用。</p>
+              <p>Winlator 官方原版，不支持中文，安装汉化包后可显示部分中文，但对于GBK编码、隶书仍会显示为乱码。可以运行黑神话悟空、GTA5、赛博朋克2077等一切游戏。不建议使用。</p>
               <ul>
                 <li>汉化包下载后双击安装，重启虚拟机即可显示中文</li>
                 <li>适合2025年5月26日之后发布的5999元以上新设备</li>
@@ -577,10 +578,12 @@
             <div class="modal info-modal" id="official-modal">
               <div class="modal-content">
                 <h3>Winlator 官方原版 - 详细介绍</h3>
-                <p>①Winlator 官方原版启动游戏时可能会弹窗报错，这会导致游戏内部分二级菜单无法打开。（Gli版和CW版不存在此问题，官方原版无法修复）</p>
+                <p>①Winlator 官方原版启动游戏时可能会弹窗报错，这会导致游戏内部分二级菜单无法打开。（Gli版和CW版不存在此问题，官方原版和exa版无法修复）</p>
                 <p>②如果使用Winlator 官方原版玩各类中文游戏除了部分字体乱码以外可以正常游玩，那么可以切换Gli版，这个版本没有乱码的问题。</p>
                 <p>③如果官方原版玩启动游戏时候正常，但到某个界面会突然卡住（不是死机，不是游戏卡顿，下拉通知栏画面可能动两下），那么请切换CW版，然后阅读CW版详细介绍。</p>
-                <p>④如果玩游戏花屏，请修改（Edit）-Graphics Driver，这里边有三个选项，请依次尝试更换，点击右下角√后重新启动。Edit里DX Wrapper也可依次尝试更换，优先DXVK，次优WineD3D，Turnip(Adreno)只能对应DXVK</p>
+                <p>④如果玩游戏花屏，请修改（Edit）-Graphics Driver，这里边有三个选项，请依次尝试更换，点击右下角√后重新启动。Edit里DX Wrapper也可依次尝试更换，优先DXVK，次优WineD3D，Turnip(Adreno)只能对应DXVK。</p>
+                <p>⑤如果默认设置花屏，可以在右侧调整DXVK版本，调整后每个版本花屏程度都有所不同，实测Turnip(Adreno)+DXVK1.7.2花屏程度小一些。</p>
+                <p>⑥部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</p>
             <!--==========                <ul>
                   <li>支持完整 Windows API 模拟</li>
                   <li>提供开发者调试工具（日志、性能分析）</li>
@@ -593,27 +596,28 @@
             </div>
             <!--==========<div class="card animate-slide-in" style="animation-delay: 0.2s;">取消延时===========-->
             <div class="card animate-slide-in">
-              <h3>天玑麒麟兼容版 <span style="color: #f87171;">(不推荐)</span></h3>
-              <p>似乎没有任何用，Gli版和CW版可以替代此版本，不要下载，本站总共测试了20多个不同型号的平板电脑和手机，都是使用Gli版或CW版，本站认为Gli版和CW版都已经加入了兼容天玑麒麟代码。</p>
+              <h3>天玑麒麟兼容版 <span style="color: #f87171;">(exa版)</span></h3>
+              <p>天玑、麒麟处理器，且较新的机器(安卓14及以上)可以尝试此版本，安卓13及以下请使用CW版。骁龙处理器也可以用（骁龙8至尊以上处理器）。天玑、麒麟处理器需要多次调整显卡驱动和图形加速。</p>
               <ul>
-                <li>所有用户都请优先下载Gli版或CW版</li>
-                <li>不建议使用，目前没有任何一款游戏需要用到此版本</li>
-                <li>后期可能删除此版本</li>
+                <li>新建容器时请删除环境变量-DXVK_HUD选项</li>
+                <li>天玑、麒麟处理器需要调试显卡驱动和图形加速</li>
+                <li>所有用户都请优先尝试使用Gli版或CW版</li>
               </ul>
               <div class="button-group">
-                <a href="https://www.123912.com/s/Swvkvd-R2al" class="download-btn">立即下载</a>
+                <a href="https://www.123912.com/s/Swvkvd-Ysal" class="download-btn">立即下载</a>
                 <button class="info-btn" onclick="document.getElementById('mediatek-modal').style.display='flex'">更多信息</button>
               </div>
             </div>
             <div class="modal info-modal" id="mediatek-modal">
               <div class="modal-content">
-                <h3>天玑麒麟兼容版 - 详细介绍</h3>
-                <p>似乎是官方原版、CW版和Gli版支持天玑、麒麟处理器之前的民间修改版本，但后期官方原版、CW版和Gli版均支持了天玑、麒麟处理器，本版本就没有存在的意义了，兼容性不佳，仅推荐给测试用户或特定设备用户。建议优先选择 CW 版或 Gli 版以获得更好体验。</p>
+                <h3>天玑麒麟兼容版(exa版) - 详细介绍</h3>
+                <p>此版本存在部分游戏二级页面无法打开的问题，启动游戏时会弹窗报错忽视即可，测试了很多游戏，都能正常游玩。建议优先选择 CW 版或 Gli 版以获得更好体验。</p>
                 <ul>
-                  <li>①存在严重的稳定性问题</li>
-                  <li>②请去下载CW版或Gli版</li>
-                  <li>③请去下载CW版或Gli版</li>
-                  <li>④请去下载CW版或Gli版</li>
+                  <li>①如果天玑麒麟兼容版(exa版)启动游戏时候正常，但到某个界面会突然卡住（不是死机，不是游戏卡顿，下拉通知栏、长按屏幕画面可能动两下），那么请切换CW版，然后阅读CW版详细介绍。</li>
+                  <li>②如果天玑麒麟兼容版(exa版)启动游戏时候花屏，将就可以登陆游戏，但到某个界面会突然卡住，那么可以长按屏幕，一直移动鼠标，强行让游戏画面动起来（反复下拉通知栏也行）。</li>
+                  <li>③如果玩游戏花屏，请编辑-显卡驱动，这里边有三个选项，请依次尝试更换，点击右下角√后重新启动。编辑里图形加速也可依次尝试更换，优先DXVK，次优WineD3D，Turnip(Adreno)只能对应DXVK。</li>
+                  <li>④如果默认设置花屏，可以在右侧调整DXVK版本，调整后每个版本花屏程度都有所不同，实测Turnip(Adreno)+DXVK1.7.2花屏程度小一些。</li>
+                  <li>⑤部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</li>
                 </ul>
                 <button class="close-btn" onclick="document.getElementById('mediatek-modal').style.display='none'">关闭</button>
               </div>
@@ -625,14 +629,18 @@
     </section>
 
     <section class="why-winlator animate-fade-in">
-      <h2>为什么选择 Winlator？</h2>
+      <h2>Winlator 介绍</h2>
       <p>Winlator 让你在安卓设备上运行 Windows 游戏，操作简单，兼容性强。无论是怀旧经典还是最新大作，Winlator 都能满足你的需求！</p>
-      <p style="margin-top: 16px;">了解更多关于我们的服务，请访问 <a href="http://crge.cn">crge.cn</a>。</p>
+      <p style="margin-top: 16px;">请根据安卓版本选择下载CW 版或Gli 版，更多版本里还有官方原版、天玑麒麟兼容版 (exa版)可选。</p>
+      <p style="margin-top: 16px;">建立容器或者编辑时可以选择D盘位置，默认是download文件夹，如果直接在手机上下载安装包，那么默认也会下载到download，本模拟器可以直接用安装包安装游戏。各个盘的位置可以根据直接需求修改。</p>
+      <p style="margin-top: 16px;">CW 版或Gli 版首次运行安装包或者启动游戏时会弹出Wine Gecko安装器，他的安装速度比较慢，可以先取消不安装，这个软件的作用是显示游戏内的一些二级页面，安装后任务栏会显示一堆空白菜单。</p>
+      <p style="margin-top: 16px;">不限速、不用下载客户端的网盘我只找到这一个。但这个网盘注册登录后似乎每天只能免费下载一个文件，请仔细阅读各版本介绍及更多信息选择合适的版本下载。上方留言板我会更新一些新的网盘下载链接</p>
+      <p style="margin-top: 16px;">加入QQ群：787782036（优先）、361473638。</p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Winlator. 保留所有权利。 | <a href="http://crge.cn">访问 crge.cn</a></p>
+    <p>Cr铬 | <a href="http://crge.cn">访问 crge.cn</a></p>
   </footer>
 
   <script>
