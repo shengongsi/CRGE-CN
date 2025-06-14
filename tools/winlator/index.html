@@ -267,6 +267,7 @@
       margin-bottom: 16px;
     }
     .card p {
+      text-align: left;
       font-size: 18px;
       margin-bottom: 16px;
     }
@@ -276,6 +277,7 @@
       margin-bottom: 24px;
     }
     .card ul li {
+      text-align: left;
       margin-bottom: 8px;
     }
     .button-group {
@@ -362,6 +364,7 @@
       margin-bottom: 16px;
     }
     .why-winlator p {
+      text-align: left;
       font-size: 18px;
       max-width: 640px;
       margin: 0 auto;
@@ -475,7 +478,7 @@
       </div>
       <div class="modal info-modal" id="cw-modal">
         <div class="modal-content">
-          <h3>CW 版 - 详细介绍</h3>
+          <h3 style="text-align: center;">CW 版 - 详细介绍</h3>
           <p>CW 版似乎是最稳定的，只需删除DXVK_HUD、调整音频驱动程序，即可正常使用</p>
           <ul>
             <li>①新建容器时请删除环境变量-DXVK_HUD选项(所有选项都取消打勾也行)。</li>
@@ -485,7 +488,7 @@
             <li>⑤如果骁龙处理器默认设置玩游戏花屏请在留言板联系站长，天玑、麒麟处理器花屏可以自行尝试修改图形渲染驱动或D3D渲染库，或者选择其他版本-exa版。</li>
             <li>⑥部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</li>
           </ul>
-          <button class="close-btn" onclick="document.getElementById('cw-modal').style.display='none'">关闭</button>
+          <div style="text-align: center;"><button class="close-btn" onclick="document.getElementById('cw-modal').style.display='none'">关闭</button></div>
         </div>
       </div>
             <!--==========<div class="card animate-slide-in" style="animation-delay: 0.2s;">取消延时===========-->
@@ -504,7 +507,7 @@
       </div>
       <div class="modal info-modal" id="gli-modal">
         <div class="modal-content">
-          <h3>Gli 版 - 详细介绍</h3>
+          <h3 style="text-align: center;">Gli 版 - 详细介绍</h3>
           <p>Gli 版默认页面是黑色的，请在左侧菜单-高级设置-主题-取消勾选-▢启用深色模式，不然部分文字显示不清晰。新建容器只需删除DXVK_HUD，其他的都默认设置。进容器后要装WINED3D-9.21驱动。</p>
           <ul>
             <li>①右上角┇符号-添加，建立新容器，把环境变量-DXVK_HUD选项删除(所有选项都取消打勾也行)</li>
@@ -513,7 +516,7 @@
             <li>④如果骁龙处理器默认设置玩游戏花屏请在留言板联系站长，天玑、麒麟处理器花屏可以自行尝试修改图形渲染驱动或D3D渲染库，或者选择其他版本-exa版。</li>
             <li>⑤部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</li>
           </ul>
-          <button class="close-btn" onclick="document.getElementById('gli-modal').style.display='none'">关闭</button>
+          <div style="text-align: center;"><button class="close-btn" onclick="document.getElementById('gli-modal').style.display='none'">关闭</button></div>
         </div>
       </div>
     </section>
@@ -578,12 +581,12 @@
             <div class="modal info-modal" id="official-modal">
               <div class="modal-content">
                 <h3>Winlator 官方原版 - 详细介绍</h3>
-                <p>①Winlator 官方原版启动游戏时可能会弹窗报错，这会导致游戏内部分二级菜单无法打开。（Gli版和CW版不存在此问题，官方原版和exa版无法修复）</p>
-                <p>②如果使用Winlator 官方原版玩各类中文游戏除了部分字体乱码以外可以正常游玩，那么可以切换Gli版，这个版本没有乱码的问题。</p>
-                <p>③如果官方原版玩启动游戏时候正常，但到某个界面会突然卡住（不是死机，不是游戏卡顿，下拉通知栏画面可能动两下），那么请切换CW版，然后阅读CW版详细介绍。</p>
-                <p>④如果玩游戏花屏，请修改（Edit）-Graphics Driver，这里边有三个选项，请依次尝试更换，点击右下角√后重新启动。Edit里DX Wrapper也可依次尝试更换，优先DXVK，次优WineD3D，Turnip(Adreno)只能对应DXVK。</p>
-                <p>⑤如果默认设置花屏，可以在右侧调整DXVK版本，调整后每个版本花屏程度都有所不同，实测Turnip(Adreno)+DXVK1.7.2花屏程度小一些。</p>
-                <p>⑥部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</p>
+                <p style="text-align: left;">①Winlator 官方原版启动游戏时可能会弹窗报错，这会导致游戏内部分二级菜单无法打开。（Gli版和CW版不存在此问题，官方原版和exa版无法修复）</p>
+                <p style="text-align: left;">②如果使用Winlator 官方原版玩各类中文游戏除了部分字体乱码以外可以正常游玩，那么可以切换Gli版，这个版本没有乱码的问题。</p>
+                <p style="text-align: left;">③如果官方原版玩启动游戏时候正常，但到某个界面会突然卡住（不是死机，不是游戏卡顿，下拉通知栏画面可能动两下），那么请切换CW版，然后阅读CW版详细介绍。</p>
+                <p style="text-align: left;">④如果玩游戏花屏，请修改（Edit）-Graphics Driver，这里边有三个选项，请依次尝试更换，点击右下角√后重新启动。Edit里DX Wrapper也可依次尝试更换，优先DXVK，次优WineD3D，Turnip(Adreno)只能对应DXVK。</p>
+                <p style="text-align: left;">⑤如果默认设置花屏，可以在右侧调整DXVK版本，调整后每个版本花屏程度都有所不同，实测Turnip(Adreno)+DXVK1.7.2花屏程度小一些。</p>
+                <p style="text-align: left;">⑥部分有挂机玩法的游戏，虽然花屏，但依然可以在花屏情况下进入挂机地图，也不是不能用。比如传奇世界就可以持有星空秘境道具进入泡点地图。</p>
             <!--==========                <ul>
                   <li>支持完整 Windows API 模拟</li>
                   <li>提供开发者调试工具（日志、性能分析）</li>
@@ -611,8 +614,8 @@
             <div class="modal info-modal" id="mediatek-modal">
               <div class="modal-content">
                 <h3>天玑麒麟兼容版(exa版) - 详细介绍</h3>
-                <p>此版本存在部分游戏二级页面无法打开的问题，启动游戏时会弹窗报错忽视即可，测试了很多游戏，都能正常游玩。建议优先选择 CW 版或 Gli 版以获得更好体验。</p>
-                <ul>
+                <p style="text-align: left;">此版本存在部分游戏二级页面无法打开的问题，启动游戏时会弹窗报错忽视即可，测试了很多游戏，都能正常游玩。建议优先选择 CW 版或 Gli 版以获得更好体验。</p>
+                <ul style="text-align: left;">
                   <li>①如果天玑麒麟兼容版(exa版)启动游戏时候正常，但到某个界面会突然卡住（不是死机，不是游戏卡顿，下拉通知栏、长按屏幕画面可能动两下），那么请切换CW版，然后阅读CW版详细介绍。</li>
                   <li>②如果天玑麒麟兼容版(exa版)启动游戏时候花屏，将就可以登陆游戏，但到某个界面会突然卡住，那么可以长按屏幕，一直移动鼠标，强行让游戏画面动起来（反复下拉通知栏也行）。</li>
                   <li>③如果玩游戏花屏，请编辑-显卡驱动，这里边有三个选项，请依次尝试更换，点击右下角√后重新启动。编辑里图形加速也可依次尝试更换，优先DXVK，次优WineD3D，Turnip(Adreno)只能对应DXVK。</li>
