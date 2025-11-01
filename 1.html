@@ -1,0 +1,936 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识分享 Cr铬 | crge.cn首页</title>
+  <meta name="description" content="欢迎来到Cr铬 | crge.cn！这里提供游戏、视频、实用小工具，以及科普文章和学习心得。加入我们的QQ群一起交流吧！">
+  <meta name="keywords" content="Cr铬, crge.cn, 知识分享, 游戏站, 工具站, 科普文章, 视频">
+  <meta name="baidu-site-verification" content="GdqL3T26Yd" />
+  <link rel="icon" type="image/png" href="/images/ico.png">
+  <link rel="icon" href="/images/ico.png" sizes="192x192" />
+  <link rel="alternate icon" type="image/png" href="/images/ico.png">
+  <link rel="apple-touch-icon-precomposed" href="/images/ico.png">
+  <meta name="msapplication-TileImage" content="/images/ico.png" />
+  <script src="/js/baiduindex.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    body {
+      background: linear-gradient(to bottom, #2563eb, #78cef3);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px rgba(139, 92, 246, 0.7); }
+      50% { text-shadow: 0 0 10px rgba(139, 92, 246, 0.9), 0 0 15px rgba(236, 72, 153, 0.7); }
+      100% { text-shadow: 0 0 5px rgba(139, 92, 246, 0.7); }
+    }
+    .animate-slide-in {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+    .animate-fade-in {
+      animation: fadeIn 1.2s ease-in forwards;
+    }
+    .animate-glow {
+      animation: glow 2s ease-in-out infinite;
+    }
+    nav {
+      width: 100%;
+      background-color: #1e3a8a;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      top: 0;
+      z-index: 50;
+    }
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo canvas:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+    }
+    .menu-toggle svg {
+      width: 24px;
+      height: 24px;
+    }
+    .desktop-menu {
+      display: none;
+      align-items: center;
+      gap: 16px;
+    }
+    .desktop-menu a, .desktop-menu span {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .desktop-menu a:hover, .desktop-menu span:hover {
+      color: #facc15;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #1e3a8a;
+      border-radius: 6px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 8px;
+      min-width: 192px;
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 8px 16px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .dropdown-menu a:hover {
+      background-color: #1e40af;
+    }
+    .dropdown-menu a.legendary:hover {
+      background-color: #7f1d1d;
+    }
+    .dropdown-menu a.minecraft:hover {
+      background-color: #1d7f1d;
+    }
+    .dropdown-menu a.youxizhan:hover {
+      background-color: #5d5def;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 256px;
+      background-color: #1e3a8a;
+      padding: 16px;
+      transform: translateX(-100%);
+      transition: transform 0.4s ease-in-out;
+      z-index: 50;
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar button {
+      background: none;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+    .sidebar button svg {
+      width: 24px;
+      height: 24px;
+    }
+    .sidebar a, .sidebar span {
+      display: block;
+      padding: 8px 0;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .sidebar a:hover, .sidebar span:hover {
+      color: #facc15;
+    }
+    .sidebar .dropdown-menu {
+      display: none;
+      padding-left: 16px;
+    }
+    .sidebar .dropdown-menu a {
+      padding: 8px 0;
+    }
+    @media (min-width: 1024px) {
+      .menu-toggle {
+        display: none;
+      }
+      .desktop-menu {
+        display: flex;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+    @media (max-width: 1023px) {
+      .menu-toggle {
+        display: block;
+      }
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+    .modal-content {
+      background-color: #e5e7eb;
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 1024px;
+      width: 90%;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    .info-modal .modal-content {
+      background-color: #4b3f4b;
+      max-width: 720px;
+    }
+    header {
+      max-width: 1024px;
+      margin: 64px auto 0;
+      text-align: center;
+      padding: 80px 16px;
+    }
+    header h1 {
+      font-size: 42px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+    header p {
+      font-size: 20px;
+    }
+    header a {
+      color: #ffffff;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    header a:hover {
+      color: #facc15;
+    }
+    main {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    .nav-card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 768px) {
+      .nav-card-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .card {
+      background-color: #1e40af;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      text-align: center;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card a {
+      font-size: 16px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .card a:hover {
+      color: #facc15;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 768px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .card-grid .card {
+      padding: 24px;
+    }
+    .card-grid .card h2, .card-grid .card h3 {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .card-grid .card p {
+      text-align: left;
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    .card-grid .card ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-bottom: 24px;
+    }
+    .card-grid .card ul li {
+      text-align: left;
+      margin-bottom: 8px;
+    }
+    .button-group {
+      display: flex;
+
+      gap: 16px;
+    }
+    .download-btn {
+      display: inline-block;
+      background-color: #facc15;
+      color: #1e3a8a;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+    .download-btn:hover {
+      background-color: #eab308;
+    }
+    .info-btn {
+      display: inline-block;
+      background-color: #06b6d4;
+      color: #1e3a8a;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .info-btn:hover {
+      background-color: #0891b2;
+    }
+    .other-versions {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .other-versions button {
+      background-color: #6b7280;
+      color: #ffffff;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .other-versions button:hover {
+      background-color: #4b5563;
+    }
+    .modal .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    @media (min-width: 768px) {
+      .modal .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .modal .close-btn {
+      background-color: #ef4444;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: background-color 0.3s;
+    }
+    .modal .close-btn:hover {
+      background-color: #dc2626;
+    }
+    .why-winlator {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .why-winlator h2 {
+      font-size: 30px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .why-winlator p {
+      text-align: left;
+      font-size: 18px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .why-winlator a {
+      color: #ffffff;
+      text-decoration: underline;
+      transition: color 0.3s;
+    }
+    .why-winlator a:hover {
+      color: #facc15;
+    }
+    footer {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      background-color: #1e40af;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      text-align: left;
+    }
+    @media (min-width: 768px) {
+      footer {
+        grid-template-columns: repeat(4, 1fr);
+        padding: 24px 100px;
+      }
+    }
+    footer .footer-column {
+      display: flex;
+      flex-direction: column;
+    }
+    footer .footer-column h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    footer p, footer a {
+      font-size: 16px;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    footer a:hover {
+      color: #facc15;
+      text-decoration: underline;
+    }
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+    .slide {
+      min-width: 100%;
+      text-align: center;
+    }
+    .slide img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .thumbnail-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s;
+    }
+    .thumbnail:hover, .thumbnail.active {
+      opacity: 1;
+    }
+    .promo-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+    .promo-left, .promo-right {
+      flex: 1;
+      min-width: 300px;
+    }
+    .promo-left ul {
+      list-style: none;
+    }
+    .promo-left li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .promo-left .icon {
+      font-size: 24px;
+      margin-right: 16px;
+      color: #facc15;
+    }
+    .promo-right {
+      background: url('/images/index/promo_detailed_bg.jpg') no-repeat center/cover;
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .promo-right .download-btn {
+      align-self: center;
+    }
+    .video-grid, .picture-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .video-grid img, .picture-grid img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .video-grid div, .picture-grid div {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 8px;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="/">
+          <canvas id="logoCanvas" width="200" height="50"></canvas>
+        </a>
+      </div>
+      <button id="menu-toggle" class="menu-toggle">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <div class="desktop-menu">
+        <a href="/">首页</a>
+        <a href="/articles">知识人</a>
+        <div class="dropdown" id="desktop-games-dropdown">
+          <span>游戏站</span>
+          <div class="dropdown-menu">
+            <a href="/games" class="youxizhan">游戏站</a>
+            <a href="/games/cqsj/" class="legendary">传奇世界</a>
+            <a href="/games/mc/" class="minecraft">Minecraft</a>
+          </div>
+        </div>
+        <a href="/tools">工具站</a>
+        <a href="http://ipv4.crge.cn:3722">博客</a>
+        <a href="https://space.bilibili.com/2414939">视频</a>
+        <a href="/tools/search.html">搜索</a>
+        <a href="/articles/communication.html">留言板</a>
+      </div>
+    </div>
+    <div id="sidebar" class="sidebar">
+      <button id="close-sidebar">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      <a href="/">首页</a>
+      <a href="/articles">知识人</a>
+      <div class="dropdown" id="mobile-games-dropdown">
+        <span>游戏站</span>
+        <div class="dropdown-menu">
+          <a href="/games">游戏站</a>
+          <a href="/games/cqsj/">传奇世界</a>
+          <a href="/games/mc/">Minecraft</a>
+        </div>
+      </div>
+      <a href="/tools">工具站</a>
+      <a href="http://ipv4.crge.cn:3722">博客</a>
+      <a href="https://space.bilibili.com/2414939">视频</a>
+      <a href="/tools/mail.html">邮箱</a>
+      <a href="/articles/communication.html">留言板</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1 class="animate-slide-in">欢迎来到知识分享 Cr铬 crge.cn!</h1>
+    <p class="animate-fade-in">很高兴你能来到本网站，这里有游戏、视频、实用小工具，知识人和博客站点有科普文章、学习心得，可以加入QQ群和我们一起讨论哦~</p>
+    <p class="animate-fade-in" style="color: #facc15;">★本站已经十二年啦★ ★2012-2024★</p>
+    <div class="button-group animate-fade-in">
+      <a href="/articles/communication.html" class="download-btn">网站说明</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="other-versions">
+      <button id="message-board-btn" class="animate-fade-in" style="background-color: #8b5cf6; color: white; font-weight: 600; padding: 12px 24px; border-radius: 9999px; border: none; cursor: pointer; transition: background-color 0.3s;">留言板</button>
+      <div id="message-board-modal" class="modal">
+        <div class="modal-content" style="max-width: 800px; height: 90%; padding: 0;">
+          <iframe id="message-board-iframe" src="" style="width: 100%; height: 90%; border: none;"></iframe>
+          <button class="close-btn" style="margin: 16px auto 0;" onclick="document.getElementById('message-board-modal').style.display='none'">关闭</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-winlator animate-fade-in">
+      <h2>导航</h2>
+      <p class="section--description">L I N K S</p>
+      <div class="nav-card-grid">
+        <div class="card">
+          <a href="/articles">知识人</a>
+        </div>
+        <div class="card">
+          <a href="/games">游戏站</a>
+        </div>
+        <div class="card">
+          <a href="/tools">工具站</a>
+        </div>
+        <div class="card">
+          <a href="/articles/communication.html">留言板</a>
+        </div>
+        <div class="card">
+          <a href="http://ipv4.crge.cn:3722">博客</a>
+        </div>
+        <div class="card">
+          <a href="https://space.bilibili.com/2414939">视频</a>
+        </div>
+        <div class="card">
+          <a href="javascript:void(0)" onclick="openDonationModal()">💰打赏💰</a>
+        </div>
+        <div class="card">
+          <a href="/games/mc/index.html">我的世界</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-winlator animate-fade-in">
+      <h2>游戏站</h2>
+      <p><a href="/games">C R G E . C N / G A M E S</a></p>
+      <div class="slider-container">
+        <div class="slider" id="gameSlider">
+          <div class="slide">
+            <a href="games/game/kx/index.html"><img src="games/game/kx/kxxxl.jpg" alt="开心消消乐"></a>
+            <div>开心消消乐</div>
+          </div>
+          <div class="slide">
+            <a href="games/game/fish/index.html"><img src="games/game/fish/ico2.jpg" alt="捕鱼达人"></a>
+            <div>捕鱼达人</div>
+          </div>
+          <div class="slide">
+            <a href="games/game/fruit/index.html"><img src="games/game/fruit/fruit1.jpg" alt="水果忍者"></a>
+            <div>水果忍者</div>
+          </div>
+          <div class="slide">
+            <a href="games/mc/index.html"><img src="/images/mc.jpg" alt="Minecraft"></a>
+            <div>Minecraft</div>
+          </div>
+        </div>
+        <div class="thumbnail-container">
+          <img src="games/game/kx/kxxxl.jpg?imageView2/0/w/80" class="thumbnail active" onclick="currentSlide(0)">
+          <img src="games/game/fish/ico2.jpg?imageView2/0/w/80" class="thumbnail" onclick="currentSlide(1)">
+          <img src="games/game/fruit/fruit1.jpg?imageView2/0/w/80" class="thumbnail" onclick="currentSlide(2)">
+          <img src="/images/mc.jpg?imageView2/0/w/80" class="thumbnail" onclick="currentSlide(3)">
+        </div>
+      </div>
+      <div class="button-group">
+        <a href="/games/index.html" class="download-btn">更多游戏 &gt;&gt;</a>
+      </div>
+    </section>
+
+    <section class="promo-section animate-fade-in">
+      <div class="promo-left">
+        <h2>知识人</h2>
+        <p><a href="/articles">C R G E . C N / A R T I C L E S</a></p>
+        <ul>
+          <li>
+            <span class="icon">💎</span>
+            <div>
+              <a href="/articles/20150818Bible.html"><strong>创世纪</strong></a>
+              <p>上帝说，要有光，于是就有了光。上帝看光是好的，就把光反应与暗反应分开了。</p>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🌍</span>
+            <div>
+              <a href="/articles/20150716GRAVITY.html"><strong>地球上人口增加会影响引力吗？</strong></a>
+              <p>Let’s look at this in different parts. First, what is the mass of all the people on the Earth?</p>
+            </div>
+          </li>
+          <li>
+            <span class="icon">🌳</span>
+            <div>
+              <a href="/articles/ThreeBody.html"><strong>什么是三体问题？</strong></a>
+              <p>三体问题是天体力学中的基本力学模型。它是指三个质量、初始位置和初始速度都是任意的可视为质点的天体……</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="promo-right">
+        <p>知识人是Cr铬 | crge.cn网站下用于发布科普、科技文章及视频的站点。</p>
+        <a href="/articles" class="download-btn">进入知识人 &gt;&gt;</a>
+      </div>
+    </section>
+
+    <section class="why-winlator animate-fade-in">
+      <h2>视频</h2>
+      <p>这儿放了一些我做的视频</p>
+      <div class="video-grid">
+        <div>
+          <a href="/videos/revit.html"><img src="/images/revit.jpg" alt="Revit小别墅漫游"></a>
+          <div>Revit小别墅漫游</div>
+        </div>
+        <div>
+          <a href="/videos/lumion-bysj.html"><img src="/images/bysj-lumion.jpg" alt="流明江海花园漫游"></a>
+          <div>流明江海花园漫游</div>
+        </div>
+        <div>
+          <a href="/videos/revit2.html"><img src="/images/revit2.jpg" alt="Revit萨伏伊别墅"></a>
+          <div>Revit萨伏伊别墅</div>
+        </div>
+        <div>
+          <a href="/videos/FTP.html"><img src="/images/FTP.jpg" alt="FTP服务搭建教程"></a>
+          <div>FTP服务搭建教程</div>
+        </div>
+      </div>
+      <div class="button-group">
+        <a href="https://space.bilibili.com/2414939" class="download-btn">前往bilibili观看更多视频 &gt;&gt;</a>
+      </div>
+    </section>
+
+    <section class="why-winlator animate-fade-in">
+      <h2>图片展示</h2>
+      <p>图片展示</p>
+      <div class="picture-grid">
+        <div>
+          <img src="/images/im/bysj-1.jpg" alt="南通市江海花园">
+          <div>南通市江海花园</div>
+        </div>
+        <div>
+          <img src="/images/im/zy.jpg" alt="ICM数学建模">
+          <div>ICM数学建模</div>
+        </div>
+        <div>
+          <img src="/images/im/3D-2.jpg" alt="Revit小别墅模型">
+          <div>Revit小别墅模型</div>
+        </div>
+        <div>
+          <img src="/images/im/fz.jpg" alt="建筑仿真">
+          <div>建筑仿真</div>
+        </div>
+        <div>
+          <img src="/images/im/bysj-2.jpg" alt="江海花园室内">
+          <div>江海花园室内</div>
+        </div>
+        <div>
+          <img src="/images/im/w2-1.jpg" alt="Revit小别墅模型">
+          <div>Revit小别墅模型</div>
+        </div>
+      </div>
+    </section>
+
+    <div id="donation-modal" class="modal">
+      <div class="modal-content" style="max-width: 320px; text-align: center;">
+        <h3>打赏</h3>
+        <div class="button-group">
+          <button class="download-btn" onclick="openModal('zhifubao-s1')">支付宝</button>
+          <button class="download-btn" style="background-color: #22c55e;" onclick="openModal('weixin-s1')">微信</button>
+        </div>
+        <button class="close-btn" onclick="document.getElementById('donation-modal').style.display='none'">关闭</button>
+      </div>
+    </div>
+    <div id="zhifubao-s1" class="modal">
+      <div class="modal-content" style="max-width: 320px;">
+        <img src="/images/im/zfb-s1.jpg" width="300px" height="425px" alt="支付宝二维码">
+        <button class="close-btn" onclick="document.getElementById('zhifubao-s1').style.display='none'">关闭</button>
+      </div>
+    </div>
+    <div id="weixin-s1" class="modal">
+      <div class="modal-content" style="max-width: 320px;">
+        <img src="/images/im/wx-s1.png" width="300px" height="339px" alt="微信二维码">
+        <button class="close-btn" onclick="document.getElementById('weixin-s1').style.display='none'">关闭</button>
+      </div>
+    </div>
+    <div id="wei-xin" class="modal">
+      <div class="modal-content" style="max-width: 320px;">
+        <img src="/images/weixin.jpg" width="300px" height="445px" alt="微信二维码">
+        <button class="close-btn" onclick="document.getElementById('wei-xin').style.display='none'">关闭</button>
+      </div>
+    </div>
+    <div id="qq-qq" class="modal">
+      <div class="modal-content" style="max-width: 320px;">
+        <img src="/images/QQ.png" width="300px" height="411px" alt="QQ二维码">
+        <button class="close-btn" onclick="document.getElementById('qq-qq').style.display='none'">关闭</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h3>视频列表</h3>
+      <a href="/videos/revit.html">Revit小别墅漫游</a>
+      <a href="/videos/lumion-bysj.html">毕业设计-Lumion漫游</a>
+      <a href="/videos/revit2.html">Revit萨伏伊别墅</a>
+      <a href="/videos/FTP.html">FTP服务器搭建教程</a>
+      <a href="https://space.bilibili.com/2414939">前往bilibili查看更多</a>
+    </div>
+    <div class="footer-column">
+      <h3>文章列表</h3>
+      <a href="/articles/20150716GRAVITY.html">地球上人口增加会影响引力吗？</a>
+      <a href="/articles/20190310spacenavigation.html">游历宇宙只需46年？</a>
+      <a href="/articles/ThreeBody.html">什么是三体问题？</a>
+      <a href="/articles/communication.html">网站说明</a>
+      <a href="/articles">阅读更多</a>
+    </div>
+    <div class="footer-column">
+      <h3>关于我们</h3>
+      <p>Cr铬|crge.cn网站下<a href="/articles">知识人</a>站点是用于发布科普、科技文章及视频的站点，建立于2018年10月05日。视频内容均为原创，部分文章搬运于网络。</p>
+      <p>本网站建于2012年，最初为现在游戏站内容；2017年修改网站，希望建成有足够影响力科普学习网站。</p>
+    </div>
+    <div class="footer-column">
+      <h3>保持联系</h3>
+      <a href="javascript:void(0)" onclick="openModal('qq-qq')">QQ群：787782036</a>
+      <a href="javascript:void(0)" onclick="openModal('wei-xin')">扫码联系</a>
+      <a href="mailto:A@mail.crge.cn">A@mail.crge.cn</a>
+      <p>江苏·南通</p>
+      <a href="https://beian.miit.gov.cn/">苏ICP备18046706号</a>
+    </div>
+  </footer>
+
+  <script>
+    // Canvas Logo
+    const canvas = document.getElementById('logoCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = 'bold 28px Impact, sans-serif';
+    const gradient = ctx.createLinearGradient(0, 0, 200, 0);
+    gradient.addColorStop(0, '#8b5cf6');
+    gradient.addColorStop(1, '#ec4899');
+    ctx.fillStyle = gradient;
+    ctx.fillText('Cr铬 | crge.cn', 10, 35);
+    canvas.className = 'animate-glow';
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebar = document.getElementById('close-sidebar');
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+    closeSidebar.addEventListener('click', () => {
+      sidebar.classList.remove('open');
+    });
+
+    // Desktop Dropdown Delay
+    const desktopDropdown = document.getElementById('desktop-games-dropdown');
+    const desktopDropdownMenu = desktopDropdown.querySelector('.dropdown-menu');
+    let desktopTimeout;
+    desktopDropdown.addEventListener('mouseenter', () => {
+      clearTimeout(desktopTimeout);
+      desktopDropdownMenu.style.display = 'block';
+    });
+    desktopDropdown.addEventListener('mouseleave', () => {
+      desktopTimeout = setTimeout(() => {
+        desktopDropdownMenu.style.display = 'none';
+      }, 500);
+    });
+
+    // Mobile Dropdown Delay (with touch fallback)
+    const mobileDropdown = document.getElementById('mobile-games-dropdown');
+    const mobileDropdownMenu = mobileDropdown.querySelector('.dropdown-menu');
+    let mobileTimeout;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isTouchDevice) {
+      mobileDropdown.addEventListener('mouseenter', () => {
+        clearTimeout(mobileTimeout);
+        mobileDropdownMenu.style.display = 'block';
+      });
+      mobileDropdown.addEventListener('mouseleave', () => {
+        mobileTimeout = setTimeout(() => {
+          mobileDropdownMenu.style.display = 'none';
+        }, 500);
+      });
+    } else {
+      mobileDropdown.querySelector('span').addEventListener('click', () => {
+        mobileDropdownMenu.style.display = mobileDropdownMenu.style.display === 'block' ? 'none' : 'block';
+      });
+    }
+
+    // Message Board Modal
+    document.getElementById('message-board-btn').addEventListener('click', function() {
+      const modal = document.getElementById('message-board-modal');
+      const iframe = document.getElementById('message-board-iframe');
+      const currentProtocol = window.location.protocol;
+      const iframeSrc = currentProtocol + '//zc.crge.cn/c.php?winlator';
+      iframe.src = iframeSrc;
+      modal.style.display = 'flex';
+    });
+    document.getElementById('message-board-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+      }
+    });
+
+    // Donation and Contact Modals
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+    }
+    function openDonationModal() {
+      document.getElementById('donation-modal').style.display = 'flex';
+    }
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+    });
+
+    // Slider Functionality
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    function showSlide(index) {
+      slideIndex = index >= slides.length ? 0 : index < 0 ? slides.length - 1 : index;
+      document.getElementById('gameSlider').style.transform = `translateX(-${slideIndex * 100}%)`;
+      thumbnails.forEach((thumb, i) => {
+        thumb.classList.toggle('active', i === slideIndex);
+      });
+    }
+    function currentSlide(index) {
+      showSlide(index);
+    }
+    setInterval(() => {
+      showSlide(slideIndex + 1);
+    }, 5000);
+    showSlide(slideIndex);
+  </script>
+</body>
+</html>
